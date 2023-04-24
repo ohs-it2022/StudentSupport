@@ -28,6 +28,7 @@ class HomeScreenWidget extends StatelessWidget {
   }
 }
 
+// ホーム以外の画面
 class ScreenWidget extends StatelessWidget {
   final String titleTxt;
   final bodyContents;
