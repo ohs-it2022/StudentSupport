@@ -145,7 +145,7 @@ class BottomMenuWidget extends StatelessWidget {
     final row = Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        BottomMenuElem(icon_type: homeIcon, nextPage: MyApp(),),
+        BottomMenuElem(icon_type: homeIcon, nextPage: MyHomePage(),),
         BottomMenuElem(icon_type: attendanceInfoIcon, nextPage: AttendanceInfoPage(),),
         BottomMenuElem(icon_type: taskRegistIcon, nextPage: TaskRegist(),),
     ],);

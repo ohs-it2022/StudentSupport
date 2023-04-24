@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:student_support/src/app.dart';
+import 'package:student_support/src/screens/attend/attendanceInfo.dart';
 import 'package:student_support/src/screens/time_table/TT_day.dart';
 import 'package:student_support/src/screens/time_table/TT_month.dart';
 import 'package:student_support/src/screens/time_table/TT_week.dart';
@@ -14,11 +15,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // -- ボトムメニューの画面遷移用 --
+      initialRoute: '/',
+      routes: {
+        '/': (context) => MyHomePage(),
+        '/attendInfo': (context) => AttendanceInfoPage(),
+      },
+      // -------------------------------
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: DefaultTabController(initialIndex: 1, length: 4, child: MyHomePage(),)
+      // home: MyHomePage()
     );
   }
 }
