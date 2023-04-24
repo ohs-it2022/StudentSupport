@@ -75,16 +75,16 @@ class OverlayWidget extends StatelessWidget {
     final drawerWidth = _screenSize.width * 0.7;
 
     // オーバーレイのボタン作成
-    final topBtn = OverlayElem(icon_type: Icons.home, btnTxt: 'ホーム', nextPage: MyApp(),);
-    final attendanceInfoBtn = OverlayElem(icon_type: Icons.badge, btnTxt: '出欠情報', nextPage: AttendanceInfoPage(),);
-    final jobRegistBtn = OverlayElem(icon_type: Icons.book, btnTxt: '課題登録', nextPage: TaskRegist(),);
-    final timetableChangeBtn = OverlayElem(icon_type: Icons.calendar_month, btnTxt: '時間割変更', nextPage: TTChange(),);
-    final settingBtn = OverlayElem(icon_type: Icons.settings, btnTxt: '一般設定', nextPage: TTChange(),);
+    final topBtn = OverlayElem(icon_type: homeIcon, btnTxt: 'ホーム', nextPage: MyApp(),);
+    final attendanceInfoBtn = OverlayElem(icon_type: attendanceInfoIcon, btnTxt: '出欠情報', nextPage: AttendanceInfoPage(),);
+    final taskRegistBtn = OverlayElem(icon_type: taskRegistIcon, btnTxt: '課題登録', nextPage: TaskRegist(),);
+    final TTChangeBtn = OverlayElem(icon_type: TTChangeIcon, btnTxt: '時間割変更', nextPage: TTChange(),);
+    final settingBtn = OverlayElem(icon_type: settingIcon, btnTxt: '一般設定', nextPage: TTChange(),);
     final overlayBtn = [
       topBtn, 
       attendanceInfoBtn, 
-      jobRegistBtn, 
-      timetableChangeBtn, 
+      taskRegistBtn, 
+      TTChangeBtn, 
       settingBtn,
     ];
     return Theme(
@@ -143,9 +143,9 @@ class BottomMenuWidget extends StatelessWidget {
     final row = Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        BottomMenuElem(icon_type: Icons.home, nextPage: MyApp(),),
-        BottomMenuElem(icon_type: Icons.badge, nextPage: AttendanceInfoPage(),),
-        BottomMenuElem(icon_type: Icons.book, nextPage: TaskRegist(),),
+        BottomMenuElem(icon_type: homeIcon, nextPage: MyApp(),),
+        BottomMenuElem(icon_type: attendanceInfoIcon, nextPage: AttendanceInfoPage(),),
+        BottomMenuElem(icon_type: taskRegistIcon, nextPage: TaskRegist(),),
     ],);
 
     final con = Container(

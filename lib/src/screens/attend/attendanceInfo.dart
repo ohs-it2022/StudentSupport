@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:student_support/src/app.dart';
 import 'package:student_support/src/sample.dart';
 
 class AttendanceInfoPage extends StatelessWidget {
