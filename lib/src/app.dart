@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:student_support/main.dart';
+import 'package:student_support/src/sample.dart';
 import 'package:student_support/src/screens/attend/attendanceInfo.dart';
 import 'package:student_support/src/screens/register/taskRegist.dart';
 import 'package:student_support/src/screens/register/TT_change.dart';
+import 'package:student_support/src/screens/settings/settings.dart';
 
 // 色の定義
 final bgColor1 = Color.fromRGBO(28, 28, 28, 1);
@@ -79,7 +81,7 @@ class OverlayWidget extends StatelessWidget {
     final attendanceInfoBtn = OverlayElem(icon_type: attendanceInfoIcon, btnTxt: '出欠情報', nextPage: AttendanceInfoPage(),);
     final taskRegistBtn = OverlayElem(icon_type: taskRegistIcon, btnTxt: '課題登録', nextPage: TaskRegist(),);
     final TTChangeBtn = OverlayElem(icon_type: TTChangeIcon, btnTxt: '時間割変更', nextPage: TTChange(),);
-    final settingBtn = OverlayElem(icon_type: settingIcon, btnTxt: '一般設定', nextPage: TTChange(),);
+    final settingBtn = OverlayElem(icon_type: settingIcon, btnTxt: '一般設定', nextPage: Settings(),);
     final overlayBtn = [
       topBtn, 
       attendanceInfoBtn, 
