@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:student_support/main.dart';
+import 'package:student_support/src/sample.dart';
 import 'package:student_support/src/screens/kinosita/attendanceInfo.dart';
 import 'package:student_support/src/screens/morita/taskRegist.dart';
 import 'package:student_support/src/screens/wata/TT_change.dart';
-
-// 色の定義
-final bgColor1 = Color.fromRGBO(28, 28, 28, 1);
-final bgColor2 = Color.fromRGBO(63, 63, 63, 1);
-final textColor = Colors.white;
 
 // オーバーレイの要素のウィジェット
 class OverlayElem extends StatelessWidget {

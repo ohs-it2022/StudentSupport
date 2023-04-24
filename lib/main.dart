@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:student_support/src/app.dart';
+import 'package:student_support/src/sample.dart';
 import 'package:student_support/src/screens/jinbo/TT_day.dart';
 import 'package:student_support/src/screens/jinbo/TT_month.dart';
 import 'package:student_support/src/screens/jinbo/TT_week.dart';
