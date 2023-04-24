@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:student_support/main.dart';
+import 'package:student_support/src/screens/kinosita/attendanceInfo.dart';
+import 'package:student_support/src/screens/morita/taskRegist.dart';
+import 'package:student_support/src/screens/wata/TT_change.dart';
 
 // 色の定義
 final bgColor1 = Color.fromRGBO(28, 28, 28, 1);
@@ -9,7 +13,8 @@ final textColor = Colors.white;
 class OverlayElem extends StatelessWidget {
   final icon_type;
   final String btnTxt;
-  const OverlayElem({super.key, required this.icon_type, required this.btnTxt});
+  final nextPage;
+  const OverlayElem({super.key, required this.icon_type, required this.btnTxt, required this.nextPage});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +40,12 @@ class OverlayElem extends StatelessWidget {
       height: 80,
       
       child: ElevatedButton(
-        onPressed: (){}, 
+        onPressed: (){
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => nextPage),
+          );
+        }, 
         child: row, 
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
@@ -65,11 +75,11 @@ class OverlayWidget extends StatelessWidget {
     final drawerWidth = _screenSize.width * 0.7;
 
     // オーバーレイのボタン作成
-    final topBtn = OverlayElem(icon_type: Icons.home, btnTxt: 'ホーム',);
-    final attendanceInfoBtn = OverlayElem(icon_type: Icons.badge, btnTxt: '出欠情報',);
-    final jobRegistBtn = OverlayElem(icon_type: Icons.book, btnTxt: '課題登録',);
-    final timetableChangeBtn = OverlayElem(icon_type: Icons.calendar_month, btnTxt: '時間割変更');
-    final settingBtn = OverlayElem(icon_type: Icons.settings, btnTxt: '一般設定');
+    final topBtn = OverlayElem(icon_type: Icons.home, btnTxt: 'ホーム', nextPage: MyApp(),);
+    final attendanceInfoBtn = OverlayElem(icon_type: Icons.badge, btnTxt: '出欠情報', nextPage: AttendanceInfoPage(),);
+    final jobRegistBtn = OverlayElem(icon_type: Icons.book, btnTxt: '課題登録', nextPage: TaskRegist(),);
+    final timetableChangeBtn = OverlayElem(icon_type: Icons.calendar_month, btnTxt: '時間割変更', nextPage: TTChange(),);
+    final settingBtn = OverlayElem(icon_type: Icons.settings, btnTxt: '一般設定', nextPage: TTChange(),);
     final overlayBtn = [
       topBtn, 
       attendanceInfoBtn, 
@@ -101,12 +111,18 @@ class OverlayWidget extends StatelessWidget {
 // 下のメニューの要素
 class BottomMenuElem extends StatelessWidget {
   final icon_type;
-  const BottomMenuElem({super.key, required this.icon_type});
+  final nextPage;
+  const BottomMenuElem({super.key, required this.icon_type, required this.nextPage});
 
   @override
   Widget build(BuildContext context) {
     final elem = ElevatedButton(
-          onPressed: (){}, 
+          onPressed: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => nextPage),
+            );
+          }, 
           child: Icon(icon_type, color: textColor,),
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
@@ -127,9 +143,9 @@ class BottomMenuWidget extends StatelessWidget {
     final row = Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        BottomMenuElem(icon_type: Icons.home),
-        BottomMenuElem(icon_type: Icons.badge),
-        BottomMenuElem(icon_type: Icons.book),
+        BottomMenuElem(icon_type: Icons.home, nextPage: MyApp(),),
+        BottomMenuElem(icon_type: Icons.badge, nextPage: AttendanceInfoPage(),),
+        BottomMenuElem(icon_type: Icons.book, nextPage: TaskRegist(),),
     ],);
 
     final con = Container(

@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:student_support/src/app.dart';
 import 'package:student_support/src/sample.dart';
-// 色の定義
-const bgColor1 = Color.fromRGBO(28, 28, 28, 1);
-const bgColor2 = Color.fromRGBO(63, 63, 63, 1);
-const textColor = Colors.white;
 
 class TTWeek extends StatelessWidget {
   const TTWeek({super.key});
@@ -14,6 +10,6 @@ class TTWeek extends StatelessWidget {
     final bodyCont = Center(
       child: Text('週次 時間割', style: TextStyle(color: textColor),),
     );
-    return ScreenWidget(bodyContents: bodyCont);
+    return HomeScreenWidget(bodyContents: bodyCont);
   }
 }
