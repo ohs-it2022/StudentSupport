@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:student_support/src/app.dart';
-import 'package:student_support/src/screens/jinbo/TT_day.dart';
-import 'package:student_support/src/screens/jinbo/TT_month.dart';
-import 'package:student_support/src/screens/jinbo/TT_week.dart';
-import 'package:student_support/src/screens/jinbo/unit_details.dart';
+import 'package:student_support/src/screens/time_table/TT_day.dart';
+import 'package:student_support/src/screens/time_table/TT_month.dart';
+import 'package:student_support/src/screens/time_table/TT_week.dart';
+import 'package:student_support/src/screens/time_table/unit_details.dart';
 
 void main() {
   runApp(const MyApp());

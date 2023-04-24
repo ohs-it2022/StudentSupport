@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:student_support/main.dart';
-import 'package:student_support/src/screens/kinosita/attendanceInfo.dart';
-import 'package:student_support/src/screens/morita/taskRegist.dart';
-import 'package:student_support/src/screens/wata/TT_change.dart';
+import 'package:student_support/src/screens/attend/attendanceInfo.dart';
+import 'package:student_support/src/screens/register/taskRegist.dart';
+import 'package:student_support/src/screens/register/TT_change.dart';
 
 // 色の定義
 final bgColor1 = Color.fromRGBO(28, 28, 28, 1);
