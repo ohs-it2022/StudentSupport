@@ -1,22 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:student_support/main.dart';
 import 'package:student_support/src/sample.dart';
-import 'package:student_support/src/screens/attend/attendanceInfo.dart';
-import 'package:student_support/src/screens/register/taskRegist.dart';
-import 'package:student_support/src/screens/register/TT_change.dart';
-import 'package:student_support/src/screens/settings/settings.dart';
-
-// 色の定義
-final bgColor1 = Color.fromRGBO(28, 28, 28, 1);
-final bgColor2 = Color.fromRGBO(63, 63, 63, 1);
-final textColor = Colors.white;
 
 // オーバーレイの要素のウィジェット
 class OverlayElem extends StatelessWidget {
   final icon_type;
   final String btnTxt;
-  final nextPage;
-  const OverlayElem({super.key, required this.icon_type, required this.btnTxt, required this.nextPage});
+  final nextRoot;
+  const OverlayElem({super.key, required this.icon_type, required this.btnTxt, required this.nextRoot});
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +33,8 @@ class OverlayElem extends StatelessWidget {
       
       child: ElevatedButton(
         onPressed: (){
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => nextPage),
-          );
+          Navigator.of(context).pop();
+          Navigator.pushNamed(context, nextRoot);
         }, 
         child: row, 
         style: ElevatedButton.styleFrom(
@@ -77,11 +65,11 @@ class OverlayWidget extends StatelessWidget {
     final drawerWidth = _screenSize.width * 0.7;
 
     // オーバーレイのボタン作成
-    final topBtn = OverlayElem(icon_type: homeIcon, btnTxt: 'ホーム', nextPage: MyApp(),);
-    final attendanceInfoBtn = OverlayElem(icon_type: attendanceInfoIcon, btnTxt: '出欠情報', nextPage: AttendanceInfoPage(),);
-    final taskRegistBtn = OverlayElem(icon_type: taskRegistIcon, btnTxt: '課題登録', nextPage: TaskRegist(),);
-    final TTChangeBtn = OverlayElem(icon_type: TTChangeIcon, btnTxt: '時間割変更', nextPage: TTChange(),);
-    final settingBtn = OverlayElem(icon_type: settingIcon, btnTxt: '一般設定', nextPage: Settings(),);
+    final topBtn = OverlayElem(icon_type: homeIcon, btnTxt: 'ホーム', nextRoot: '/',);
+    final attendanceInfoBtn = OverlayElem(icon_type: attendanceInfoIcon, btnTxt: '出欠情報', nextRoot: '/attendInfo',);
+    final taskRegistBtn = OverlayElem(icon_type: taskRegistIcon, btnTxt: '課題登録', nextRoot: '/taskRegist',);
+    final TTChangeBtn = OverlayElem(icon_type: TTChangeIcon, btnTxt: '時間割変更', nextRoot: '/TTChange',);
+    final settingBtn = OverlayElem(icon_type: settingIcon, btnTxt: '一般設定', nextRoot: '/Settings',);
     final overlayBtn = [
       topBtn, 
       attendanceInfoBtn, 
@@ -113,17 +101,15 @@ class OverlayWidget extends StatelessWidget {
 // 下のメニューの要素
 class BottomMenuElem extends StatelessWidget {
   final icon_type;
-  final nextPage;
-  const BottomMenuElem({super.key, required this.icon_type, required this.nextPage});
+  final nextRoot;
+  const BottomMenuElem({super.key, required this.icon_type, required this.nextRoot});
 
   @override
   Widget build(BuildContext context) {
     final elem = ElevatedButton(
           onPressed: (){
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => nextPage),
-            );
+            Navigator.of(context).pop();
+            Navigator.pushNamed(context, nextRoot);
           }, 
           child: Icon(icon_type, color: textColor,),
           style: ElevatedButton.styleFrom(
@@ -145,9 +131,9 @@ class BottomMenuWidget extends StatelessWidget {
     final row = Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        BottomMenuElem(icon_type: homeIcon, nextPage: MyHomePage(),),
-        BottomMenuElem(icon_type: attendanceInfoIcon, nextPage: AttendanceInfoPage(),),
-        BottomMenuElem(icon_type: taskRegistIcon, nextPage: TaskRegist(),),
+        BottomMenuElem(icon_type: homeIcon, nextRoot: '/',),
+        BottomMenuElem(icon_type: attendanceInfoIcon, nextRoot: '/attendInfo',),
+        BottomMenuElem(icon_type: taskRegistIcon, nextRoot: '/taskRegist',),
     ],);
 
     final con = Container(

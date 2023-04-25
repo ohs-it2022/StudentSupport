@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:student_support/src/app.dart';
+import 'package:student_support/src/sample.dart';
 import 'package:student_support/src/screens/attend/attendanceInfo.dart';
+import 'package:student_support/src/screens/register/TT_change.dart';
+import 'package:student_support/src/screens/register/taskRegist.dart';
+import 'package:student_support/src/screens/settings/settings.dart';
 import 'package:student_support/src/screens/time_table/TT_day.dart';
 import 'package:student_support/src/screens/time_table/TT_month.dart';
 import 'package:student_support/src/screens/time_table/TT_week.dart';
@@ -20,6 +24,9 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => MyHomePage(),
         '/attendInfo': (context) => AttendanceInfoPage(),
+        '/taskRegist': (context) => TaskRegist(),
+        '/TTChange': (context) => TTChange(),
+        '/Settings': (context) => Settings()
       },
       // -------------------------------
       title: 'Flutter Demo',

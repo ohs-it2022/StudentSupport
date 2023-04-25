@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:student_support/src/app.dart';
 
 // 色の定義 (各画面でsample.dartをimportすることで使えるようになる)
-final bgColor1 = Color.fromRGBO(28, 28, 28, 1);
-final bgColor2 = Color.fromRGBO(63, 63, 63, 1);
-final textColor = Colors.white;
+const bgColor1 = Color.fromRGBO(28, 28, 28, 1);
+const bgColor2 = Color.fromRGBO(63, 63, 63, 1);
+const textColor = Colors.white;
 
 // アイコンの定義
-final homeIcon = Icons.home;                // ホーム
-final attendanceInfoIcon = Icons.badge;     // 出欠確認
-final taskRegistIcon  = Icons.book;         // 課題登録
-final TTChangeIcon = Icons.calendar_month;  // 時間割変更
-final settingIcon = Icons.settings;         // 一般設定
+const homeIcon = Icons.home;                // ホーム
+const attendanceInfoIcon = Icons.badge;     // 出欠確認
+const taskRegistIcon  = Icons.book;         // 課題登録
+const TTChangeIcon = Icons.calendar_month;  // 時間割変更
+const settingIcon = Icons.settings;         // 一般設定
 
 
 // ホームの各画面のウィジェット
@@ -44,7 +44,7 @@ class ScreenWidget extends StatelessWidget {
         title: Text('$titleTxt'),
       ),
 
-      // drawer: OverlayWidget(),
+      drawer: OverlayWidget(),
 
       body: bodyContents,
 
