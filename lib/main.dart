@@ -81,6 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
         
         body: const TabBarView(
+          physics: NeverScrollableScrollPhysics(),   // 横スクロールできなくする
           children: <Widget>[
             TTMonth(),
             TTWeek(),
