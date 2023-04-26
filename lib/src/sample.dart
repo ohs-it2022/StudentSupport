@@ -50,7 +50,7 @@ class BasicIcon extends StatelessWidget {
 
 // ホームの各画面のウィジェット
 class HomeScreenWidget extends StatelessWidget {
-  final bodyContents;
+  final dynamic bodyContents;
   const HomeScreenWidget({super.key, required this.bodyContents});
 
   @override
@@ -65,7 +65,7 @@ class HomeScreenWidget extends StatelessWidget {
 // ホーム以外の画面
 class ScreenWidget extends StatelessWidget {
   final String titleTxt;
-  final bodyContents;
+  final dynamic bodyContents;
   const ScreenWidget({super.key, required this.titleTxt, required this.bodyContents});
 
   @override
@@ -75,14 +75,14 @@ class ScreenWidget extends StatelessWidget {
 
       appBar: AppBar(
         backgroundColor: bgColor2,
-        title: Text('$titleTxt'),
+        title: BasicText(text: titleTxt, size: appBarTextSize),
       ),
 
-      drawer: OverlayWidget(),
+      drawer: const OverlayWidget(),
 
       body: bodyContents,
 
-      bottomNavigationBar: BottomMenuWidget(),
+      bottomNavigationBar: const BottomMenuWidget(),
 
     );
   }
