@@ -107,7 +107,7 @@ class BottomMenuElem extends StatelessWidget {
             ),
             backgroundColor: bgColor1
           ),
-          child: BasicIcon(iconType: iconType, size: 20,),
+          child: BasicIcon(iconType: iconType, size: 25,),
         );
     return elem;
   }
@@ -127,11 +127,10 @@ class BottomMenuWidget extends StatelessWidget {
         BottomMenuElem(iconType: taskRegistIcon, nextRoot: '/taskRegist',),
     ],);
 
-    final con = Container(
+    return Container(
       color: bgColor2,
       height: 50,
       child: row,
     );
-    return con;
   }
 }
