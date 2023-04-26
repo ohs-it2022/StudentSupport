@@ -65,7 +65,7 @@ class HomeScreenWidget extends StatelessWidget {
 // ホーム以外の画面
 class ScreenWidget extends StatelessWidget {
   final String titleTxt;
-  final dynamic bodyContents;
+  final bodyContents;
   const ScreenWidget({super.key, required this.titleTxt, required this.bodyContents});
 
   @override
