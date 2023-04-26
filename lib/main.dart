@@ -22,11 +22,11 @@ class MyApp extends StatelessWidget {
       // -- ボトムメニューの画面遷移用 --
       initialRoute: '/',
       routes: {
-        '/': (context) => MyHomePage(),
-        '/attendInfo': (context) => AttendanceInfoPage(),
-        '/taskRegist': (context) => TaskRegist(),
-        '/TTChange': (context) => TTChange(),
-        '/Settings': (context) => Settings()
+        '/': (context) => const MyHomePage(),
+        '/attendInfo': (context) => const AttendanceInfoPage(),
+        '/taskRegist': (context) => const TaskRegist(),
+        '/TTChange': (context) => const TTChange(),
+        '/Settings': (context) => const Settings()
       },
       // -------------------------------
       title: 'Flutter Demo',
@@ -40,7 +40,6 @@ class MyApp extends StatelessWidget {
           },
         )
       )
-      // home: MyHomePage()
     );
   }
 }
@@ -65,8 +64,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
         appBar: AppBar(
           backgroundColor: bgColor2,
-          title: Text('時間割'),
-          bottom: TabBar(
+          title: const BasicText(text: '時間割', size: appBarTextSize),
+          bottom: const TabBar(
             tabs: <Widget>[
               Tab(text: '月',),
               Tab(text: '週',),
@@ -77,11 +76,11 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
 
         // オーバーレイ
-        drawer: OverlayWidget(),
+        drawer: const OverlayWidget(),
 
         
         body: const TabBarView(
-          physics: NeverScrollableScrollPhysics(),   // 横スクロールできなくする
+          physics: NeverScrollableScrollPhysics(),   // 横スクロール禁止
           children: <Widget>[
             TTMonth(),
             TTWeek(),
@@ -89,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
             UnitDetails(),
           ],
         ),
-        bottomNavigationBar: BottomMenuWidget(),
+        bottomNavigationBar: const BottomMenuWidget(),
       )
     );
   }

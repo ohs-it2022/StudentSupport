@@ -3,9 +3,9 @@ import 'package:student_support/src/sample.dart';
 
 // オーバーレイの要素のウィジェット
 class OverlayElem extends StatelessWidget {
-  final iconType;
+  final dynamic iconType;
   final String btnTxt;
-  final nextRoot;
+  final dynamic nextRoot;
   const OverlayElem({super.key, required this.iconType, required this.btnTxt, required this.nextRoot});
 
   @override
@@ -15,10 +15,7 @@ class OverlayElem extends StatelessWidget {
     final text = BasicText(text: btnTxt, size: 20);
     final row = Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children:[
-        icon,
-        text
-      ],
+      children:[ icon, text ],
     );
     final btn  = SizedBox(
       width: 200,
@@ -29,17 +26,17 @@ class OverlayElem extends StatelessWidget {
           Navigator.of(context).pop();
           Navigator.pushNamed(context, nextRoot);
         }, 
-        child: row, 
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20)
           ),
-          primary: bgColor1
+          backgroundColor: bgColor1
         ),
+        child: row, 
       )
     );
     final elem = Container(
-      margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
+      margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
       child: btn,
     );
     return elem;
@@ -54,20 +51,20 @@ class OverlayWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // オーバーレイの横幅(今は画面全体の７割)
-    var _screenSize = MediaQuery.of(context).size;  // 画面のサイズを取得
-    final drawerWidth = _screenSize.width * 0.7;
+    var screenSize = MediaQuery.of(context).size;  // 画面のサイズを取得
+    final drawerWidth = screenSize.width * 0.7;
 
     // オーバーレイのボタン作成
-    final topBtn = OverlayElem(iconType: homeIcon, btnTxt: 'ホーム', nextRoot: '/',);
-    final attendanceInfoBtn = OverlayElem(iconType: attendanceInfoIcon, btnTxt: '出欠情報', nextRoot: '/attendInfo',);
-    final taskRegistBtn = OverlayElem(iconType: taskRegistIcon, btnTxt: '課題登録', nextRoot: '/taskRegist',);
-    final TTChangeBtn = OverlayElem(iconType: TTChangeIcon, btnTxt: '時間割変更', nextRoot: '/TTChange',);
-    final settingBtn = OverlayElem(iconType: settingIcon, btnTxt: '一般設定', nextRoot: '/Settings',);
-    final overlayBtn = [
+    const topBtn = OverlayElem(iconType: homeIcon, btnTxt: 'ホーム', nextRoot: '/',);
+    const attendanceInfoBtn = OverlayElem(iconType: attendanceInfoIcon, btnTxt: '出欠情報', nextRoot: '/attendInfo',);
+    const taskRegistBtn = OverlayElem(iconType: taskRegistIcon, btnTxt: '課題登録', nextRoot: '/taskRegist',);
+    const timeTableChangeBtn = OverlayElem(iconType: timeTableChangeIcon, btnTxt: '時間割変更', nextRoot: '/TTChange',);
+    const settingBtn = OverlayElem(iconType: settingIcon, btnTxt: '一般設定', nextRoot: '/Settings',);
+    const overlayBtn = [
       topBtn, 
       attendanceInfoBtn, 
       taskRegistBtn, 
-      TTChangeBtn, 
+      timeTableChangeBtn, 
       settingBtn,
     ];
     return Theme(
@@ -76,7 +73,7 @@ class OverlayWidget extends StatelessWidget {
       ),
       child: Drawer(
         width: drawerWidth,
-        child: Column(
+        child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children:<Widget>[
             Column(
@@ -93,8 +90,8 @@ class OverlayWidget extends StatelessWidget {
 
 // 下のメニューの要素
 class BottomMenuElem extends StatelessWidget {
-  final iconType;
-  final nextRoot;
+  final dynamic iconType;
+  final dynamic nextRoot;
   const BottomMenuElem({super.key, required this.iconType, required this.nextRoot});
 
   @override
@@ -104,13 +101,14 @@ class BottomMenuElem extends StatelessWidget {
             Navigator.of(context).pop();
             Navigator.pushNamed(context, nextRoot);
           }, 
-          child: BasicIcon(iconType: iconType, size: 20,),
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20)
             ),
             backgroundColor: bgColor1
-          ),);
+          ),
+          child: BasicIcon(iconType: iconType, size: 20,),
+        );
     return elem;
   }
 }
@@ -121,7 +119,7 @@ class BottomMenuWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final row = Row(
+    const row = Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         BottomMenuElem(iconType: homeIcon, nextRoot: '/',),
