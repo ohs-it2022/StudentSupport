@@ -3,23 +3,16 @@ import 'package:student_support/src/sample.dart';
 
 // オーバーレイの要素のウィジェット
 class OverlayElem extends StatelessWidget {
-  final icon_type;
+  final iconType;
   final String btnTxt;
   final nextRoot;
-  const OverlayElem({super.key, required this.icon_type, required this.btnTxt, required this.nextRoot});
+  const OverlayElem({super.key, required this.iconType, required this.btnTxt, required this.nextRoot});
 
   @override
   Widget build(BuildContext context) {
 
-    final icon = Icon(
-      icon_type,
-      color: textColor,
-      size: 30,
-    );
-    final text = Text(
-      '$btnTxt', 
-      style: TextStyle(color: textColor, fontSize: 20),
-    );
+    final icon = BasicIcon(iconType: iconType, size: 30);
+    final text = BasicText(text: btnTxt, size: 20);
     final row = Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children:[
@@ -65,11 +58,11 @@ class OverlayWidget extends StatelessWidget {
     final drawerWidth = _screenSize.width * 0.7;
 
     // オーバーレイのボタン作成
-    final topBtn = OverlayElem(icon_type: homeIcon, btnTxt: 'ホーム', nextRoot: '/',);
-    final attendanceInfoBtn = OverlayElem(icon_type: attendanceInfoIcon, btnTxt: '出欠情報', nextRoot: '/attendInfo',);
-    final taskRegistBtn = OverlayElem(icon_type: taskRegistIcon, btnTxt: '課題登録', nextRoot: '/taskRegist',);
-    final TTChangeBtn = OverlayElem(icon_type: TTChangeIcon, btnTxt: '時間割変更', nextRoot: '/TTChange',);
-    final settingBtn = OverlayElem(icon_type: settingIcon, btnTxt: '一般設定', nextRoot: '/Settings',);
+    final topBtn = OverlayElem(iconType: homeIcon, btnTxt: 'ホーム', nextRoot: '/',);
+    final attendanceInfoBtn = OverlayElem(iconType: attendanceInfoIcon, btnTxt: '出欠情報', nextRoot: '/attendInfo',);
+    final taskRegistBtn = OverlayElem(iconType: taskRegistIcon, btnTxt: '課題登録', nextRoot: '/taskRegist',);
+    final TTChangeBtn = OverlayElem(iconType: TTChangeIcon, btnTxt: '時間割変更', nextRoot: '/TTChange',);
+    final settingBtn = OverlayElem(iconType: settingIcon, btnTxt: '一般設定', nextRoot: '/Settings',);
     final overlayBtn = [
       topBtn, 
       attendanceInfoBtn, 
@@ -100,9 +93,9 @@ class OverlayWidget extends StatelessWidget {
 
 // 下のメニューの要素
 class BottomMenuElem extends StatelessWidget {
-  final icon_type;
+  final iconType;
   final nextRoot;
-  const BottomMenuElem({super.key, required this.icon_type, required this.nextRoot});
+  const BottomMenuElem({super.key, required this.iconType, required this.nextRoot});
 
   @override
   Widget build(BuildContext context) {
@@ -111,12 +104,12 @@ class BottomMenuElem extends StatelessWidget {
             Navigator.of(context).pop();
             Navigator.pushNamed(context, nextRoot);
           }, 
-          child: Icon(icon_type, color: textColor,),
+          child: BasicIcon(iconType: iconType, size: 20,),
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20)
             ),
-            primary: bgColor1
+            backgroundColor: bgColor1
           ),);
     return elem;
   }
@@ -131,9 +124,9 @@ class BottomMenuWidget extends StatelessWidget {
     final row = Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        BottomMenuElem(icon_type: homeIcon, nextRoot: '/',),
-        BottomMenuElem(icon_type: attendanceInfoIcon, nextRoot: '/attendInfo',),
-        BottomMenuElem(icon_type: taskRegistIcon, nextRoot: '/taskRegist',),
+        BottomMenuElem(iconType: homeIcon, nextRoot: '/',),
+        BottomMenuElem(iconType: attendanceInfoIcon, nextRoot: '/attendInfo',),
+        BottomMenuElem(iconType: taskRegistIcon, nextRoot: '/taskRegist',),
     ],);
 
     final con = Container(

@@ -13,6 +13,37 @@ const taskRegistIcon  = Icons.book;         // 課題登録
 const TTChangeIcon = Icons.calendar_month;  // 時間割変更
 const settingIcon = Icons.settings;         // 一般設定
 
+// 基本のテキスト設定
+class BasicText extends StatelessWidget {
+  final String text;
+  final double size;
+  const BasicText({super.key, required this.text, required this.size });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: TextStyle(color: textColor, fontSize: size),
+    );
+  }
+}
+
+// 基本のアイコン設定
+class BasicIcon extends StatelessWidget {
+  final dynamic iconType;
+  final double size;
+  const BasicIcon({super.key, required this.iconType, required this.size});
+
+  @override
+  Widget build(BuildContext context) {
+    return Icon(
+      iconType,
+      color: textColor,
+      size: size,
+    );
+  }
+}
+
 
 // ホームの各画面のウィジェット
 class HomeScreenWidget extends StatelessWidget {
