@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:student_support/src/sample.dart';
 
-const double dayHeight = 30;  // 曜日の要素の高さ
+const double dayHeight = 27;  // 曜日の要素の高さ
 const double dayWidth = 50;   // 曜日の要素の横幅
 const double numHeight = 60;  // 時間の要素の高さ
 const double numWidth = 20;   // 時間の要素の横幅
 
+final elemDecoration = BoxDecoration(
+  color: bgColor1,
+  borderRadius: BorderRadius.circular(10)
+);
+
+// 画面全体のウィジェット
 class TTChange extends StatelessWidget {
   const TTChange({super.key});
 
@@ -48,10 +54,7 @@ class DayElem extends StatelessWidget {
     return Container(
       height: dayHeight,
       width: dayWidth,
-      decoration: BoxDecoration(
-        color: bgColor1,
-        borderRadius: BorderRadius.circular(10)
-      ),
+      decoration: elemDecoration,
       child: Center(
         child: BasicText(text: txt, size: 15),
       ),
@@ -77,7 +80,7 @@ class Day extends StatelessWidget {
         DayElem(txt: '水'),
         DayElem(txt: '木'),
         DayElem(txt: '金'),
-        DayElem(txt: '土'),
+        DayElem(txt: '土'),   // 土曜日を表示するか、設定できるようにするかも
       ],
     );
   }
@@ -92,10 +95,7 @@ class TTElem extends StatelessWidget {
     return Container(
       height: numHeight,
       width: dayWidth,
-      decoration: BoxDecoration(
-        color: bgColor1,
-        borderRadius: BorderRadius.circular(10)
-      ),
+      decoration: elemDecoration,
       child: Center(
         child: BasicText(text: txt, size: 15),
       ),
@@ -112,24 +112,22 @@ class TTNum extends StatelessWidget {
     return Container(
       height: numHeight,
       width: numWidth,
-      decoration: BoxDecoration(
-        color: bgColor1,
-        borderRadius: BorderRadius.circular(10)
-      ),
+      decoration: elemDecoration,
       child: Center(child: BasicText(text: txt, size: 15,),)
     );
   }
 }
 
 class TTRow extends StatelessWidget {
-  const TTRow({super.key});
+  final int num;
+  const TTRow({super.key, required this.num});
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        TTNum(txt: '1'),
+        TTNum(txt: '$num'),
         TTElem(txt: 'CS11'),
         TTElem(txt: 'CS11',),
         TTElem(txt: 'CS11',),
@@ -157,12 +155,12 @@ class TT extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Day(),
-          TTRow(),
-          TTRow(),
-          TTRow(),
-          TTRow(),
-          TTRow(),
-          TTRow(),
+          TTRow(num: 1),
+          TTRow(num: 2,),
+          TTRow(num: 3,),
+          TTRow(num: 4,),
+          TTRow(num: 5,),
+          TTRow(num: 6,),
         ],
       ),
     );
