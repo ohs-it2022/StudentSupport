@@ -11,6 +11,11 @@ final elemDecoration = BoxDecoration(
   borderRadius: BorderRadius.circular(10)
 );
 
+final sectionDecoration = BoxDecoration(
+  borderRadius: BorderRadius.circular(30),
+  color: bgColor2,
+);
+
 // 画面全体のウィジェット
 class TTChange extends StatelessWidget {
   const TTChange({super.key});
@@ -19,12 +24,9 @@ class TTChange extends StatelessWidget {
   Widget build(BuildContext context) {
     final timeTableTitle = Container(
       margin: EdgeInsets.fromLTRB(10, 20, 10, 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30),
-        color: bgColor2,
-      ),
+      decoration: sectionDecoration,
       width: double.infinity,   // 横幅いっぱい
-      height: 50,
+      height: 45,
       child: Center(
         child: BasicText(text: '時間割１', size: 20),
       )
@@ -68,10 +70,10 @@ class Day extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Container(
+        SizedBox(
           height: dayHeight,
           width: numWidth,
         ),
@@ -109,11 +111,22 @@ class TTNum extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: numHeight,
       width: numWidth,
-      decoration: elemDecoration,
-      child: Center(child: BasicText(text: txt, size: 15,),)
+      // decoration: elemDecoration,
+      child: ElevatedButton(
+        onPressed: (){}, 
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10)
+          ),
+          backgroundColor: bgColor1,
+          padding: const EdgeInsets.all(0)
+        ),
+        child: BasicText(text: txt, size: 15,),
+        
+      ),
     );
   }
 }
@@ -128,12 +141,12 @@ class TTRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         TTNum(txt: '$num'),
-        TTElem(txt: 'CS11'),
-        TTElem(txt: 'CS11',),
-        TTElem(txt: 'CS11',),
-        TTElem(txt: 'CS11',),
-        TTElem(txt: 'CS11',),
-        TTElem(txt: 'CS11',),
+        TTElem(txt: ''),
+        TTElem(txt: '',),
+        TTElem(txt: '',),
+        TTElem(txt: '',),
+        TTElem(txt: '',),
+        TTElem(txt: '',),
       ],
     );
   }
@@ -145,13 +158,10 @@ class TT extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(10, 0, 10, 30),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30),
-        color: bgColor2,
-      ),
-      padding: EdgeInsets.all(20),
-      child: Column(
+      margin: const EdgeInsets.fromLTRB(10, 0, 10, 30),
+      decoration: sectionDecoration,
+      padding: const EdgeInsets.all(20),
+      child: const Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Day(),
