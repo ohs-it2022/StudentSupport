@@ -12,11 +12,15 @@ class TTChange extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final timeTableTitle = Container(
-      margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
-      color: bgColor2,
+      margin: EdgeInsets.fromLTRB(10, 20, 10, 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30),
+        color: bgColor2,
+      ),
       width: double.infinity,   // 横幅いっぱい
+      height: 50,
       child: Center(
-        child: BasicText(text: '時間割１', size: 25),
+        child: BasicText(text: '時間割１', size: 20),
       )
     );
     final timeTable = TT();
@@ -44,7 +48,10 @@ class DayElem extends StatelessWidget {
     return Container(
       height: dayHeight,
       width: dayWidth,
-      color: bgColor1,
+      decoration: BoxDecoration(
+        color: bgColor1,
+        borderRadius: BorderRadius.circular(10)
+      ),
       child: Center(
         child: BasicText(text: txt, size: 15),
       ),
@@ -85,7 +92,10 @@ class TTElem extends StatelessWidget {
     return Container(
       height: numHeight,
       width: dayWidth,
-      color: bgColor1,
+      decoration: BoxDecoration(
+        color: bgColor1,
+        borderRadius: BorderRadius.circular(10)
+      ),
       child: Center(
         child: BasicText(text: txt, size: 15),
       ),
@@ -102,7 +112,10 @@ class TTNum extends StatelessWidget {
     return Container(
       height: numHeight,
       width: numWidth,
-      color: bgColor1,
+      decoration: BoxDecoration(
+        color: bgColor1,
+        borderRadius: BorderRadius.circular(10)
+      ),
       child: Center(child: BasicText(text: txt, size: 15,),)
     );
   }
@@ -134,8 +147,12 @@ class TT extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(10, 0, 10, 20),
-      color: bgColor2,
+      margin: EdgeInsets.fromLTRB(10, 0, 10, 30),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30),
+        color: bgColor2,
+      ),
+      padding: EdgeInsets.all(20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
