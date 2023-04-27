@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:student_support/src/sample.dart';
 
+const double dayHeight = 30;  // 曜日の要素の高さ
+const double dayWidth = 50;   // 曜日の要素の横幅
+const double numHeight = 60;  // 時間の要素の高さ
+const double numWidth = 20;   // 時間の要素の横幅
+
 class TTChange extends StatelessWidget {
   const TTChange({super.key});
 
@@ -30,6 +35,47 @@ class TTChange extends StatelessWidget {
 }
 
 
+class DayElem extends StatelessWidget {
+  final String txt;
+  const DayElem({super.key, required this.txt});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: dayHeight,
+      width: dayWidth,
+      color: bgColor1,
+      child: Center(
+        child: BasicText(text: txt, size: 15),
+      ),
+    );
+  }
+}
+
+
+class Day extends StatelessWidget {
+  const Day({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Container(
+          height: dayHeight,
+          width: numWidth,
+        ),
+        DayElem(txt: '月'),
+        DayElem(txt: '火'),
+        DayElem(txt: '水'),
+        DayElem(txt: '木'),
+        DayElem(txt: '金'),
+        DayElem(txt: '土'),
+      ],
+    );
+  }
+}
+
 class TTElem extends StatelessWidget {
   final String txt;
   const TTElem({super.key, required this.txt});
@@ -37,11 +83,27 @@ class TTElem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(5, 20, 5, 20),
+      height: numHeight,
+      width: dayWidth,
       color: bgColor1,
       child: Center(
         child: BasicText(text: txt, size: 15),
       ),
+    );
+  }
+}
+
+class TTNum extends StatelessWidget {
+  final String txt;
+  const TTNum({super.key, required this.txt});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: numHeight,
+      width: numWidth,
+      color: bgColor1,
+      child: Center(child: BasicText(text: txt, size: 15,),)
     );
   }
 }
@@ -54,7 +116,7 @@ class TTRow extends StatelessWidget {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        TTElem(txt: '1'),
+        TTNum(txt: '1'),
         TTElem(txt: 'CS11'),
         TTElem(txt: 'CS11',),
         TTElem(txt: 'CS11',),
@@ -71,22 +133,13 @@ class TT extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final day = Row(children: [
-      BasicText(text: '', size: 15),
-      BasicText(text: '月', size: 15),
-      BasicText(text: '火', size: 15),
-      BasicText(text: '水', size: 15),
-      BasicText(text: '木', size: 15),
-      BasicText(text: '金', size: 15),
-      BasicText(text: '土', size: 15),
-    ],);
     return Container(
       margin: EdgeInsets.fromLTRB(10, 0, 10, 20),
       color: bgColor2,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          day,
+          Day(),
           TTRow(),
           TTRow(),
           TTRow(),
