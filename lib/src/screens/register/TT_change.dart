@@ -25,11 +25,9 @@ class TTChange extends StatelessWidget {
     final timeTableTitle = Container(
       margin: EdgeInsets.fromLTRB(10, 20, 10, 10),
       decoration: sectionDecoration,
-      width: double.infinity,   // 横幅いっぱい
+      width: 200,   // 横幅いっぱい
       height: 45,
-      child: Center(
-        child: BasicText(text: '時間割１', size: 20),
-      )
+      child: Center(child: DropdownButtonMenu(),) 
     );
     final timeTable = TT();
 
@@ -94,12 +92,20 @@ class TTElem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: numHeight,
       width: dayWidth,
-      decoration: elemDecoration,
-      child: Center(
-        child: BasicText(text: txt, size: 15),
+      child: ElevatedButton(
+        onPressed: (){}, 
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10)
+          ),
+          backgroundColor: bgColor1,
+          padding: const EdgeInsets.all(0)
+        ),
+        child: BasicText(text: txt, size: 15,),
+        
       ),
     );
   }
@@ -114,7 +120,6 @@ class TTNum extends StatelessWidget {
     return SizedBox(
       height: numHeight,
       width: numWidth,
-      // decoration: elemDecoration,
       child: ElevatedButton(
         onPressed: (){}, 
         style: ElevatedButton.styleFrom(
@@ -152,6 +157,16 @@ class TTRow extends StatelessWidget {
   }
 }
 
+
+
+
+final  ttRows = [
+  Day(),
+  for (int i=1; i<7; i++)...{
+    TTRow(num: i),
+  },
+];
+
 class TT extends StatelessWidget {
   const TT({super.key});
 
@@ -161,18 +176,46 @@ class TT extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(10, 0, 10, 30),
       decoration: sectionDecoration,
       padding: const EdgeInsets.all(20),
-      child: const Column(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Day(),
-          TTRow(num: 1),
-          TTRow(num: 2,),
-          TTRow(num: 3,),
-          TTRow(num: 4,),
-          TTRow(num: 5,),
-          TTRow(num: 6,),
-        ],
+        children: ttRows
       ),
+    );
+  }
+}
+
+// ドロップダウンタイトル
+class DropdownButtonMenu extends StatefulWidget {
+  const DropdownButtonMenu({Key? key}) : super(key: key);
+
+  @override
+  State<DropdownButtonMenu> createState() => _DropdownButtonMenuState();
+}
+
+class _DropdownButtonMenuState extends State<DropdownButtonMenu> {
+  String isSelectedValue = '時間割１';
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton(
+      items: const[
+        DropdownMenuItem(
+          value: '時間割１',
+          child: BasicText(text: '時間割１', size: 20)
+        ),
+        DropdownMenuItem(
+          value: '時間割追加',
+          child: BasicText(text: '時間割追加', size: 20)
+        )
+      ], 
+      value: isSelectedValue,
+      onChanged: (String? value) {
+        setState(() {
+          isSelectedValue = value!;
+        });
+      },
+      dropdownColor: bgColor2,
+
     );
   }
 }
