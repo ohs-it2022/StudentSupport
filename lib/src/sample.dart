@@ -88,3 +88,43 @@ class ScreenWidget extends StatelessWidget {
   }
 }
 
+
+// ドロップダウンメニュー
+// DropdownButtonMenu()でドロップダウンを作れる。
+// menuElemにメニューの要素をリストで入れる。['要素1', '要素2', ...]
+// 初期値を変えたいときはidxにインデックス番号を入れる。
+class DropdownButtonMenu extends StatefulWidget {
+  final List<String> menuElem;
+  final int idx;
+  const DropdownButtonMenu({Key? key, required this.menuElem, this.idx = 0}) : super(key: key);
+
+  @override
+  State<DropdownButtonMenu> createState() => _DropdownButtonMenuState();
+}
+
+class _DropdownButtonMenuState extends State<DropdownButtonMenu> {
+
+  late String isSelectedValue = widget.menuElem[widget.idx];
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      value: isSelectedValue,
+      items: widget.menuElem
+              .map((String list) => DropdownMenuItem(
+                value: list, 
+                child: Container(
+                  // width: 100,
+                  // alignment: Alignment.center,
+                  child: BasicText(text: list, size: 20)
+                )
+              ))
+              .toList(),
+      onChanged: (String? value) {
+        setState(() {
+          isSelectedValue = value!;
+        });
+      },
+      dropdownColor: bgColor2,
+    );
+  }
+}

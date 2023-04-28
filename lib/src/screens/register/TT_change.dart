@@ -29,7 +29,7 @@ class TTChange extends StatelessWidget {
       decoration: sectionDecoration,
       width: contentsWidth,
       height: 45,
-      child: const Center(child: DropdownButtonMenu(),) 
+      child: Center(child: DropdownButtonMenu(menuElem: ['時間割１','時間割２','時間割追加']),)
     );
     final timeTable = TT(width: contentsWidth);
 
@@ -166,7 +166,7 @@ class TTRow extends StatelessWidget {
 
 
 final  ttRows = [
-  Day(),
+  const Day(),
   for (int i=1; i<7; i++)...{
     TTRow(num: i),
   },
@@ -192,44 +192,3 @@ class TT extends StatelessWidget {
   }
 }
 
-// ドロップダウンメニュー
-// サンプル化 考案中　リストに文字を入れるだけでドロップダウンが作れるような
-class DropdownButtonMenu extends StatefulWidget {
-  
-  const DropdownButtonMenu({Key? key}) : super(key: key);
-
-  @override
-  State<DropdownButtonMenu> createState() => _DropdownButtonMenuState();
-}
-
-class _DropdownButtonMenuState extends State<DropdownButtonMenu> {
-  String isSelectedValue = '時間割１';
-
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton(
-      items: const[
-        DropdownMenuItem(
-          value: '時間割１',
-          child: BasicText(text: '時間割１', size: 20)
-        ),
-        DropdownMenuItem(
-          value: '時間割２',
-          child: BasicText(text: '時間割２', size: 20)
-        ),
-        DropdownMenuItem(
-          value: '時間割追加',
-          child: BasicText(text: '時間割追加', size: 20)
-        )
-      ], 
-      value: isSelectedValue,
-      onChanged: (String? value) {
-        setState(() {
-          isSelectedValue = value!;
-        });
-      },
-      dropdownColor: bgColor2,
-
-    );
-  }
-}
