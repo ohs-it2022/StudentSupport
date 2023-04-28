@@ -29,7 +29,7 @@ class TTChange extends StatelessWidget {
       decoration: sectionDecoration,
       width: contentsWidth,
       height: 45,
-      child: Center(child: DropdownButtonMenu(menuElem: ['時間割１','時間割２','時間割追加']),)
+      child: const Center(child: DropdownButtonMenu(menuElem: ['時間割１','時間割２','時間割追加']),)
     );
     final timeTable = TT(width: contentsWidth);
 
@@ -49,6 +49,7 @@ class TTChange extends StatelessWidget {
   }
 }
 
+// -- 以下、部品 --
 
 class DayElem extends StatelessWidget {
   final String txt;
@@ -76,10 +77,7 @@ class Day extends StatelessWidget {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        SizedBox(
-          height: dayHeight,
-          width: numWidth,
-        ),
+        SizedBox(height: dayHeight, width: numWidth),
         DayElem(txt: '月'),
         DayElem(txt: '火'),
         DayElem(txt: '水'),
@@ -90,6 +88,14 @@ class Day extends StatelessWidget {
     );
   }
 }
+
+final btnStyle = ElevatedButton.styleFrom(
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(10)
+  ),
+  backgroundColor: bgColor1,
+  padding: const EdgeInsets.all(0)
+);
 
 class TTElem extends StatelessWidget {
   final String txt;
@@ -102,15 +108,8 @@ class TTElem extends StatelessWidget {
       width: dayWidth,
       child: ElevatedButton(
         onPressed: (){}, 
-        style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10)
-          ),
-          backgroundColor: bgColor1,
-          padding: const EdgeInsets.all(0)
-        ),
-        child: BasicText(text: txt, size: 15,),
-        
+        style: btnStyle,
+        child: BasicText(text: txt, size: 15,)
       ),
     );
   }
@@ -127,15 +126,8 @@ class TTNum extends StatelessWidget {
       width: numWidth,
       child: ElevatedButton(
         onPressed: (){}, 
-        style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10)
-          ),
-          backgroundColor: bgColor1,
-          padding: const EdgeInsets.all(0)
-        ),
+        style: btnStyle,
         child: BasicText(text: txt, size: 15,),
-        
       ),
     );
   }
@@ -161,9 +153,6 @@ class TTRow extends StatelessWidget {
     );
   }
 }
-
-
-
 
 final  ttRows = [
   const Day(),
