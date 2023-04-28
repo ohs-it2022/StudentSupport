@@ -12,8 +12,8 @@ final elemDecoration = BoxDecoration(
 );
 
 final sectionDecoration = BoxDecoration(
-  borderRadius: BorderRadius.circular(30),
   color: bgColor2,
+  borderRadius: BorderRadius.circular(30),
 );
 
 // 画面全体のウィジェット
@@ -22,20 +22,25 @@ class TTChange extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;  // 画面のサイズを取得
+    final contentsWidth = screenSize.width * 0.95;
     final timeTableTitle = Container(
-      margin: EdgeInsets.fromLTRB(10, 20, 10, 10),
+      margin: const EdgeInsets.fromLTRB(0, 20, 0, 10),
       decoration: sectionDecoration,
-      width: 200,   // 横幅いっぱい
+      width: contentsWidth,
       height: 45,
-      child: Center(child: DropdownButtonMenu(),) 
+      child: const Center(child: DropdownButtonMenu(),) 
     );
-    final timeTable = TT();
+    final timeTable = TT(width: contentsWidth);
 
-    final bodyCont = Column(
+    final bodyCont = Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           timeTableTitle,
           Expanded(child: timeTable)    // 縦いっぱい
         ],
+      )
     );
     return ScreenWidget(
       titleTxt: '時間割変更', 
@@ -168,12 +173,15 @@ final  ttRows = [
 ];
 
 class TT extends StatelessWidget {
-  const TT({super.key});
+  final double width;
+  const TT({super.key, required this.width});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(10, 0, 10, 30),
+      margin: const EdgeInsets.fromLTRB(0, 0, 0, 30),
+      width: width,
+      alignment: Alignment.center,
       decoration: sectionDecoration,
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -184,8 +192,10 @@ class TT extends StatelessWidget {
   }
 }
 
-// ドロップダウンタイトル
+// ドロップダウンメニュー
+// サンプル化 考案中　リストに文字を入れるだけでドロップダウンが作れるような
 class DropdownButtonMenu extends StatefulWidget {
+  
   const DropdownButtonMenu({Key? key}) : super(key: key);
 
   @override
@@ -202,6 +212,10 @@ class _DropdownButtonMenuState extends State<DropdownButtonMenu> {
         DropdownMenuItem(
           value: '時間割１',
           child: BasicText(text: '時間割１', size: 20)
+        ),
+        DropdownMenuItem(
+          value: '時間割２',
+          child: BasicText(text: '時間割２', size: 20)
         ),
         DropdownMenuItem(
           value: '時間割追加',
