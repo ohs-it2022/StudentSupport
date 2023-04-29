@@ -181,3 +181,14 @@ class TT extends StatelessWidget {
   }
 }
 
+class TimeSettings extends StatelessWidget {
+  const TimeSettings({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: bgColor1,
+    );
+  }
+}
+
