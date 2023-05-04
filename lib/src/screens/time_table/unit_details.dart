@@ -9,6 +9,6 @@ class UnitDetails extends StatelessWidget {
     final bodyCont = Center(
       child: Text('単元詳細', style: TextStyle(color: textColor),),
     );
-    return HomeScreenWidget(bodyContents: bodyCont);
+    return ScreenWidget(titleTxt:'単元詳細', bodyContents: bodyCont);
   }
 }

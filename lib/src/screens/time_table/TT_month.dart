@@ -10,6 +10,6 @@ class TTMonth extends StatelessWidget {
     final bodyCont = Center(
       child: Text('月次 時間割', style: TextStyle(color: textColor),),
     );
-    return HomeScreenWidget(bodyContents: bodyCont);
+    return ScreenWidget(titleTxt: '月次 時間割', bodyContents: bodyCont);
   }
 }

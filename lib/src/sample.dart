@@ -49,23 +49,9 @@ class BasicIcon extends StatelessWidget {
 
 
 // ホームの各画面のウィジェット
-class HomeScreenWidget extends StatelessWidget {
-  final dynamic bodyContents;
-  const HomeScreenWidget({super.key, required this.bodyContents});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: bgColor1,
-      body: bodyContents,
-    );
-  }
-}
-
-// ホーム以外の画面
 class ScreenWidget extends StatelessWidget {
   final String titleTxt;
-  final bodyContents;
+  final dynamic bodyContents;
   const ScreenWidget({super.key, required this.titleTxt, required this.bodyContents});
 
   @override
@@ -83,7 +69,6 @@ class ScreenWidget extends StatelessWidget {
       body: bodyContents,
 
       bottomNavigationBar: const BottomMenuWidget(),
-
     );
   }
 }

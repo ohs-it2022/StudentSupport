@@ -9,6 +9,6 @@ class TTDay extends StatelessWidget {
     final bodyCont = Center(
       child: Text('日次 時間割', style: TextStyle(color: textColor),),
     );
-    return HomeScreenWidget(bodyContents: bodyCont);
+    return ScreenWidget(titleTxt: '日次 時間割', bodyContents: bodyCont);
   }
 }

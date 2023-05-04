@@ -9,6 +9,6 @@ class TTWeek extends StatelessWidget {
     final bodyCont = Center(
       child: Text('週次 時間割', style: TextStyle(color: textColor),),
     );
-    return HomeScreenWidget(bodyContents: bodyCont);
+    return ScreenWidget(titleTxt: '週次 時間割', bodyContents: bodyCont);
   }
 }
