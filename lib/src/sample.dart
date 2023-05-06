@@ -64,7 +64,7 @@ class ScreenWidget extends StatelessWidget {
         title: BasicText(text: titleTxt, size: appBarTextSize),
       ),
 
-      drawer: const OverlayWidget(),
+      // drawer: const OverlayWidget(),
 
       body: bodyContents,
 
