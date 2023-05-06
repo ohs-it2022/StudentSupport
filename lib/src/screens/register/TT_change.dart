@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:student_support/src/sample.dart';
 
@@ -17,8 +18,9 @@ final sectionDecoration = BoxDecoration(
 );
 
 // 画面全体のウィジェット
-class TTChange extends StatelessWidget {
-  const TTChange({super.key});
+@RoutePage()
+class TTChangePage extends StatelessWidget {
+  const TTChangePage({super.key});
 
   @override
   Widget build(BuildContext context) {

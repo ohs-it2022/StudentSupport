@@ -1,17 +1,15 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:student_support/src/sample.dart';
 
-class Settings extends StatelessWidget {
-  const Settings({super.key});
+@RoutePage()
+class SettingsPage extends StatelessWidget {
+  const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final bodyCont = Center(
-      child: Text('一般設定画面', style: TextStyle(color: textColor),),
-    );
-    return ScreenWidget(
-      titleTxt: '一般設定', 
-      bodyContents: bodyCont,
+    return Center(
+      child: BasicText(text: '設定', size: 20,)
     );
   }
 }
