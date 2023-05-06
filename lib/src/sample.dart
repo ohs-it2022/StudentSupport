@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:student_support/src/app.dart';
+// import 'package:student_support/src/app.dart';
 
 // 色の定義 (各画面でsample.dartをimportすることで使えるようになる)
 const bgColor1 = Color.fromRGBO(28, 28, 28, 1);

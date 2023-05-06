@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:student_support/src/sample.dart';
-import 'package:student_support/routers/app_router.gr.dart';
+// import 'package:student_support/routers/app_router.gr.dart';
 
 
 @RoutePage()
