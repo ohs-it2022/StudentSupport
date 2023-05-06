@@ -9,7 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i7;
-import 'package:student_support/routers/tab_bar.dart' as _i6;
+import 'package:student_support/src/tab_bar.dart' as _i6;
 import 'package:student_support/src/screens/attend/attendanceInfo.dart' as _i1;
 import 'package:student_support/src/screens/home/home_day_page.dart' as _i2;
 import 'package:student_support/src/screens/home/home_month_page.dart' as _i3;
