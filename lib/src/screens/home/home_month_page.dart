@@ -9,17 +9,8 @@ class HomeMonthPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bodyCont = Center(
-      child: Column(
-        children: [
-          Text('月次 時間割', style: TextStyle(color: textColor),),
-          ElevatedButton(
-            child: const Text('週次時間割画面へ'),
-            onPressed: () => context.router.push(const HomeWeekRoute()),
-          )
-        ],
-      )
+    return Center(
+      child: BasicText(text: '月', size: 20)
     );
-    return ScreenWidget(titleTxt: '月次 時間割', bodyContents: bodyCont);
   }
 }

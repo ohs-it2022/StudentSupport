@@ -23,6 +23,8 @@ class HomeWeekPage extends StatelessWidget {
       )
     );
 
-    return ScreenWidget(titleTxt: '週次時間割', bodyContents: bodyCont);
+    return Center(
+      child: BasicText(text: '週', size: 20),
+    );
   }
 }

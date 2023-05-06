@@ -68,7 +68,7 @@ class ScreenWidget extends StatelessWidget {
 
       body: bodyContents,
 
-      bottomNavigationBar: const BottomMenuWidget(),
+      // bottomNavigationBar: const BottomMenuWidget(),
     );
   }
 }

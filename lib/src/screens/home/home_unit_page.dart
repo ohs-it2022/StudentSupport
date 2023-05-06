@@ -8,9 +8,8 @@ class HomeUnitPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bodyCont = Center(
-      child: Text('単元詳細', style: TextStyle(color: textColor),),
+    return Center(
+      child: BasicText(text: '単元', size: 20),
     );
-    return ScreenWidget(titleTxt:'単元詳細', bodyContents: bodyCont);
   }
 }

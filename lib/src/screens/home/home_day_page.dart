@@ -10,17 +10,8 @@ class HomeDayPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bodyCont = Center(
-      child: Column(
-        children: [
-          Text('日次 時間割', style: TextStyle(color: textColor),),
-          ElevatedButton(
-            child: const Text('詳細ページへ'),
-            onPressed: () => context.router.push(const HomeUnitRoute()),
-          )
-        ],
-      )
+    return Center(
+      child: BasicText(text: '日', size: 20),
     );
-    return ScreenWidget(titleTxt: '日次 時間割', bodyContents: bodyCont);
   }
 }
