@@ -13,8 +13,8 @@ class AppRouter extends $AppRouter {
           page: TabBarRoute.page, 
           path: 'home', 
           children: [
-            AutoRoute(page: HomeMonthRoute.page, path: 'month', initial: true),
-            AutoRoute(page: HomeWeekRoute.page, path: 'week'),
+            AutoRoute(page: HomeMonthRoute.page, path: 'month'),
+            AutoRoute(page: HomeWeekRoute.page, path: 'week', initial: true),
             AutoRoute(page: HomeDayRoute.page, path: 'day'),
             AutoRoute(page: HomeUnitRoute.page, path: 'unit')
           ]

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:student_support/src/app.dart';
+import 'package:student_support/src/app.dart';
 
 // 色の定義 (各画面でsample.dartをimportすることで使えるようになる)
 const bgColor1 = Color.fromRGBO(28, 28, 28, 1);
@@ -57,18 +57,13 @@ class ScreenWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgColor1,
-
       appBar: AppBar(
-        backgroundColor: bgColor2,
-        title: BasicText(text: titleTxt, size: appBarTextSize),
+        title: Text(titleTxt),
       ),
 
-      // drawer: const OverlayWidget(),
+      drawer: OverlayWidget(),
 
       body: bodyContents,
-
-      // bottomNavigationBar: const BottomMenuWidget(),
     );
   }
 }
