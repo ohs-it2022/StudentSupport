@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:student_support/routers/app_router.gr.dart';
+import 'package:student_support/src/app.dart';
 import 'package:student_support/src/sample.dart';
 // import 'package:student_support/src/screens/home/home_month_page.dart';
 
@@ -31,8 +32,9 @@ class TabBarRoute extends StatelessWidget {
                 Tab(text: '日'),
                 Tab(text: '単元')       
               ],
-            ),    
+            ),
           ),
+          drawer: OverlayWidget(),
           body: child,
         );
       }

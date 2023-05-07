@@ -15,14 +15,14 @@ class BottomBarRoute extends StatelessWidget {
         TabBarRoute(),
         AttendanceInfoRoute(),
         TaskRegistRoute(),
-        // TTChangeRoute(),
-        // SettingsRoute(),
+        TTChangeRoute(),
+        SettingsRoute(),
       ], 
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(
           backgroundColor: bgColor2,
           // fixedColor: Colors.pink,
-          unselectedItemColor: Color.fromARGB(255, 118, 118, 118),
+          unselectedItemColor: const Color.fromARGB(255, 118, 118, 118),
           selectedItemColor: const Color.fromARGB(255, 255, 255, 255),
           type: BottomNavigationBarType.fixed,
           currentIndex: tabsRouter.activeIndex,
@@ -43,8 +43,8 @@ class BottomBarRoute extends StatelessWidget {
             BottomNavigationBarItem(icon: Icon(homeIcon), label: 'ホーム'),
             BottomNavigationBarItem(icon: Icon(attendanceInfoIcon), label: '出欠情報'),
             BottomNavigationBarItem(icon: Icon(taskRegistIcon), label: '課題登録'),
-            // BottomNavigationBarItem(icon: Icon(timeTableChangeIcon), label: '時間割変更'),
-            // BottomNavigationBarItem(icon: Icon(settingIcon), label: '設定'),
+            BottomNavigationBarItem(icon: Icon(timeTableChangeIcon), label: '時間割変更'),
+            BottomNavigationBarItem(icon: Icon(settingIcon), label: '設定'),
           ],
         );
       }

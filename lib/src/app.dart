@@ -1,12 +1,15 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:student_support/routers/app_router.gr.dart';
 import 'package:student_support/src/sample.dart';
 
 // オーバーレイの要素のウィジェット
+@RoutePage()
 class OverlayElem extends StatelessWidget {
   final dynamic iconType;
   final String btnTxt;
-  final dynamic nextRoot;
-  const OverlayElem({super.key, required this.iconType, required this.btnTxt, required this.nextRoot});
+  final dynamic nextPage;
+  const OverlayElem({super.key, required this.iconType, required this.btnTxt, required this.nextPage});
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +25,7 @@ class OverlayElem extends StatelessWidget {
       height: 80,
       
       child: ElevatedButton(
-        onPressed: (){
-          Navigator.of(context).pop();
-          Navigator.pushNamed(context, nextRoot);
-        }, 
+        onPressed: () => context.router.pushAndPopUntil(nextPage, predicate: (Route<dynamic> route) => false),
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20)
@@ -55,11 +55,11 @@ class OverlayWidget extends StatelessWidget {
     final drawerWidth = screenSize.width * 0.7;
 
     // オーバーレイのボタン作成
-    const topBtn = OverlayElem(iconType: homeIcon, btnTxt: 'ホーム', nextRoot: '/',);
-    const attendanceInfoBtn = OverlayElem(iconType: attendanceInfoIcon, btnTxt: '出欠情報', nextRoot: '/attendInfo',);
-    const taskRegistBtn = OverlayElem(iconType: taskRegistIcon, btnTxt: '課題登録', nextRoot: '/taskRegist',);
-    const timeTableChangeBtn = OverlayElem(iconType: timeTableChangeIcon, btnTxt: '時間割変更', nextRoot: '/TTChange',);
-    const settingBtn = OverlayElem(iconType: settingIcon, btnTxt: '一般設定', nextRoot: '/Settings',);
+    const topBtn = OverlayElem(iconType: homeIcon, btnTxt: 'ホーム', nextPage: HomeDayRoute(),);
+    const attendanceInfoBtn = OverlayElem(iconType: attendanceInfoIcon, btnTxt: '出欠情報', nextPage: AttendanceInfoRoute(),);
+    const taskRegistBtn = OverlayElem(iconType: taskRegistIcon, btnTxt: '課題登録', nextPage: TaskRegistRoute(),);
+    const timeTableChangeBtn = OverlayElem(iconType: timeTableChangeIcon, btnTxt: '時間割変更', nextPage: TTChangeRoute(),);
+    const settingBtn = OverlayElem(iconType: settingIcon, btnTxt: '一般設定', nextPage: SettingsRoute(),);
     const overlayBtn = [
       topBtn, 
       attendanceInfoBtn, 
@@ -67,11 +67,12 @@ class OverlayWidget extends StatelessWidget {
       timeTableChangeBtn, 
       settingBtn,
     ];
-    return Theme(
-      data: Theme.of(context).copyWith(
-        canvasColor: bgColor2,
-      ),
-      child: Drawer(
+    // return Theme(
+    //   data: Theme.of(context).copyWith(
+    //     canvasColor: bgColor2,
+    //   ),
+    //   child: Drawer(
+      return Drawer(
         width: drawerWidth,
         child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -83,23 +84,23 @@ class OverlayWidget extends StatelessWidget {
             )
           ]
         ),
-      ),
-    );
+      );
+    // );
   }
 }
 
 // 下のメニューの要素
 class BottomMenuElem extends StatelessWidget {
   final dynamic iconType;
-  final dynamic nextRoot;
-  const BottomMenuElem({super.key, required this.iconType, required this.nextRoot});
+  final dynamic nextPage;
+  const BottomMenuElem({super.key, required this.iconType, required this.nextPage});
 
   @override
   Widget build(BuildContext context) {
     final elem = ElevatedButton(
           onPressed: (){
             Navigator.of(context).pop();
-            Navigator.pushNamed(context, nextRoot);
+            Navigator.pushNamed(context, nextPage);
           }, 
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
@@ -122,9 +123,9 @@ class BottomMenuWidget extends StatelessWidget {
     const row = Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        BottomMenuElem(iconType: homeIcon, nextRoot: '/',),
-        BottomMenuElem(iconType: attendanceInfoIcon, nextRoot: '/attendInfo',),
-        BottomMenuElem(iconType: taskRegistIcon, nextRoot: '/taskRegist',),
+        BottomMenuElem(iconType: homeIcon, nextPage: '/',),
+        BottomMenuElem(iconType: attendanceInfoIcon, nextPage: '/attendInfo',),
+        BottomMenuElem(iconType: taskRegistIcon, nextPage: '/taskRegist',),
     ],);
 
     return Container(

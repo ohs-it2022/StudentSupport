@@ -13,7 +13,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: _appRouter.config(),
       title: 'Flutter Demo',
-      theme: ThemeData(primarySwatch: Colors.blue)
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: Colors.lightBlue[800]
+      )
     );
   }
 }
