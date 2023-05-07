@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:student_support/src/sample.dart';
 
 final _bodyContents = Center(
-      child: BasicText(text: '課題登録', size: 20),
-    );
+  child: BasicText(text: '課題登録', size: 20),
+);
 
 @RoutePage()
 class TaskRegistPage extends StatelessWidget {

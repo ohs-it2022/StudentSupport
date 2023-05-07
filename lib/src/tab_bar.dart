@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:student_support/routers/app_router.gr.dart';
 import 'package:student_support/src/app.dart';
 import 'package:student_support/src/sample.dart';
-// import 'package:student_support/src/screens/home/home_month_page.dart';
 
 @RoutePage()
 class TabBarRoute extends StatelessWidget {
@@ -23,7 +22,7 @@ class TabBarRoute extends StatelessWidget {
         return Scaffold(
           backgroundColor: bgColor1,
           appBar: AppBar(
-            title: Text('ホーム'),
+            title: const Text('ホーム'),
             bottom: TabBar(            
               controller: controller,            
               tabs: const [            
@@ -34,7 +33,7 @@ class TabBarRoute extends StatelessWidget {
               ],
             ),
           ),
-          drawer: OverlayWidget(),
+          drawer: const OverlayWidget(),
           body: child,
         );
       }

@@ -39,7 +39,7 @@ class BottomBarRoute extends StatelessWidget {
                   ?.popUntilRoot();
             }
           },
-          items: [
+          items: const [
             BottomNavigationBarItem(icon: Icon(homeIcon), label: 'ホーム'),
             BottomNavigationBarItem(icon: Icon(attendanceInfoIcon), label: '出欠情報'),
             BottomNavigationBarItem(icon: Icon(taskRegistIcon), label: '課題登録'),

@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:student_support/src/sample.dart';
 
 final _bodyContents = Center(
-      child: Text('出欠管理'),
-    );
+  child: Text('出欠管理'),
+);
+
 @RoutePage()
 class AttendanceInfoPage extends StatelessWidget {
   const AttendanceInfoPage({super.key});

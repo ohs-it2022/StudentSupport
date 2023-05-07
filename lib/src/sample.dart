@@ -13,9 +13,6 @@ const taskRegistIcon  = Icons.book;         // 課題登録
 const timeTableChangeIcon = Icons.calendar_month;  // 時間割変更
 const settingIcon = Icons.settings;         // 一般設定
 
-// 大きさの指定
-const double appBarTextSize = 20;
-
 // 基本のテキスト設定
 class BasicText extends StatelessWidget {
   final String text;
@@ -61,7 +58,7 @@ class ScreenWidget extends StatelessWidget {
         title: Text(titleTxt),
       ),
 
-      drawer: OverlayWidget(),
+      drawer: const OverlayWidget(),
 
       body: bodyContents,
     );
