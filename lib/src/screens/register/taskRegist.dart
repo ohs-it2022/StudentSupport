@@ -1,17 +1,21 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:student_support/src/sample.dart';
 
-class TaskRegist extends StatelessWidget {
-  const TaskRegist({super.key});
+final _bodyContents = Center(
+  child: BasicText(text: '課題登録', size: 20),
+);
+
+@RoutePage()
+class TaskRegistPage extends StatelessWidget {
+  const TaskRegistPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final bodyCont = Center(
-      child: Text('課題登録画面', style: TextStyle(color: textColor),),
-    );
     return ScreenWidget(
       titleTxt: '課題登録', 
-      bodyContents: bodyCont,
+      bodyContents: _bodyContents,
+      drawerFlg: 1,
     );
   }
 }

@@ -1,52 +1,42 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:student_support/routers/app_router.gr.dart';
 import 'package:student_support/src/sample.dart';
 
 // オーバーレイの要素のウィジェット
+@RoutePage()
 class OverlayElem extends StatelessWidget {
-  final icon_type;
+  final dynamic iconType;
   final String btnTxt;
-  final nextRoot;
-  const OverlayElem({super.key, required this.icon_type, required this.btnTxt, required this.nextRoot});
+  final dynamic nextPage;
+  const OverlayElem({super.key, required this.iconType, required this.btnTxt, required this.nextPage});
 
   @override
   Widget build(BuildContext context) {
 
-    final icon = Icon(
-      icon_type,
-      color: textColor,
-      size: 30,
-    );
-    final text = Text(
-      '$btnTxt', 
-      style: TextStyle(color: textColor, fontSize: 20),
-    );
+    final icon = BasicIcon(iconType: iconType, size: 30);
+    final text = BasicText(text: btnTxt, size: 20);
     final row = Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children:[
-        icon,
-        text
-      ],
+      children:[ icon, text ],
     );
     final btn  = SizedBox(
       width: 200,
       height: 80,
       
       child: ElevatedButton(
-        onPressed: (){
-          Navigator.of(context).pop();
-          Navigator.pushNamed(context, nextRoot);
-        }, 
-        child: row, 
+        onPressed: () => context.router.pushAndPopUntil(nextPage, predicate: (Route<dynamic> route) => false),
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20)
           ),
-          primary: bgColor1
+          backgroundColor: bgColor1
         ),
+        child: row, 
       )
     );
     final elem = Container(
-      margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
+      margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
       child: btn,
     );
     return elem;
@@ -61,29 +51,30 @@ class OverlayWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // オーバーレイの横幅(今は画面全体の７割)
-    var _screenSize = MediaQuery.of(context).size;  // 画面のサイズを取得
-    final drawerWidth = _screenSize.width * 0.7;
+    var screenSize = MediaQuery.of(context).size;  // 画面のサイズを取得
+    final drawerWidth = screenSize.width * 0.7;
 
     // オーバーレイのボタン作成
-    final topBtn = OverlayElem(icon_type: homeIcon, btnTxt: 'ホーム', nextRoot: '/',);
-    final attendanceInfoBtn = OverlayElem(icon_type: attendanceInfoIcon, btnTxt: '出欠情報', nextRoot: '/attendInfo',);
-    final taskRegistBtn = OverlayElem(icon_type: taskRegistIcon, btnTxt: '課題登録', nextRoot: '/taskRegist',);
-    final TTChangeBtn = OverlayElem(icon_type: TTChangeIcon, btnTxt: '時間割変更', nextRoot: '/TTChange',);
-    final settingBtn = OverlayElem(icon_type: settingIcon, btnTxt: '一般設定', nextRoot: '/Settings',);
-    final overlayBtn = [
+    const topBtn = OverlayElem(iconType: homeIcon, btnTxt: 'ホーム', nextPage: TabBarRoute(),);
+    const attendanceInfoBtn = OverlayElem(iconType: attendanceInfoIcon, btnTxt: '出欠情報', nextPage: AttendanceInfoRoute(),);
+    const taskRegistBtn = OverlayElem(iconType: taskRegistIcon, btnTxt: '課題登録', nextPage: TaskRegistRoute(),);
+    const timeTableChangeBtn = OverlayElem(iconType: timeTableChangeIcon, btnTxt: '時間割変更', nextPage: TTChangeRoute(),);
+    const settingBtn = OverlayElem(iconType: settingIcon, btnTxt: '一般設定', nextPage: SettingsRoute(),);
+    const overlayBtn = [
       topBtn, 
       attendanceInfoBtn, 
       taskRegistBtn, 
-      TTChangeBtn, 
+      timeTableChangeBtn, 
       settingBtn,
     ];
-    return Theme(
-      data: Theme.of(context).copyWith(
-        canvasColor: bgColor2,
-      ),
-      child: Drawer(
+    // return Theme(
+    //   data: Theme.of(context).copyWith(
+    //     canvasColor: bgColor2,
+    //   ),
+    //   child: Drawer(
+      return Drawer(
         width: drawerWidth,
-        child: Column(
+        child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children:<Widget>[
             Column(
@@ -93,31 +84,32 @@ class OverlayWidget extends StatelessWidget {
             )
           ]
         ),
-      ),
-    );
+      );
+    // );
   }
 }
 
 // 下のメニューの要素
 class BottomMenuElem extends StatelessWidget {
-  final icon_type;
-  final nextRoot;
-  const BottomMenuElem({super.key, required this.icon_type, required this.nextRoot});
+  final dynamic iconType;
+  final dynamic nextPage;
+  const BottomMenuElem({super.key, required this.iconType, required this.nextPage});
 
   @override
   Widget build(BuildContext context) {
     final elem = ElevatedButton(
           onPressed: (){
             Navigator.of(context).pop();
-            Navigator.pushNamed(context, nextRoot);
+            Navigator.pushNamed(context, nextPage);
           }, 
-          child: Icon(icon_type, color: textColor,),
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20)
             ),
-            primary: bgColor1
-          ),);
+            backgroundColor: bgColor1
+          ),
+          child: BasicIcon(iconType: iconType, size: 25,),
+        );
     return elem;
   }
 }
@@ -128,19 +120,18 @@ class BottomMenuWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final row = Row(
+    const row = Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        BottomMenuElem(icon_type: homeIcon, nextRoot: '/',),
-        BottomMenuElem(icon_type: attendanceInfoIcon, nextRoot: '/attendInfo',),
-        BottomMenuElem(icon_type: taskRegistIcon, nextRoot: '/taskRegist',),
+        BottomMenuElem(iconType: homeIcon, nextPage: '/',),
+        BottomMenuElem(iconType: attendanceInfoIcon, nextPage: '/attendInfo',),
+        BottomMenuElem(iconType: taskRegistIcon, nextPage: '/taskRegist',),
     ],);
 
-    final con = Container(
+    return Container(
       color: bgColor2,
       height: 50,
       child: row,
     );
-    return con;
   }
 }

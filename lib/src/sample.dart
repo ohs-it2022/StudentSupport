@@ -10,47 +10,106 @@ const textColor = Colors.white;
 const homeIcon = Icons.home;                // ホーム
 const attendanceInfoIcon = Icons.badge;     // 出欠確認
 const taskRegistIcon  = Icons.book;         // 課題登録
-const TTChangeIcon = Icons.calendar_month;  // 時間割変更
+const timeTableChangeIcon = Icons.calendar_month;  // 時間割変更
 const settingIcon = Icons.settings;         // 一般設定
 
-
-// ホームの各画面のウィジェット
-class HomeScreenWidget extends StatelessWidget {
-  final bodyContents;
-  const HomeScreenWidget({super.key, required this.bodyContents});
+// 基本のテキスト設定
+class BasicText extends StatelessWidget {
+  final String text;
+  final double size;
+  const BasicText({super.key, required this.text, required this.size });
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: bgColor1,
-      body: bodyContents,
+    return Text(
+      text,
+      style: TextStyle(color: textColor, fontSize: size),
     );
   }
 }
 
-// ホーム以外の画面
+// 基本のアイコン設定
+class BasicIcon extends StatelessWidget {
+  final dynamic iconType;
+  final double size;
+  const BasicIcon({super.key, required this.iconType, required this.size});
+
+  @override
+  Widget build(BuildContext context) {
+    return Icon(
+      iconType,
+      color: textColor,
+      size: size,
+    );
+  }
+}
+
+
+// 各画面のウィジェット
 class ScreenWidget extends StatelessWidget {
   final String titleTxt;
-  final bodyContents;
-  const ScreenWidget({super.key, required this.titleTxt, required this.bodyContents});
+  final dynamic bodyContents;
+  final int drawerFlg;
+  const ScreenWidget({super.key, required this.titleTxt, required this.bodyContents, this.drawerFlg = 0});
+
 
   @override
   Widget build(BuildContext context) {
+    dynamic _drawer;
+    if(drawerFlg == 1){
+      _drawer = const OverlayWidget();
+    }else{
+      _drawer = null;
+    }
     return Scaffold(
-      backgroundColor: bgColor1,
-
       appBar: AppBar(
-        backgroundColor: bgColor2,
-        title: Text('$titleTxt'),
+        title: Text(titleTxt),
       ),
-
-      drawer: OverlayWidget(),
+  
+      drawer: _drawer,
 
       body: bodyContents,
-
-      bottomNavigationBar: BottomMenuWidget(),
-
     );
   }
 }
 
+
+// ドロップダウンメニュー
+// DropdownButtonMenu()でドロップダウンを作れる。
+// menuElemにメニューの要素をリストで入れる。['要素1', '要素2', ...]
+// 初期値を変えたいときはidxにインデックス番号を入れる。
+class DropdownButtonMenu extends StatefulWidget {
+  final List<String> menuElem;
+  final int idx;
+  const DropdownButtonMenu({Key? key, required this.menuElem, this.idx = 0}) : super(key: key);
+
+  @override
+  State<DropdownButtonMenu> createState() => _DropdownButtonMenuState();
+}
+
+class _DropdownButtonMenuState extends State<DropdownButtonMenu> {
+
+  late String isSelectedValue = widget.menuElem[widget.idx];
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      value: isSelectedValue,
+      items: widget.menuElem
+              .map((String list) => DropdownMenuItem(
+                value: list, 
+                child: Container(
+                  // width: 100,
+                  // alignment: Alignment.center,
+                  child: BasicText(text: list, size: 20)
+                )
+              ))
+              .toList(),
+      onChanged: (String? value) {
+        setState(() {
+          isSelectedValue = value!;
+        });
+      },
+      dropdownColor: bgColor2,
+    );
+  }
+}
