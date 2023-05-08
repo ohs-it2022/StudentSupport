@@ -20,7 +20,7 @@ class TabBarRoute extends StatelessWidget {
       builder: (context, child, controller) {
         // final tabsRouter = AutoTabsRouter.of(context);
         return Scaffold(
-          backgroundColor: bgColor1,
+          // backgroundColor: bgColor1,
           appBar: AppBar(
             title: const Text('ホーム'),
             bottom: TabBar(            

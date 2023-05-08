@@ -47,6 +47,7 @@ class TTChangePage extends StatelessWidget {
     return ScreenWidget(
       titleTxt: '時間割変更', 
       bodyContents: bodyCont,
+      drawerFlg: 1,
     );
   }
 }

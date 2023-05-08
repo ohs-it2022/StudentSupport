@@ -45,20 +45,28 @@ class BasicIcon extends StatelessWidget {
 }
 
 
-// ホームの各画面のウィジェット
+// 各画面のウィジェット
 class ScreenWidget extends StatelessWidget {
   final String titleTxt;
   final dynamic bodyContents;
-  const ScreenWidget({super.key, required this.titleTxt, required this.bodyContents});
+  final int drawerFlg;
+  const ScreenWidget({super.key, required this.titleTxt, required this.bodyContents, this.drawerFlg = 0});
+
 
   @override
   Widget build(BuildContext context) {
+    dynamic _drawer;
+    if(drawerFlg == 1){
+      _drawer = Drawer();
+    }else{
+      _drawer = null;
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text(titleTxt),
       ),
-
-      drawer: const OverlayWidget(),
+  
+      drawer: _drawer,
 
       body: bodyContents,
     );
