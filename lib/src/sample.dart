@@ -57,7 +57,7 @@ class ScreenWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     dynamic _drawer;
     if(drawerFlg == 1){
-      _drawer = Drawer();
+      _drawer = const OverlayWidget();
     }else{
       _drawer = null;
     }

@@ -12,6 +12,10 @@ class AttendanceInfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenWidget(titleTxt: '出欠情報', bodyContents: _bodyContents);
+    return ScreenWidget(
+      titleTxt: '出欠情報', 
+      bodyContents: _bodyContents,
+      drawerFlg: 1,
+    );
   }
 }

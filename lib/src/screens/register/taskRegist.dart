@@ -14,7 +14,8 @@ class TaskRegistPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenWidget(
       titleTxt: '課題登録', 
-      bodyContents: _bodyContents
+      bodyContents: _bodyContents,
+      drawerFlg: 1,
     );
   }
 }

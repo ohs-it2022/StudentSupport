@@ -14,7 +14,8 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenWidget(
       titleTxt: '設定', 
-      bodyContents: _bodyContents
+      bodyContents: _bodyContents,
+      drawerFlg: 1,
     );
   }
 }
