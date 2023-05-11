@@ -75,9 +75,6 @@ class ScreenWidget extends StatelessWidget {
 
 
 // ドロップダウンメニュー
-// DropdownButtonMenu()でドロップダウンを作れる。
-// menuElemにメニューの要素をリストで入れる。['要素1', '要素2', ...]
-// 初期値を変えたいときはidxにインデックス番号を入れる。
 class DropdownButtonMenu extends StatefulWidget {
   final List<String> menuElem;
   final int idx;
