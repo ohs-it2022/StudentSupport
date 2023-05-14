@@ -128,7 +128,7 @@ class TTNum extends StatelessWidget {
       height: numHeight,
       width: numWidth,
       child: ElevatedButton(
-        onPressed: () => showOverlay(context), 
+        onPressed: () => showOverlayTTChange(context), 
         style: btnStyle,
         child: BasicText(text: txt, size: 15,),
       ),

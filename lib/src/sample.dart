@@ -112,11 +112,14 @@ class _DropdownButtonMenuState extends State<DropdownButtonMenu> {
 }
 
 
-// オーバーレイ
+// -------------------------オーバーレイ--------------------------
+
 class BottomOverlay extends StatefulWidget {
 
   final double height;
-  BottomOverlay({required this.height});
+  final content;
+  final bgcolor;
+  BottomOverlay({required this.height, required this.content, this.bgcolor = bgColor2});
   @override
   _BottomOverlayState createState() => _BottomOverlayState();
 }
@@ -126,14 +129,13 @@ class _BottomOverlayState extends State<BottomOverlay> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;  // 画面サイズを取得
     
-    // ここに上に重ねる要素を記述
     return Center(
       child: Column(
         children: [
           Builder(
             builder: (BuildContext context) => GestureDetector(
               onTap: () {
-                hideOverlay();
+                hideOverlayTTChange();
               },
               child: Container(
                 color: Colors.black.withOpacity(0.5),
@@ -145,23 +147,28 @@ class _BottomOverlayState extends State<BottomOverlay> {
           Container(
             width: size.width,
             height: size.height * widget.height,
-            color: Colors.blue,
-            child: Center(child: Text('表示エリア'),)
+            color: widget.bgcolor,
+            child: widget.content
           )
         ],
       )
     );
   }
 }
-OverlayEntry overlayEntry = OverlayEntry(
+
+// 時間割設定変更画面用のオーバーレイ
+OverlayEntry overlayEntryTTCange = OverlayEntry(
   builder: (BuildContext context) {
-    return BottomOverlay(height: 0.6,);
+    return BottomOverlay(
+      height: 0.6, 
+      content: Center(child: BasicText(text: 'text', size: 20),),
+    );
   },
 );
-void showOverlay(BuildContext context) {
-  Overlay.of(context).insert(overlayEntry);
+void showOverlayTTChange(BuildContext context) {
+  Overlay.of(context).insert(overlayEntryTTCange);
 }
 
-void hideOverlay() {
-  overlayEntry.remove();
+void hideOverlayTTChange() {
+  overlayEntryTTCange.remove();
 }
