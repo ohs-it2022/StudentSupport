@@ -15,6 +15,10 @@
   - [ドロップダウンメニュー](#ドロップダウンメニュー)
     - [初期値が`要素1`の場合](#初期値が要素1の場合)
     - [初期値が`要素2`の場合](#初期値が要素2の場合)
+  - [ボトムオーバーレイ](#ボトムオーバーレイ)
+    - [OverlayEntryをつくる](#overlayentryをつくる)
+    - [showOverlayを作る](#showoverlayを作る)
+    - [hideOverlayを作る](#hideoverlayを作る)
 
 ## パッケージのインストール方法
 1. `pubspec.yaml`にパッケージ名とバージョンを記載する
@@ -61,4 +65,38 @@ DropdownButtonMenu(menuElem: ['要素1', '要素2', '要素3'])
 #### 初期値が`要素2`の場合
 ```dart
 DropdownButtonMenu(menuElem: ['要素1', '要素2', '要素3'], idx: 1)
+```
+
+### ボトムオーバーレイ
+- オーバーレイごとにOverlayEntryを作る必要がある
+- オーバーレイごとにshowOverlay,hideOverlayの関数を作る必要がある
+- heightに画面の何割の高さかを指定する。5割の場合 0.5
+- contentにオーバーレイの内容を指定する
+- hideFuncにhideOverlay関数を指定する
+- bgcolorに背景色を指定できる
+
+#### OverlayEntryをつくる
+```dart
+OverlayEntry overlayEntry = OverlayEntry(
+  builder: (BuildContext context) {
+    return BottomOverlay(
+      height: 0.6, 
+      content: Center(child: Material(child: Text('text'),),)
+    );
+  },
+);
+```
+
+#### showOverlayを作る
+```dart
+void showOverlay(BuildContext context) {
+  Overlay.of(context).insert(overlayEntry);
+}
+```
+
+#### hideOverlayを作る
+```dart
+void hideOverlay() {
+  overlayEntry.remove();
+}
 ```

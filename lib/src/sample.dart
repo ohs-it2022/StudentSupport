@@ -119,7 +119,8 @@ class BottomOverlay extends StatefulWidget {
   final double height;
   final content;
   final bgcolor;
-  BottomOverlay({required this.height, required this.content, this.bgcolor = bgColor2});
+  final hideFunc;
+  BottomOverlay({required this.height, required this.content, required this.hideFunc, this.bgcolor = bgColor2});
   @override
   _BottomOverlayState createState() => _BottomOverlayState();
 }
@@ -135,7 +136,7 @@ class _BottomOverlayState extends State<BottomOverlay> {
           Builder(
             builder: (BuildContext context) => GestureDetector(
               onTap: () {
-                hideOverlayTTChange();
+                widget.hideFunc();
               },
               child: Container(
                 color: Colors.black.withOpacity(0.5),
@@ -161,7 +162,8 @@ OverlayEntry overlayEntryTTCange = OverlayEntry(
   builder: (BuildContext context) {
     return BottomOverlay(
       height: 0.6, 
-      content: Center(child: Material(child: Text('text'),),)
+      content: Center(child: Material(child: Text('text'),),),
+      hideFunc: hideOverlayTTChange,
     );
   },
 );
