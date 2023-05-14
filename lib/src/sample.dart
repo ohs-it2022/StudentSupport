@@ -110,3 +110,58 @@ class _DropdownButtonMenuState extends State<DropdownButtonMenu> {
     );
   }
 }
+
+
+// オーバーレイ
+class BottomOverlay extends StatefulWidget {
+
+  final double height;
+  BottomOverlay({required this.height});
+  @override
+  _BottomOverlayState createState() => _BottomOverlayState();
+}
+
+class _BottomOverlayState extends State<BottomOverlay> {
+  @override
+  Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;  // 画面サイズを取得
+    
+    // ここに上に重ねる要素を記述
+    return Center(
+      child: Column(
+        children: [
+          Builder(
+            builder: (BuildContext context) => GestureDetector(
+              onTap: () {
+                hideOverlay();
+              },
+              child: Container(
+                color: Colors.black.withOpacity(0.5),
+                width: size.width,
+                height: size.height * (1 - widget.height),
+              ),
+            ),
+          ),
+          Container(
+            width: size.width,
+            height: size.height * widget.height,
+            color: Colors.blue,
+            child: Center(child: Text('表示エリア'),)
+          )
+        ],
+      )
+    );
+  }
+}
+OverlayEntry overlayEntry = OverlayEntry(
+  builder: (BuildContext context) {
+    return BottomOverlay(height: 0.6,);
+  },
+);
+void showOverlay(BuildContext context) {
+  Overlay.of(context).insert(overlayEntry);
+}
+
+void hideOverlay() {
+  overlayEntry.remove();
+}

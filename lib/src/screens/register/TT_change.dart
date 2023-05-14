@@ -110,7 +110,7 @@ class TTElem extends StatelessWidget {
       height: numHeight,
       width: dayWidth,
       child: ElevatedButton(
-        onPressed: (){}, 
+        onPressed: () {}, 
         style: btnStyle,
         child: BasicText(text: txt, size: 15,)
       ),
@@ -128,7 +128,7 @@ class TTNum extends StatelessWidget {
       height: numHeight,
       width: numWidth,
       child: ElevatedButton(
-        onPressed: (){}, 
+        onPressed: () => showOverlay(context), 
         style: btnStyle,
         child: BasicText(text: txt, size: 15,),
       ),
