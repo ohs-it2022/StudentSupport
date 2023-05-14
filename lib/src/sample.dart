@@ -161,7 +161,7 @@ OverlayEntry overlayEntryTTCange = OverlayEntry(
   builder: (BuildContext context) {
     return BottomOverlay(
       height: 0.6, 
-      content: Center(child: BasicText(text: 'text', size: 20),),
+      content: Center(child: Material(child: Text('text'),),)
     );
   },
 );
