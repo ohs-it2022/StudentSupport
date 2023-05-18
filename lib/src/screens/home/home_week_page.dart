@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:student_support/src/bottom_bar.dart';
 // import 'package:student_support/routers/app_router.gr.dart';
 // import 'package:student_support/src/app.dart';
 import 'package:student_support/src/sample.dart';

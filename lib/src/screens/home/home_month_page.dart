@@ -1,8 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:student_support/src/bottom_bar.dart';
-import 'package:student_support/src/sample.dart';
-
 import 'package:table_calendar/table_calendar.dart';
 
 DateTime _focusedDay = DateTime.now();
