@@ -155,12 +155,12 @@ class TTRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         TTNum(txt: '$num'),
-        TTElem(txt: ''),
-        TTElem(txt: '',),
-        TTElem(txt: '',),
-        TTElem(txt: '',),
-        TTElem(txt: '',),
-        TTElem(txt: '',),
+        const TTElem(txt: ''),
+        const TTElem(txt: '',),
+        const TTElem(txt: '',),
+        const TTElem(txt: '',),
+        const TTElem(txt: '',),
+        const TTElem(txt: '',),
       ],
     );
   }

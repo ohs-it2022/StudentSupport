@@ -8,7 +8,7 @@ class HomeUnitPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: BasicText(text: '単元', size: 20),
     );
     

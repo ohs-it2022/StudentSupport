@@ -4,7 +4,7 @@ import 'package:student_support/routers/app_router.gr.dart';
 import 'package:student_support/src/sample.dart';
 
 class BottomBar extends StatelessWidget {
-  final selected;
+  final dynamic selected;
   const BottomBar({super.key, this.selected=0});
   
   @override
@@ -20,7 +20,7 @@ class BottomBar extends StatelessWidget {
       selectlist = [0,0,0];
     }
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: bgColor2,
         boxShadow: [
           BoxShadow(),
@@ -30,9 +30,9 @@ class BottomBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          BottomBarElem(nextPage: TabBarRoute(), icon: homeIcon, text: 'ホーム', selectFlg: selectlist[0],),
-          BottomBarElem(nextPage: AttendanceInfoRoute(), icon: attendanceInfoIcon, text: '出欠情報', selectFlg: selectlist[1],),
-          BottomBarElem(nextPage: TaskRegistRoute(), icon: taskRegistIcon, text: '課題登録', selectFlg: selectlist[2],)
+          BottomBarElem(nextPage: const TabBarRoute(), icon: homeIcon, text: 'ホーム', selectFlg: selectlist[0],),
+          BottomBarElem(nextPage: const AttendanceInfoRoute(), icon: attendanceInfoIcon, text: '出欠情報', selectFlg: selectlist[1],),
+          BottomBarElem(nextPage: const TaskRegistRoute(), icon: taskRegistIcon, text: '課題登録', selectFlg: selectlist[2],)
         ],
       )
     );
@@ -40,10 +40,10 @@ class BottomBar extends StatelessWidget {
 }
 
 class BottomBarElem extends StatelessWidget {
-  final nextPage;
-  final icon;
-  final text;
-  final selectFlg;
+  final dynamic nextPage;
+  final dynamic icon;
+  final dynamic text;
+  final int selectFlg;
   const BottomBarElem({super.key, required this.nextPage, required this.icon, required this.text, this.selectFlg=0});
 
   @override
@@ -52,27 +52,26 @@ class BottomBarElem extends StatelessWidget {
     if (selectFlg == 1){
       buttonElem = [
         Icon(icon, color: Colors.white,),
-        Text(text, style: TextStyle(color: Colors.white),)
+        Text(text, style: const TextStyle(color: Colors.white),)
       ];
     }
     else{
       buttonElem = [
-        Icon(icon, color: Color.fromRGBO(110, 110, 110, 1),),
-        Text(text, style: TextStyle(color: Color.fromRGBO(110, 110, 110, 1)),)
+        Icon(icon, color: const Color.fromRGBO(110, 110, 110, 1),),
+        Text(text, style: const TextStyle(color: Color.fromRGBO(110, 110, 110, 1)),)
       ];
     }
     return TextButton(
         onPressed: (){
           AutoRouter.of(context).replace(nextPage);
         }, 
+        style: ElevatedButton.styleFrom(
+          backgroundColor: bgColor2,
+          foregroundColor: Colors.black
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          
           children: buttonElem
-        ),
-        style: ElevatedButton.styleFrom(
-          primary: bgColor2,
-          onPrimary: Colors.black
         ),
       )
     ;

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:student_support/src/bottom_bar.dart';
 import 'package:student_support/src/sample.dart';
 
-final _bodyContents = Center(
+const _bodyContents = Center(
   child: Column(
     children: [
       Expanded(child: BasicText(text: '設定', size: 20),),
@@ -18,7 +18,7 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenWidget(
+    return const ScreenWidget(
       titleTxt: '設定', 
       bodyContents: _bodyContents,
       drawerFlg: 1,
