@@ -69,71 +69,18 @@ class OverlayWidget extends StatelessWidget {
       timeTableChangeBtn, 
       settingBtn,
     ];
-    // return Theme(
-    //   data: Theme.of(context).copyWith(
-    //     canvasColor: bgColor2,
-    //   ),
-    //   child: Drawer(
-      return Drawer(
-        width: drawerWidth,
-        child: const Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children:<Widget>[
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: overlayBtn
-            )
-          ]
-        ),
-      );
-    // );
+    return Drawer(
+      width: drawerWidth,
+      child: const Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children:<Widget>[
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: overlayBtn
+          )
+        ]
+      ),
+    );
   }
 }
-
-// 下のメニューの要素
-class BottomMenuElem extends StatelessWidget {
-  final dynamic iconType;
-  final dynamic nextPage;
-  const BottomMenuElem({super.key, required this.iconType, required this.nextPage});
-
-  @override
-  Widget build(BuildContext context) {
-    final elem = ElevatedButton(
-          onPressed: (){
-            Navigator.of(context).pop();
-            Navigator.pushNamed(context, nextPage);
-          }, 
-          style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20)
-            ),
-            backgroundColor: bgColor1
-          ),
-          child: BasicIcon(iconType: iconType, size: 25,),
-        );
-    return elem;
-  }
-}
-
-// // 下メニューのウィジェット
-// class BottomMenuWidget extends StatelessWidget {
-//   const BottomMenuWidget({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     const row = Row(
-//       mainAxisAlignment: MainAxisAlignment.spaceAround,
-//       children: [
-//         BottomMenuElem(iconType: homeIcon, nextPage: '/',),
-//         BottomMenuElem(iconType: attendanceInfoIcon, nextPage: '/attendInfo',),
-//         BottomMenuElem(iconType: taskRegistIcon, nextPage: '/taskRegist',),
-//     ],);
-
-//     return Container(
-//       color: bgColor2,
-//       height: 50,
-//       child: row,
-//     );
-//   }
-// }
