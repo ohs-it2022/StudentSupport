@@ -10,40 +10,40 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i13;
 import 'package:flutter/material.dart' as _i14;
-import 'package:student_support/src/app.dart' as _i1;
-import 'package:student_support/src/bottom_bar.dart' as _i2;
+import 'package:student_support/routers/root_router.dart' as _i1;
+import 'package:student_support/src/app.dart' as _i2;
 import 'package:student_support/src/screens/attend/attendanceInfo.dart' as _i3;
 import 'package:student_support/src/screens/home/home_day_page.dart' as _i4;
 import 'package:student_support/src/screens/home/home_month_page.dart' as _i5;
 import 'package:student_support/src/screens/home/home_unit_page.dart' as _i6;
 import 'package:student_support/src/screens/home/home_week_page.dart' as _i7;
-import 'package:student_support/src/screens/register/add_detail.dart' as _i12;
-import 'package:student_support/src/screens/register/taskRegist.dart' as _i8;
-import 'package:student_support/src/screens/register/TT_change.dart' as _i9;
-import 'package:student_support/src/screens/settings/settings.dart' as _i10;
-import 'package:student_support/src/tab_bar.dart' as _i11;
+import 'package:student_support/src/screens/register/add_detail.dart' as _i8;
+import 'package:student_support/src/screens/register/taskRegist.dart' as _i9;
+import 'package:student_support/src/screens/register/TT_change.dart' as _i10;
+import 'package:student_support/src/screens/settings/settings.dart' as _i11;
+import 'package:student_support/src/tab_bar.dart' as _i12;
 
 abstract class $AppRouter extends _i13.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
   final Map<String, _i13.PageFactory> pagesMap = {
+    RootRouterRoute.name: (routeData) {
+      return _i13.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i1.rootRouterPage(),
+      );
+    },
     OverlayElem.name: (routeData) {
       final args = routeData.argsAs<OverlayElemArgs>();
       return _i13.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i1.OverlayElem(
+        child: _i2.OverlayElem(
           key: args.key,
           iconType: args.iconType,
           btnTxt: args.btnTxt,
           nextPage: args.nextPage,
         ),
-      );
-    },
-    BottomBarRoute.name: (routeData) {
-      return _i13.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i2.BottomBarRoute(),
       );
     },
     AttendanceInfoRoute.name: (routeData) {
@@ -76,47 +76,61 @@ abstract class $AppRouter extends _i13.RootStackRouter {
         child: const _i7.HomeWeekPage(),
       );
     },
+    AddDetailRoute.name: (routeData) {
+      return _i13.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i8.AddDetailPage(),
+      );
+    },
     TaskRegistRoute.name: (routeData) {
       return _i13.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i8.TaskRegistPage(),
+        child: const _i9.TaskRegistPage(),
       );
     },
     TTChangeRouterRoute.name: (routeData) {
       return _i13.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i9.TTChangeRouterPage(),
+        child: const _i10.TTChangeRouterPage(),
       );
     },
     TTChangeRoute.name: (routeData) {
       return _i13.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i9.TTChangePage(),
+        child: const _i10.TTChangePage(),
       );
     },
     SettingsRoute.name: (routeData) {
       return _i13.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i10.SettingsPage(),
+        child: const _i11.SettingsPage(),
       );
     },
     TabBarRoute.name: (routeData) {
       return _i13.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i11.TabBarRoute(),
-      );
-    },
-    AddDetailRoute.name: (routeData) {
-      return _i13.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i12.AddDetailPage(),
+        child: const _i12.TabBarRoute(),
       );
     },
   };
 }
 
 /// generated route for
-/// [_i1.OverlayElem]
+/// [_i1.rootRouterPage]
+class RootRouterRoute extends _i13.PageRouteInfo<void> {
+  const RootRouterRoute({List<_i13.PageRouteInfo>? children})
+      : super(
+          RootRouterRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RootRouterRoute';
+
+  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i2.OverlayElem]
 class OverlayElem extends _i13.PageRouteInfo<OverlayElemArgs> {
   OverlayElem({
     _i14.Key? key,
@@ -161,20 +175,6 @@ class OverlayElemArgs {
   String toString() {
     return 'OverlayElemArgs{key: $key, iconType: $iconType, btnTxt: $btnTxt, nextPage: $nextPage}';
   }
-}
-
-/// generated route for
-/// [_i2.BottomBarRoute]
-class BottomBarRoute extends _i13.PageRouteInfo<void> {
-  const BottomBarRoute({List<_i13.PageRouteInfo>? children})
-      : super(
-          BottomBarRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'BottomBarRoute';
-
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
 }
 
 /// generated route for
@@ -248,7 +248,21 @@ class HomeWeekRoute extends _i13.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i8.TaskRegistPage]
+/// [_i8.AddDetailPage]
+class AddDetailRoute extends _i13.PageRouteInfo<void> {
+  const AddDetailRoute({List<_i13.PageRouteInfo>? children})
+      : super(
+          AddDetailRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AddDetailRoute';
+
+  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i9.TaskRegistPage]
 class TaskRegistRoute extends _i13.PageRouteInfo<void> {
   const TaskRegistRoute({List<_i13.PageRouteInfo>? children})
       : super(
@@ -262,7 +276,7 @@ class TaskRegistRoute extends _i13.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i9.TTChangeRouterPage]
+/// [_i10.TTChangeRouterPage]
 class TTChangeRouterRoute extends _i13.PageRouteInfo<void> {
   const TTChangeRouterRoute({List<_i13.PageRouteInfo>? children})
       : super(
@@ -276,7 +290,7 @@ class TTChangeRouterRoute extends _i13.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i9.TTChangePage]
+/// [_i10.TTChangePage]
 class TTChangeRoute extends _i13.PageRouteInfo<void> {
   const TTChangeRoute({List<_i13.PageRouteInfo>? children})
       : super(
@@ -290,7 +304,7 @@ class TTChangeRoute extends _i13.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i10.SettingsPage]
+/// [_i11.SettingsPage]
 class SettingsRoute extends _i13.PageRouteInfo<void> {
   const SettingsRoute({List<_i13.PageRouteInfo>? children})
       : super(
@@ -304,7 +318,7 @@ class SettingsRoute extends _i13.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i11.TabBarRoute]
+/// [_i12.TabBarRoute]
 class TabBarRoute extends _i13.PageRouteInfo<void> {
   const TabBarRoute({List<_i13.PageRouteInfo>? children})
       : super(
@@ -313,20 +327,6 @@ class TabBarRoute extends _i13.PageRouteInfo<void> {
         );
 
   static const String name = 'TabBarRoute';
-
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i12.AddDetailPage]
-class AddDetailRoute extends _i13.PageRouteInfo<void> {
-  const AddDetailRoute({List<_i13.PageRouteInfo>? children})
-      : super(
-          AddDetailRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'AddDetailRoute';
 
   static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
 }

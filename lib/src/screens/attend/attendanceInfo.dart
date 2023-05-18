@@ -1,9 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:student_support/src/bottom_bar.dart';
 import 'package:student_support/src/sample.dart';
 
 final _bodyContents = Center(
-  child: Text('出欠管理'),
+  child: Column(
+    children: [
+      Expanded(child: BasicText(text: '出欠情報', size: 20),),
+      BottomBar()
+    ],
+  )
 );
 
 @RoutePage()

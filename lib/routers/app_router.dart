@@ -7,11 +7,12 @@ class AppRouter extends $AppRouter {
   List<AutoRoute> get routes => [
     AutoRoute(
       path: '/',
-      page: BottomBarRoute.page,
+      page: RootRouterRoute.page,
       children: [
         AutoRoute(
           page: TabBarRoute.page, 
           path: 'home', 
+          initial: true,
           children: [
             AutoRoute(page: HomeMonthRoute.page, path: 'month'),
             AutoRoute(page: HomeWeekRoute.page, path: 'week', initial: true),

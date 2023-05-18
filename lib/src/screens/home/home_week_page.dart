@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:student_support/src/bottom_bar.dart';
 // import 'package:student_support/routers/app_router.gr.dart';
 // import 'package:student_support/src/app.dart';
 import 'package:student_support/src/sample.dart';
@@ -11,8 +12,11 @@ class HomeWeekPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Center(
-      child: BasicText(text: '週', size: 20),
+    return Column(
+      children: [
+        Expanded(child: BasicText(text: '週', size: 20),),
+        BottomBar()
+      ],
     );
   }
 }
