@@ -36,7 +36,7 @@ class TabBarRoute extends StatelessWidget {
           drawer: const OverlayWidget(),
           body: Column(children: [
             Expanded(child: child),
-            BottomBar()
+            BottomBar(selected: 1,)
           ])
         );
       }

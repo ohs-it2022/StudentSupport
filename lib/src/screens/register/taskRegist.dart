@@ -7,7 +7,7 @@ final _bodyContents = Center(
   child: Column(
     children: [
       Expanded(child: BasicText(text: '課題登録', size: 20),),
-      BottomBar()
+      BottomBar(selected: 3,)
     ],
   )
 );
