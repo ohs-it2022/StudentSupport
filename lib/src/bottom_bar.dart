@@ -15,7 +15,7 @@ class BottomBarRoute extends StatelessWidget {
         TabBarRoute(),
         AttendanceInfoRoute(),
         TaskRegistRoute(),
-        TTChangeRoute(),
+        TTChangeRouterRoute(),
         SettingsRoute(),
       ], 
       bottomNavigationBuilder: (_, tabsRouter) {

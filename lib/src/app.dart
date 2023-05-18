@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:student_support/routers/app_router.gr.dart';
 import 'package:student_support/src/sample.dart';
 
 // オーバーレイの要素のウィジェット
@@ -25,7 +24,10 @@ class OverlayElem extends StatelessWidget {
       height: 80,
       
       child: ElevatedButton(
-        onPressed: () => context.router.pushAndPopUntil(nextPage, predicate: (Route<dynamic> route) => false),
+        onPressed: () {
+          AutoRouter.of(context).pop();
+          AutoRouter.of(context).pushNamed(nextPage);
+        },
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20)
@@ -55,11 +57,11 @@ class OverlayWidget extends StatelessWidget {
     final drawerWidth = screenSize.width * 0.7;
 
     // オーバーレイのボタン作成
-    const topBtn = OverlayElem(iconType: homeIcon, btnTxt: 'ホーム', nextPage: TabBarRoute(),);
-    const attendanceInfoBtn = OverlayElem(iconType: attendanceInfoIcon, btnTxt: '出欠情報', nextPage: AttendanceInfoRoute(),);
-    const taskRegistBtn = OverlayElem(iconType: taskRegistIcon, btnTxt: '課題登録', nextPage: TaskRegistRoute(),);
-    const timeTableChangeBtn = OverlayElem(iconType: timeTableChangeIcon, btnTxt: '時間割変更', nextPage: TTChangeRoute(),);
-    const settingBtn = OverlayElem(iconType: settingIcon, btnTxt: '一般設定', nextPage: SettingsRoute(),);
+    const topBtn = OverlayElem(iconType: homeIcon, btnTxt: 'ホーム', nextPage: '/home',);
+    const attendanceInfoBtn = OverlayElem(iconType: attendanceInfoIcon, btnTxt: '出欠情報', nextPage: '/attend',);
+    const taskRegistBtn = OverlayElem(iconType: taskRegistIcon, btnTxt: '課題登録', nextPage: '/task',);
+    const timeTableChangeBtn = OverlayElem(iconType: timeTableChangeIcon, btnTxt: '時間割変更', nextPage: '/timetableChangeRouter',);
+    const settingBtn = OverlayElem(iconType: settingIcon, btnTxt: '一般設定', nextPage: '/settings',);
     const overlayBtn = [
       topBtn, 
       attendanceInfoBtn, 
@@ -114,24 +116,24 @@ class BottomMenuElem extends StatelessWidget {
   }
 }
 
-// 下メニューのウィジェット
-class BottomMenuWidget extends StatelessWidget {
-  const BottomMenuWidget({super.key});
+// // 下メニューのウィジェット
+// class BottomMenuWidget extends StatelessWidget {
+//   const BottomMenuWidget({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    const row = Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        BottomMenuElem(iconType: homeIcon, nextPage: '/',),
-        BottomMenuElem(iconType: attendanceInfoIcon, nextPage: '/attendInfo',),
-        BottomMenuElem(iconType: taskRegistIcon, nextPage: '/taskRegist',),
-    ],);
+//   @override
+//   Widget build(BuildContext context) {
+//     const row = Row(
+//       mainAxisAlignment: MainAxisAlignment.spaceAround,
+//       children: [
+//         BottomMenuElem(iconType: homeIcon, nextPage: '/',),
+//         BottomMenuElem(iconType: attendanceInfoIcon, nextPage: '/attendInfo',),
+//         BottomMenuElem(iconType: taskRegistIcon, nextPage: '/taskRegist',),
+//     ],);
 
-    return Container(
-      color: bgColor2,
-      height: 50,
-      child: row,
-    );
-  }
-}
+//     return Container(
+//       color: bgColor2,
+//       height: 50,
+//       child: row,
+//     );
+//   }
+// }

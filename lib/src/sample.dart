@@ -110,3 +110,67 @@ class _DropdownButtonMenuState extends State<DropdownButtonMenu> {
     );
   }
 }
+
+
+// -------------------------オーバーレイ--------------------------
+
+class BottomOverlay extends StatefulWidget {
+
+  final double height;
+  final content;
+  final bgcolor;
+  final hideFunc;
+  BottomOverlay({required this.height, required this.content, required this.hideFunc, this.bgcolor = bgColor2});
+  @override
+  _BottomOverlayState createState() => _BottomOverlayState();
+}
+
+class _BottomOverlayState extends State<BottomOverlay> {
+  @override
+  Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;  // 画面サイズを取得
+    
+    return Center(
+      child: Column(
+        children: [
+          Builder(
+            builder: (BuildContext context) => GestureDetector(
+              onTap: () {
+                widget.hideFunc();
+              },
+              child: Container(
+                color: Colors.black.withOpacity(0.5),
+                width: size.width,
+                height: size.height * (1 - widget.height),
+              ),
+            ),
+          ),
+          Container(
+            width: size.width,
+            height: size.height * widget.height - 50,
+            color: widget.bgcolor,
+            child: widget.content
+          )
+        ],
+      )
+    );
+  }
+}
+
+// 時間割設定変更画面用のオーバーレイ
+OverlayEntry overlayEntryTTCange = OverlayEntry(
+  builder: (BuildContext context) {
+    return BottomOverlay(
+      height: 0.6, 
+      content: Center(child: Material(child: Text('text'),),),
+      hideFunc: hideOverlayTTChange,
+    );
+  },
+);
+void showOverlayTTChange(BuildContext context) {
+  Overlay.of(context).insert(overlayEntryTTCange);
+}
+
+void hideOverlayTTChange() {
+  overlayEntryTTCange.remove();
+}
