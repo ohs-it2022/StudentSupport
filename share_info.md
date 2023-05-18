@@ -165,3 +165,7 @@ router.replaceAll([
 ```dart
 context.router.pop();
 ```
+
+- 上の階層に遷移
+- オーバーレイをルーターページに固定する
+- 
