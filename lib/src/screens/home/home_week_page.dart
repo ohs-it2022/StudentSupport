@@ -12,11 +12,6 @@ class HomeWeekPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Column(
-      children: [
-        Expanded(child: BasicText(text: '週', size: 20),),
-        BottomBar()
-      ],
-    );
+    return BasicText(text: '週', size: 20);
   }
 }

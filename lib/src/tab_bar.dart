@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:student_support/routers/app_router.gr.dart';
 import 'package:student_support/src/app.dart';
+import 'package:student_support/src/bottom_bar.dart';
 
 @RoutePage()
 class TabBarRoute extends StatelessWidget {
@@ -33,7 +34,10 @@ class TabBarRoute extends StatelessWidget {
             ),
           ),
           drawer: const OverlayWidget(),
-          body: child,
+          body: Column(children: [
+            Expanded(child: child),
+            BottomBar()
+          ])
         );
       }
     );

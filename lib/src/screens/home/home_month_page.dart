@@ -19,30 +19,23 @@ class HomeMonthPage extends StatefulWidget {
 class _HomeMonthPageState extends State<HomeMonthPage> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: Center(
-            child: TableCalendar(
-              firstDay: DateTime.utc(2023, 4, 1),
-              lastDay: DateTime.utc(2024, 3, 31),
-              selectedDayPredicate: (day) {
-                    return isSameDay(_selected, day);
-                  },
-                  onDaySelected: (selected, focused) {
-                    if (!isSameDay(_selected, selected)) {
-                      setState(() {
-                        _selected = selected;
-                        _focusedDay = focused;
-                      });
-                    }
-                  },
-              focusedDay: _focusedDay,
-            ),
-          ),
-        ),
-        BottomBar()
-      ],
+    return Center(
+      child: TableCalendar(
+        firstDay: DateTime.utc(2023, 4, 1),
+        lastDay: DateTime.utc(2024, 3, 31),
+        selectedDayPredicate: (day) {
+              return isSameDay(_selected, day);
+            },
+            onDaySelected: (selected, focused) {
+              if (!isSameDay(_selected, selected)) {
+                setState(() {
+                  _selected = selected;
+                  _focusedDay = focused;
+                });
+              }
+            },
+        focusedDay: _focusedDay,
+      ),
     );
     
   }

@@ -9,12 +9,12 @@ class BottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // color: bgColor1,
-      // decoration: BoxDecoration(
-      //   boxShadow: [
-      //     BoxShadow(),
-      //   ],
-      // ),
+      decoration: BoxDecoration(
+        color: bgColor2,
+        boxShadow: [
+          BoxShadow(),
+        ],
+      ),
       height: 60,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

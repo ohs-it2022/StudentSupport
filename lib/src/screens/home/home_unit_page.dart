@@ -9,13 +9,8 @@ class HomeUnitPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(child: Center(
-          child: BasicText(text: '単元', size: 20),
-        )),
-        BottomBar()
-      ],
+    return Center(
+      child: BasicText(text: '単元', size: 20),
     );
     
   }
