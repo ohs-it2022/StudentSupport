@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:student_support/routers/app_router.gr.dart';
 import 'package:student_support/src/sample.dart';
 
 const double dayHeight = 27;  // 曜日の要素の高さ
@@ -16,6 +17,11 @@ final sectionDecoration = BoxDecoration(
   color: bgColor2,
   borderRadius: BorderRadius.circular(30),
 );
+
+@RoutePage()
+class TTChangeRouterPage extends AutoRouter {
+  const TTChangeRouterPage({super.key});
+}
 
 // 画面全体のウィジェット
 @RoutePage()
@@ -110,7 +116,9 @@ class TTElem extends StatelessWidget {
       height: numHeight,
       width: dayWidth,
       child: ElevatedButton(
-        onPressed: () {}, 
+        onPressed: () {
+          context.router.push(AddDetailRoute());
+        }, 
         style: btnStyle,
         child: BasicText(text: txt, size: 15,)
       ),
@@ -194,4 +202,5 @@ class TimeSettings extends StatelessWidget {
     );
   }
 }
+
 

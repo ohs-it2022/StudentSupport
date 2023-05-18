@@ -22,7 +22,14 @@ class AppRouter extends $AppRouter {
         AutoRoute(page: AttendanceInfoRoute.page, path: 'attend'),
         AutoRoute(page: SettingsRoute.page, path: 'settings'),
         AutoRoute(page: TaskRegistRoute.page, path: 'task'),
-        AutoRoute(page: TTChangeRoute.page, path: 'timetableChange'),
+        AutoRoute(
+          page: TTChangeRouterRoute.page, 
+          path: 'timetableChangeRouter', 
+          children: [
+            AutoRoute(page: TTChangeRoute.page, path: 'timetableChange', initial: true),
+            AutoRoute(page: AddDetailRoute.page, path: 'add_detail')  
+          ]
+        ),
       ]
     ),
   ];

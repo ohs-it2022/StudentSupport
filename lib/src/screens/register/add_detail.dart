@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:student_support/src/sample.dart';
 
 @RoutePage()
-class AddDetail extends StatelessWidget {
-  const AddDetail({super.key});
+class AddDetailPage extends StatelessWidget {
+  const AddDetailPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -9,6 +9,7 @@
 ## もくじ
 - [パッケージのインストール方法](#パッケージのインストール方法)
   - [auto\_routeが見つからない場合](#auto_routeが見つからない場合)
+- [新しいページを追加した場合](#新しいページを追加した場合)
 - [背景色について](#背景色について)
 - [各ファイルの説明](#各ファイルの説明)
 - [sample.dart 各ウィジェットの使い方](#sampledart-各ウィジェットの使い方)
@@ -19,6 +20,7 @@
     - [OverlayEntryをつくる](#overlayentryをつくる)
     - [showOverlayを作る](#showoverlayを作る)
     - [hideOverlayを作る](#hideoverlayを作る)
+- [画面間の移動](#画面間の移動)
 
 ## パッケージのインストール方法
 1. `pubspec.yaml`にパッケージ名とバージョンを記載する
@@ -33,6 +35,11 @@ gitからクローンした時点で`pubspec.yaml`に記載されているから
 flutter pub get
 ```
 を実行する。
+
+## 新しいページを追加した場合
+``` sh
+flutter packages pub run build_runner build
+```
 
 ## 背景色について
 `main.dart`
@@ -99,4 +106,62 @@ void showOverlay(BuildContext context) {
 void hideOverlay() {
   overlayEntry.remove();
 }
+```
+
+
+## 画面間の移動
+- 下記を呼び出してスコープ付きルーターを取得する
+```dart
+AutoRouter.of(context)
+// または
+context.router
+```
+
+- 新しいエントリーをページスタックに追加
+```dart 
+router.push(const BooksListRoute())
+// pathを使う場合
+router.pushNamed('/books') 
+```
+
+- スタック内の最後のエントリを削除し、提供されたルートをプッシュ。
+  最後のエントリと指定されたルートが同じで ページが更新される場合
+```dart
+router.replace(const BooksListRoute())
+// pathを使う場合
+router.replaceNamed('/books') 
+```
+
+- 提供されたルートがスタックに既に存在する場合、そのルートまでポップする                
+  でなければスタックに追加する（Web Appsに適している）。     
+```dart
+router.navigate(const BooksListRoute())
+// pathを使う場合
+router.navigateNamed('/books')
+```
+
+- Nativeで前の場所に戻る場合は、次のようにナビゲートします
+```dart
+router.navigateBack();
+```
+
+- ルートのリストをページスタックに一度に追加します
+```dart
+router.pushAll([                
+   BooksListRoute(),                
+   BookDetailsRoute(id:1),                
+]);
+```
+
+- これは、スタックを再構築する際に、全く新しいスタックを提供するようなものです。               
+渡されたルートのリストでエンタイアが既に存在する場合は更新するだけかもしれません
+```dart
+router.replaceAll([                
+   LoginRoute()                
+]);
+```
+
+- スタックが1エントリでない限り、最後のページをポップします。
+```dart
+context.router.pop();
 ```

@@ -147,7 +147,7 @@ class _BottomOverlayState extends State<BottomOverlay> {
           ),
           Container(
             width: size.width,
-            height: size.height * widget.height,
+            height: size.height * widget.height - 50,
             color: widget.bgcolor,
             child: widget.content
           )

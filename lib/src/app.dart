@@ -58,7 +58,7 @@ class OverlayWidget extends StatelessWidget {
     const topBtn = OverlayElem(iconType: homeIcon, btnTxt: 'ホーム', nextPage: TabBarRoute(),);
     const attendanceInfoBtn = OverlayElem(iconType: attendanceInfoIcon, btnTxt: '出欠情報', nextPage: AttendanceInfoRoute(),);
     const taskRegistBtn = OverlayElem(iconType: taskRegistIcon, btnTxt: '課題登録', nextPage: TaskRegistRoute(),);
-    const timeTableChangeBtn = OverlayElem(iconType: timeTableChangeIcon, btnTxt: '時間割変更', nextPage: TTChangeRoute(),);
+    const timeTableChangeBtn = OverlayElem(iconType: timeTableChangeIcon, btnTxt: '時間割変更', nextPage: TTChangeRouterRoute(),);
     const settingBtn = OverlayElem(iconType: settingIcon, btnTxt: '一般設定', nextPage: SettingsRoute(),);
     const overlayBtn = [
       topBtn, 
@@ -114,24 +114,24 @@ class BottomMenuElem extends StatelessWidget {
   }
 }
 
-// 下メニューのウィジェット
-class BottomMenuWidget extends StatelessWidget {
-  const BottomMenuWidget({super.key});
+// // 下メニューのウィジェット
+// class BottomMenuWidget extends StatelessWidget {
+//   const BottomMenuWidget({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    const row = Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        BottomMenuElem(iconType: homeIcon, nextPage: '/',),
-        BottomMenuElem(iconType: attendanceInfoIcon, nextPage: '/attendInfo',),
-        BottomMenuElem(iconType: taskRegistIcon, nextPage: '/taskRegist',),
-    ],);
+//   @override
+//   Widget build(BuildContext context) {
+//     const row = Row(
+//       mainAxisAlignment: MainAxisAlignment.spaceAround,
+//       children: [
+//         BottomMenuElem(iconType: homeIcon, nextPage: '/',),
+//         BottomMenuElem(iconType: attendanceInfoIcon, nextPage: '/attendInfo',),
+//         BottomMenuElem(iconType: taskRegistIcon, nextPage: '/taskRegist',),
+//     ],);
 
-    return Container(
-      color: bgColor2,
-      height: 50,
-      child: row,
-    );
-  }
-}
+//     return Container(
+//       color: bgColor2,
+//       height: 50,
+//       child: row,
+//     );
+//   }
+// }
