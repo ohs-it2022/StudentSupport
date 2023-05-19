@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:student_support/src/bottom_bar.dart';
 import 'package:student_support/src/sample.dart';
 
+late String title;
 final _work = Container(
   width: double.infinity,
   margin: EdgeInsets.fromLTRB(10, 20, 10, 20),
@@ -23,15 +25,18 @@ final _work = Container(
           decoration: InputDecoration(
             hintText: 'タイトル',
           ),
+          onChanged: (text){
+            title = text;
+          },
         ),
         TextField(
           decoration: InputDecoration(
-            hintText: '教科',
+            hintText: '教科(後ほどプルダウンにする)',
           ),
         ),
         TextField(
           decoration: InputDecoration(
-            hintText: '提出期限',
+            hintText: '提出期限(カレンダーで選択できるようにできれば楽)',
           ),
         ),
         TextField(
@@ -39,6 +44,12 @@ final _work = Container(
             hintText: '内容',
           ),
         ),
+        ElevatedButton(
+          onPressed: (){
+
+          },
+          child: Text('登録')
+        )
       ],
     ),
   ),
