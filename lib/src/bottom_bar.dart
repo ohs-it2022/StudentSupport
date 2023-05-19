@@ -3,51 +3,77 @@ import 'package:flutter/material.dart';
 import 'package:student_support/routers/app_router.gr.dart';
 import 'package:student_support/src/sample.dart';
 
-@RoutePage()
-class BottomBarRoute extends StatelessWidget {
-  const BottomBarRoute({super.key});
+class BottomBar extends StatelessWidget {
+  final dynamic selected;
+  const BottomBar({super.key, this.selected=0});
+  
+  @override
+  Widget build(BuildContext context) {
+    final List selectlist;
+    if (selected==1){
+      selectlist = [1,0,0];
+    }else if(selected==2){
+      selectlist = [0,1,0];
+    }else if(selected==3){
+      selectlist = [0,0,1];
+    }else{
+      selectlist = [0,0,0];
+    }
+    return Container(
+      decoration: const BoxDecoration(
+        color: bgColor2,
+        boxShadow: [
+          BoxShadow(),
+        ],
+      ),
+      height: 60,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          BottomBarElem(nextPage: const TabBarRoute(), icon: homeIcon, text: 'ホーム', selectFlg: selectlist[0],),
+          BottomBarElem(nextPage: const AttendanceInfoRoute(), icon: attendanceInfoIcon, text: '出欠情報', selectFlg: selectlist[1],),
+          BottomBarElem(nextPage: const TaskRegistRoute(), icon: taskRegistIcon, text: '課題登録', selectFlg: selectlist[2],)
+        ],
+      )
+    );
+  }
+}
+
+class BottomBarElem extends StatelessWidget {
+  final dynamic nextPage;
+  final dynamic icon;
+  final dynamic text;
+  final int selectFlg;
+  const BottomBarElem({super.key, required this.nextPage, required this.icon, required this.text, this.selectFlg=0});
 
   @override
   Widget build(BuildContext context) {
-    return AutoTabsScaffold(
-      backgroundColor: bgColor1,
-      routes: const [
-        TabBarRoute(),
-        AttendanceInfoRoute(),
-        TaskRegistRoute(),
-        TTChangeRouterRoute(),
-        SettingsRoute(),
-      ], 
-      bottomNavigationBuilder: (_, tabsRouter) {
-        return BottomNavigationBar(
+    final dynamic buttonElem;
+    if (selectFlg == 1){
+      buttonElem = [
+        Icon(icon, color: Colors.white,),
+        Text(text, style: const TextStyle(color: Colors.white),)
+      ];
+    }
+    else{
+      buttonElem = [
+        Icon(icon, color: const Color.fromRGBO(110, 110, 110, 1),),
+        Text(text, style: const TextStyle(color: Color.fromRGBO(110, 110, 110, 1)),)
+      ];
+    }
+    return TextButton(
+        onPressed: (){
+          AutoRouter.of(context).replace(nextPage);
+        }, 
+        style: ElevatedButton.styleFrom(
           backgroundColor: bgColor2,
-          // fixedColor: Colors.pink,
-          unselectedItemColor: const Color.fromARGB(255, 118, 118, 118),
-          selectedItemColor: const Color.fromARGB(255, 255, 255, 255),
-          type: BottomNavigationBarType.fixed,
-          currentIndex: tabsRouter.activeIndex,
-          onTap: (int index) {
-            // 選択中じゃないタブをTapした場合
-            if (tabsRouter.activeIndex != index) {
-              tabsRouter.setActiveIndex(index);
-            }
-            // 選択中のタブをTapした場合
-            else {
-              // ネストされたルーターのスタック情報を破棄
-              tabsRouter
-                  .innerRouterOf<StackRouter>(tabsRouter.current.name)
-                  ?.popUntilRoot();
-            }
-          },
-          items: const [
-            BottomNavigationBarItem(icon: Icon(homeIcon), label: 'ホーム'),
-            BottomNavigationBarItem(icon: Icon(attendanceInfoIcon), label: '出欠情報'),
-            BottomNavigationBarItem(icon: Icon(taskRegistIcon), label: '課題登録'),
-            BottomNavigationBarItem(icon: Icon(timeTableChangeIcon), label: '時間割変更'),
-            BottomNavigationBarItem(icon: Icon(settingIcon), label: '設定'),
-          ],
-        );
-      }
-    );
+          foregroundColor: Colors.black
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: buttonElem
+        ),
+      )
+    ;
   }
 }

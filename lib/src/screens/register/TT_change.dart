@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:student_support/routers/app_router.gr.dart';
+import 'package:student_support/src/bottom_bar.dart';
 import 'package:student_support/src/sample.dart';
 
 const double dayHeight = 27;  // 曜日の要素の高さ
@@ -43,10 +44,10 @@ class TTChangePage extends StatelessWidget {
 
     final bodyCont = Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           timeTableTitle,
-          Expanded(child: timeTable)    // 縦いっぱい
+          Expanded(child: timeTable),
+          BottomBar()
         ],
       )
     );
@@ -154,12 +155,12 @@ class TTRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         TTNum(txt: '$num'),
-        TTElem(txt: ''),
-        TTElem(txt: '',),
-        TTElem(txt: '',),
-        TTElem(txt: '',),
-        TTElem(txt: '',),
-        TTElem(txt: '',),
+        const TTElem(txt: ''),
+        const TTElem(txt: '',),
+        const TTElem(txt: '',),
+        const TTElem(txt: '',),
+        const TTElem(txt: '',),
+        const TTElem(txt: '',),
       ],
     );
   }
