@@ -109,7 +109,7 @@ abstract class $AppRouter extends _i13.RootStackRouter {
     TabBarRoute.name: (routeData) {
       return _i13.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i12.TabBarRoute(),
+        child: const _i12.TabBarPage(),
       );
     },
   };
@@ -318,7 +318,7 @@ class SettingsRoute extends _i13.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i12.TabBarRoute]
+/// [_i12.TabBarPage]
 class TabBarRoute extends _i13.PageRouteInfo<void> {
   const TabBarRoute({List<_i13.PageRouteInfo>? children})
       : super(

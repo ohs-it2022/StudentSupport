@@ -5,8 +5,8 @@ import 'package:student_support/src/app.dart';
 import 'package:student_support/src/bottom_bar.dart';
 
 @RoutePage()
-class TabBarRoute extends StatelessWidget {
-  const TabBarRoute({super.key});
+class TabBarPage extends StatelessWidget {
+  const TabBarPage({super.key});
 
   @override
   Widget build(BuildContext context) {
