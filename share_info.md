@@ -21,6 +21,10 @@
     - [showOverlayを作る](#showoverlayを作る)
     - [hideOverlayを作る](#hideoverlayを作る)
 - [画面間の移動](#画面間の移動)
+- [データを扱う](#データを扱う)
+  - [データを保存](#データを保存)
+  - [データを取得](#データを取得)
+  - [データを削除](#データを削除)
 
 ## パッケージのインストール方法
 1. `pubspec.yaml`にパッケージ名とバージョンを記載する
@@ -122,4 +126,32 @@ context.router
 router.push(const BooksListRoute())
 // pathを使う場合
 router.pushNamed('/books') 
+```
+
+## データを扱う
+### データを保存
+```dart
+final SharedPreferences prefs = await SharedPreferences.getInstance();
+await prefs.setString('KEY_STRING', 'HELLO'); // 文字列
+await prefs.setBool('KEY_BOOL', true); // true/false
+await prefs.setInt('KEY_INT', 99999); // int
+await prefs.setDouble('KEY_DOUBLE', 1.2345); // double
+```
+
+### データを取得
+```dart
+final SharedPreferences prefs = await SharedPreferences.getInstance();
+final String? vString = prefs.getString('KEY_STRING');
+final bool? vBool = prefs.getBool('KEY_BOOL');
+final int? vInt = prefs.getInt('KEY_INT');
+final double? vDouble = prefs.getDouble('KEY_DOUBLE');
+
+// 初期値を記述したい場合は ?? (if null) を使うと便利です
+final String vString = prefs.getString('KEY_STRING') ?? 'DEFAULT';
+```
+
+### データを削除
+```dart
+final SharedPreferences prefs = await SharedPreferences.getInstance();
+await prefs.remove('KEY_STRING');
 ```

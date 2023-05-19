@@ -38,7 +38,9 @@ dependencies:
   auto_route: ^6.4.0
   auto_route_generator: ^6.2.0
 
-  table_calendar: ^3.0.9 # カレンダー
+  table_calendar: ^3.0.9  # カレンダー
+
+  shared_preferences: ^2.1.1  # データを扱えるパッケージ
 
 dev_dependencies:
   flutter_test:
