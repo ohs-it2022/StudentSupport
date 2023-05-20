@@ -53,9 +53,14 @@ abstract class $AppRouter extends _i13.RootStackRouter {
       );
     },
     HomeDayRoute.name: (routeData) {
+      final args = routeData.argsAs<HomeDayRouteArgs>();
       return _i13.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i4.HomeDayPage(),
+        child: _i4.HomeDayPage(
+          key: args.key,
+          month: args.month,
+          day: args.day,
+        ),
       );
     },
     HomeMonthRoute.name: (routeData) {
@@ -193,16 +198,45 @@ class AttendanceInfoRoute extends _i13.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.HomeDayPage]
-class HomeDayRoute extends _i13.PageRouteInfo<void> {
-  const HomeDayRoute({List<_i13.PageRouteInfo>? children})
-      : super(
+class HomeDayRoute extends _i13.PageRouteInfo<HomeDayRouteArgs> {
+  HomeDayRoute({
+    _i14.Key? key,
+    required int month,
+    required int day,
+    List<_i13.PageRouteInfo>? children,
+  }) : super(
           HomeDayRoute.name,
+          args: HomeDayRouteArgs(
+            key: key,
+            month: month,
+            day: day,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'HomeDayRoute';
 
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
+  static const _i13.PageInfo<HomeDayRouteArgs> page =
+      _i13.PageInfo<HomeDayRouteArgs>(name);
+}
+
+class HomeDayRouteArgs {
+  const HomeDayRouteArgs({
+    this.key,
+    required this.month,
+    required this.day,
+  });
+
+  final _i14.Key? key;
+
+  final int month;
+
+  final int day;
+
+  @override
+  String toString() {
+    return 'HomeDayRouteArgs{key: $key, month: $month, day: $day}';
+  }
 }
 
 /// generated route for

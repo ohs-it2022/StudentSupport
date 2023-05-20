@@ -1,9 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:student_support/routers/app_router.gr.dart';
+import 'package:student_support/src/sample.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-DateTime _focusedDay = DateTime.now();
+final _focusedDay = today;
 DateTime? _selected;
 CalendarFormat _calendarFormat = CalendarFormat.month;
 
@@ -33,7 +34,9 @@ class _HomeMonthPageState extends State<HomeMonthPage> {
           //     _focusedDay = focused;
           //   });
           // }
-          AutoRouter.of(context).pushNamed('/home/day');// 変更が必要
+          AutoRouter.of(context).push(HomeDayRoute(month: selected.month, day: selected.day));  // 変更が必要
+          print(selected.day);
+          print(focused);
         },
         onFormatChanged: (format){
           if (_calendarFormat != format) {

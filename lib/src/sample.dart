@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:student_support/src/app.dart';
 
+DateTime today = DateTime.now();
+
 // 色の定義 (各画面でsample.dartをimportすることで使えるようになる)
 const bgColor1 = Color.fromRGBO(28, 28, 28, 1);
 const bgColor2 = Color.fromRGBO(63, 63, 63, 1);

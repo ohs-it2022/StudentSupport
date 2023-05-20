@@ -5,12 +5,14 @@ import 'package:student_support/src/sample.dart';
 
 @RoutePage()
 class HomeDayPage extends StatelessWidget {
-  const HomeDayPage({super.key});
+  final int month;
+  final int day;
+  const HomeDayPage({super.key, required this.month, required this.day});
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: BasicText(text: '日', size: 20),
+    return Center(
+      child: BasicText(text: '$month月$day日', size: 20),
     );
   }
 } 
