@@ -16,7 +16,7 @@ class TabBarPage extends StatelessWidget {
       routes: [
         HomeMonthRoute(),
         HomeWeekRoute(),
-        HomeDayRoute(month: today.month, day: today.day),
+        HomeDayRoute(month: today.month, day: today.day, weekday: today.weekday),
         HomeUnitRoute(),
       ],
       builder: (context, child, controller) {

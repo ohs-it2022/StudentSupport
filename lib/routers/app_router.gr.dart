@@ -60,6 +60,7 @@ abstract class $AppRouter extends _i13.RootStackRouter {
           key: args.key,
           month: args.month,
           day: args.day,
+          weekday: args.weekday,
         ),
       );
     },
@@ -82,9 +83,14 @@ abstract class $AppRouter extends _i13.RootStackRouter {
       );
     },
     AddDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<AddDetailRouteArgs>();
       return _i13.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i8.AddDetailPage(),
+        child: _i8.AddDetailPage(
+          key: args.key,
+          num: args.num,
+          dayOfWeek: args.dayOfWeek,
+        ),
       );
     },
     TaskRegistRoute.name: (routeData) {
@@ -203,6 +209,7 @@ class HomeDayRoute extends _i13.PageRouteInfo<HomeDayRouteArgs> {
     _i14.Key? key,
     required int month,
     required int day,
+    required dynamic weekday,
     List<_i13.PageRouteInfo>? children,
   }) : super(
           HomeDayRoute.name,
@@ -210,6 +217,7 @@ class HomeDayRoute extends _i13.PageRouteInfo<HomeDayRouteArgs> {
             key: key,
             month: month,
             day: day,
+            weekday: weekday,
           ),
           initialChildren: children,
         );
@@ -225,6 +233,7 @@ class HomeDayRouteArgs {
     this.key,
     required this.month,
     required this.day,
+    required this.weekday,
   });
 
   final _i14.Key? key;
@@ -233,9 +242,11 @@ class HomeDayRouteArgs {
 
   final int day;
 
+  final dynamic weekday;
+
   @override
   String toString() {
-    return 'HomeDayRouteArgs{key: $key, month: $month, day: $day}';
+    return 'HomeDayRouteArgs{key: $key, month: $month, day: $day, weekday: $weekday}';
   }
 }
 
@@ -283,16 +294,45 @@ class HomeWeekRoute extends _i13.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.AddDetailPage]
-class AddDetailRoute extends _i13.PageRouteInfo<void> {
-  const AddDetailRoute({List<_i13.PageRouteInfo>? children})
-      : super(
+class AddDetailRoute extends _i13.PageRouteInfo<AddDetailRouteArgs> {
+  AddDetailRoute({
+    _i14.Key? key,
+    required int num,
+    required String dayOfWeek,
+    List<_i13.PageRouteInfo>? children,
+  }) : super(
           AddDetailRoute.name,
+          args: AddDetailRouteArgs(
+            key: key,
+            num: num,
+            dayOfWeek: dayOfWeek,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'AddDetailRoute';
 
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
+  static const _i13.PageInfo<AddDetailRouteArgs> page =
+      _i13.PageInfo<AddDetailRouteArgs>(name);
+}
+
+class AddDetailRouteArgs {
+  const AddDetailRouteArgs({
+    this.key,
+    required this.num,
+    required this.dayOfWeek,
+  });
+
+  final _i14.Key? key;
+
+  final int num;
+
+  final String dayOfWeek;
+
+  @override
+  String toString() {
+    return 'AddDetailRouteArgs{key: $key, num: $num, dayOfWeek: $dayOfWeek}';
+  }
 }
 
 /// generated route for

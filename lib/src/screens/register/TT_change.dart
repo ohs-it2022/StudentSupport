@@ -109,7 +109,9 @@ final btnStyle = ElevatedButton.styleFrom(
 
 class TTElem extends StatelessWidget {
   final String txt;
-  const TTElem({super.key, required this.txt});
+  final int num;
+  final dayOfWeek;
+  const TTElem({super.key, required this.txt, required this.num, required this.dayOfWeek});
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +120,7 @@ class TTElem extends StatelessWidget {
       width: dayWidth,
       child: ElevatedButton(
         onPressed: () {
-          context.router.push(AddDetailRoute());
+          context.router.push(AddDetailRoute(num: num, dayOfWeek: dayOfWeek));
         }, 
         style: btnStyle,
         child: BasicText(text: txt, size: 15,)
@@ -155,12 +157,12 @@ class TTRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         TTNum(txt: '$num'),
-        const TTElem(txt: ''),
-        const TTElem(txt: '',),
-        const TTElem(txt: '',),
-        const TTElem(txt: '',),
-        const TTElem(txt: '',),
-        const TTElem(txt: '',),
+        TTElem(txt: '', num: num, dayOfWeek: '月',),
+        TTElem(txt: '', num: num, dayOfWeek: '火',),
+        TTElem(txt: '', num: num, dayOfWeek: '水',),
+        TTElem(txt: '', num: num, dayOfWeek: '木',),
+        TTElem(txt: '', num: num, dayOfWeek: '金',),
+        TTElem(txt: '', num: num, dayOfWeek: '土',),
       ],
     );
   }

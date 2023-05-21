@@ -34,7 +34,7 @@ class _HomeMonthPageState extends State<HomeMonthPage> {
           //     _focusedDay = focused;
           //   });
           // }
-          AutoRouter.of(context).push(HomeDayRoute(month: selected.month, day: selected.day));  // 変更が必要
+          AutoRouter.of(context).push(HomeDayRoute(month: selected.month, day: selected.day, weekday: selected.weekday));  // 変更が必要
           print(selected.day);
           print(focused);
         },
