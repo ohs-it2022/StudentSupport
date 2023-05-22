@@ -25,6 +25,7 @@
   - [データを保存](#データを保存)
   - [データを取得](#データを取得)
   - [データを削除](#データを削除)
+  - [データ構造](#データ構造)
 
 ## パッケージのインストール方法
 1. `pubspec.yaml`にパッケージ名とバージョンを記載する
@@ -155,3 +156,20 @@ final String vString = prefs.getString('KEY_STRING') ?? 'DEFAULT';
 final SharedPreferences prefs = await SharedPreferences.getInstance();
 await prefs.remove('KEY_STRING');
 ```
+
+### データ構造
+| データ名         | 内容                                                 | データ型   |
+| ------------ | -------------------------------------------------- | ------ |
+| maxNum       | 最大の時間割数                                            | Int    |
+| theme        | ダーク、ライトを選べる。(dark, light)                          | String |
+| mon          | 月曜日の時間割 (表示名)                                      | List   |
+| tue          | 火曜日の時間割                                            | List   |
+| wed          | 水曜日の時間割                                            | List   |
+| thu          | 木曜日の時間割                                            | List   |
+| fri          | 金曜日の時間割                                            | List   |
+| sat          | 土曜日の時間割                                            | List   |
+| existenceSat | 土曜日が存在するか                                          | bool   |
+| task         | 課題情報<br> [ [タイトル,締め切り日,内容], [タイトル,締め切り日,内容], ... ] | List   |
+| startTime    | 各時間の開始時間<br>[1時間目の開始時間, 2時間目の開始時間, ...]            | List   |
+| endTime      | 各時間の終了時間<br>[1時間目の終了時間, 2時間目の開始時間, ...]            | List   |
+|              |                                                    |        |
