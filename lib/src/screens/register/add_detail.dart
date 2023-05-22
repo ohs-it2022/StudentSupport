@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:student_support/src/screens/register/taskRegist.dart';
 
 var titleName;
-var testList = ['', '', '', '', '', '', ''];
 var SundayList =    ['', '', '', '', '', '', ''];
 var MondayList =    ['', '', '', '', '', '', ''];
 var TuesdayList =   ['', '', '', '', '', '', ''];
@@ -25,14 +24,14 @@ Map<String, List> TimeTableList = {
 };
 
 
-subjectRegist(text, num, dayOfWeek)async{
+subjectRegist(values, dayOfWeek)async{
   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  await prefs.setStringList('$dayOfWeek-$num', text);
+  await prefs.setStringList('timeTable_$dayOfWeek', values[dayOfWeek]);
 }
-printInfo(num, dayOfWeek)async{
+printInfo(dayOfWeek)async{
   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  final String? vString = prefs.getString('金-1');
-  print(vString);
+  final List? timeTable = prefs.getStringList('timeTable_$dayOfWeek');
+  print(timeTable);
 }
 @RoutePage()
 class AddDetailPage extends StatelessWidget {
@@ -72,12 +71,10 @@ class AddDetailPage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: (){
-                // subjectRegist(titleName, num, dayOfWeek);
-                // printInfo(num, dayOfWeek);
-                testList[num - 1] = titleName;
-                print(testList);
                 TimeTableList[dayOfWeek]![num - 1] = titleName;
                 print(TimeTableList);
+                subjectRegist(TimeTableList, dayOfWeek);
+                printInfo(dayOfWeek);
                 AutoRouter.of(context).replace(TTChangeRoute());
               },
               child: Text('登録')
