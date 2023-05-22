@@ -3,12 +3,31 @@ import 'package:flutter/material.dart';
 import 'package:student_support/routers/app_router.gr.dart';
 import 'package:student_support/src/sample.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:student_support/src/screens/register/taskRegist.dart';
 
 var titleName;
+var testList = ['', '', '', '', '', '', ''];
+var SundayList =    ['', '', '', '', '', '', ''];
+var MondayList =    ['', '', '', '', '', '', ''];
+var TuesdayList =   ['', '', '', '', '', '', ''];
+var WednesdayList = ['', '', '', '', '', '', ''];
+var ThursdayList =  ['', '', '', '', '', '', ''];
+var FridayList =    ['', '', '', '', '', '', ''];
+var SaturdayList =  ['', '', '', '', '', '', ''];
+Map<String, List> TimeTableList = {
+  '日': SundayList,
+  '月': MondayList,
+  '火': TuesdayList,
+  '水': WednesdayList,
+  '木': ThursdayList,
+  '金': FridayList,
+  '土': SaturdayList
+};
+
 
 subjectRegist(text, num, dayOfWeek)async{
   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  await prefs.setString('$dayOfWeek-$num', text);
+  await prefs.setStringList('$dayOfWeek-$num', text);
 }
 printInfo(num, dayOfWeek)async{
   final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -53,8 +72,12 @@ class AddDetailPage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: (){
-                subjectRegist(titleName, num, dayOfWeek);
-                printInfo(num, dayOfWeek);
+                // subjectRegist(titleName, num, dayOfWeek);
+                // printInfo(num, dayOfWeek);
+                testList[num - 1] = titleName;
+                print(testList);
+                TimeTableList[dayOfWeek]![num - 1] = titleName;
+                print(TimeTableList);
                 AutoRouter.of(context).replace(TTChangeRoute());
               },
               child: Text('登録')
