@@ -5,7 +5,6 @@ import 'package:student_support/src/sample.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:student_support/src/screens/register/taskRegist.dart';
 
-var titleName;
 var SundayList =    ['', '', '', '', '', '', ''];
 var MondayList =    ['', '', '', '', '', '', ''];
 var TuesdayList =   ['', '', '', '', '', '', ''];
@@ -41,38 +40,35 @@ class AddDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var titleSubName;
+    var subName = '';
+    var classRoom = '';
+    var teacher = '';
+
     return ScreenWidget(
       titleTxt: '単元追加', 
       bodyContents: Center(
         child: Column(
           children: [
             TextField(
-              decoration: InputDecoration(
-                hintText: '表示名'
-              ),
-              onChanged: (value){
-                titleName = value;
-              },
+              decoration: InputDecoration(hintText: '表示名'),
+              onChanged: (value) => (titleSubName = value),
             ),
             TextField(
-              decoration: InputDecoration(
-                hintText: '正式名称(任意)'
-              ),
+              decoration: InputDecoration(hintText: '正式名称(任意)'),
+              onChanged: (value) => (subName = value),
             ),
             TextField(
-              decoration: InputDecoration(
-                hintText: '教室名(任意)'
-              ),
+              decoration: InputDecoration(hintText: '教室名(任意)'),
+              onChanged: (value) => (classRoom = value),
             ),
             TextField(
-              decoration: InputDecoration(
-                hintText: '教科担当'
-              ),
+              decoration: InputDecoration(hintText: '教科担当(任意)'),
+              onChanged: (value) => (teacher = value),
             ),
             ElevatedButton(
               onPressed: (){
-                TimeTableList[dayOfWeek]![num - 1] = titleName;
-                print(TimeTableList);
+                final a;
                 subjectRegist(TimeTableList, dayOfWeek);
                 printInfo(dayOfWeek);
                 AutoRouter.of(context).replace(TTChangeRoute());

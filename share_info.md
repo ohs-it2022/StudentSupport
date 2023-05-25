@@ -21,10 +21,13 @@
     - [showOverlayを作る](#showoverlayを作る)
     - [hideOverlayを作る](#hideoverlayを作る)
 - [画面間の移動](#画面間の移動)
-- [データを扱う](#データを扱う)
+- [データの扱い](#データの扱い)
   - [データを保存](#データを保存)
   - [データを取得](#データを取得)
   - [データを削除](#データを削除)
+  - [JSONに変換する](#jsonに変換する)
+    - [JSONで保存](#jsonで保存)
+    - [JSONから元の状態に戻す](#jsonから元の状態に戻す)
   - [データ構造](#データ構造)
 
 ## パッケージのインストール方法
@@ -129,7 +132,7 @@ router.push(const BooksListRoute())
 router.pushNamed('/books') 
 ```
 
-## データを扱う
+## データの扱い
 ### データを保存
 ```dart
 final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -157,19 +160,47 @@ final SharedPreferences prefs = await SharedPreferences.getInstance();
 await prefs.remove('KEY_STRING');
 ```
 
+### JSONに変換する
+SharedPreferencesで端末に保存できる値は、   
+int、double、bool、String、List<String> の型のみ
+
+複雑なListの場合は、それをJSONに変換してStringとして保存する。
+
+#### JSONで保存
+
+```dart
+import 'package:shared_preferences/shared_preferences.dart';
+
+  Future<void> setObjectList(List<T> objectList) async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    final jsonString = jsonEncode(objectList).toString();
+    await _prefs.setString('TEST', jsonString);
+  }
+```
+
+#### JSONから元の状態に戻す
+値を取得した後は、その文字列をJSONに戻して、リストにする。
+
+```dart
+  Future<List<T>> getObjectList() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    final jsonString = _prefs.getString('TEST') ?? "";
+    final List<dynamic> decodedJson = jsonDecode(jsonString);
+    final objectList = decodedJson.map((e) =>Object.fromJson(e)).toList();
+    return objectList;
+  }
+```
+
 ### データ構造
-| データ名         | 内容                                                 | データ型   |
-| ------------ | -------------------------------------------------- | ------ |
-| maxNum       | 最大の時間割数                                            | Int    |
-| theme        | ダーク、ライトを選べる。(dark, light)                          | String |
-| mon          | 月曜日の時間割 (表示名)                                      | List   |
-| tue          | 火曜日の時間割                                            | List   |
-| wed          | 水曜日の時間割                                            | List   |
-| thu          | 木曜日の時間割                                            | List   |
-| fri          | 金曜日の時間割                                            | List   |
-| sat          | 土曜日の時間割                                            | List   |
-| existenceSat | 土曜日が存在するか                                          | bool   |
-| task         | 課題情報<br> [ [タイトル,締め切り日,内容], [タイトル,締め切り日,内容], ... ] | List   |
-| startTime    | 各時間の開始時間<br>[1時間目の開始時間, 2時間目の開始時間, ...]            | List   |
-| endTime      | 各時間の終了時間<br>[1時間目の終了時間, 2時間目の開始時間, ...]            | List   |
-|              |                                                    |        |
+| データ名         | 内容                                        | データ型   |
+| ------------ | ----------------------------------------- | ------ |
+| maxNum       | 最大の時間割数                                   | Int    |
+| theme        | ダーク、ライトを選べる。(dark, light)                 | String |
+| timeTable    | [ [月曜日の時間割], [火曜日の時間割], ... , [土曜日の時間割] ] | JSON   |
+| existenceSat | 土曜日が存在するか                                 | bool   |
+| task         | 課題情報<br> [ [タイトル,締め切り日,内容,教科], ... ]      | List   |
+| startTime    | 各時間の開始時間<br>[1時間目の開始時間, 2時間目の開始時間, ...]   | List   |
+| endTime      | 各時間の終了時間<br>[1時間目の終了時間, 2時間目の終了時間, ...]   | List   |
+| subject      | 教科情報<br>[ [教科名,担当教師,], ... ]              | List   |
+|              |                                           |        |
+

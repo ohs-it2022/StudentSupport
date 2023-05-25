@@ -15,7 +15,6 @@ class TabBarPage extends StatelessWidget {
     return AutoTabsRouter.tabBar(
       routes: [
         HomeMonthRoute(),
-        HomeWeekRoute(),
         HomeDayRoute(month: today.month, day: today.day, weekday: today.weekday),
         HomeUnitRoute(),
       ],
@@ -28,8 +27,7 @@ class TabBarPage extends StatelessWidget {
             bottom: TabBar(            
               controller: controller,            
               tabs: const [            
-                Tab(text: '月'),            
-                Tab(text: '週'),            
+                Tab(text: '月'),      
                 Tab(text: '日'),
                 Tab(text: '単元')       
               ],

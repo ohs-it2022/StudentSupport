@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:student_support/src/app.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
 DateTime today = DateTime.now();
+
+int maxNum = 6;
 
 // 色の定義 (各画面でsample.dartをimportすることで使えるようになる)
 const bgColor1 = Color.fromRGBO(28, 28, 28, 1);
@@ -175,4 +179,17 @@ void showOverlayTTChange(BuildContext context) {
 
 void hideOverlayTTChange() {
   overlayEntryTTCange.remove();
+}
+
+
+// データ
+var inittimeTable = [
+  for (int i=0;i<maxNum;i++)
+    [for (int j=0;j<maxNum;j++)'a']
+];
+
+Future<void> initSetJson(list, key) async{
+  SharedPreferences _prefs = await SharedPreferences.getInstance();
+  final jsonString = jsonEncode(list).toString();
+  await _prefs.setString(key, jsonString);
 }

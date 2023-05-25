@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:student_support/src/sample.dart';
+import 'dart:convert';
+
 
 @RoutePage()
 class HomeDayPage extends StatefulWidget {
@@ -14,6 +16,9 @@ class HomeDayPage extends StatefulWidget {
   State<HomeDayPage> createState() => _HomeDayPageState();
 }
 
+var timeTable = [
+  for (int i=0;i<maxNum;i++) ''
+];
 class _HomeDayPageState extends State<HomeDayPage> {
   final prefs = SharedPreferences.getInstance();
   final controller = TextEditingController();
@@ -22,17 +27,21 @@ class _HomeDayPageState extends State<HomeDayPage> {
   @override
   void initState(){
     super.initState();
-    init();
+    initGetTimeTableJson(widget.weekday);
+    // initSetJson(inittimeTable, 'timeTable');
+    print(timeTable);
   }
-  // 画面起動時に読み込むメソッド
-  void init() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      //　データの読み込み
-      value = prefs.getString('金-1')!;
-      print('value:$value');
-    });
-    print(prefs.getString('金-1'));
+
+  void initGetTimeTableJson(weekday) async{
+    final _prefs = await SharedPreferences.getInstance();
+    if (_prefs.containsKey('timeTable')){
+      setState(() {
+        final jsonString = _prefs.getString("timeTable") ?? "";
+        final decodeJson = jsonDecode(jsonString);
+        timeTable = decodeJson[weekday].cast<String>() as List<String>;
+      });
+    }
+    print(timeTable.runtimeType);
   }
   
   @override
@@ -54,19 +63,24 @@ class _HomeDayPageState extends State<HomeDayPage> {
     }else{
       weekdayJP = '日';
     }
-    final timeTable = [
-      for (int i=1;i<7;i++)...{
-        Container(
-          color: bgColor2,
+    List<Widget> makeDayTable(){
+      final List<Widget> dayTable = <Widget>[];
+      timeTable.asMap().forEach((i, test) {
+        var work = Container(
+          color: bgColor1,
           child: Column(
             children: [
-              Text('$i時間目'),
-              Text(value, style: const TextStyle(fontSize: 40.0))
+              Text('${i+1}時間目'),
+              Text(test)
             ],
           )
-        )
-      }
-    ];
+        );
+        dayTable.add(work);
+      });
+      return dayTable;
+    }
+
+    final dayTable = makeDayTable();
     return Center(
       child: Container(
         color: bgColor2,
@@ -78,11 +92,10 @@ class _HomeDayPageState extends State<HomeDayPage> {
               padding: EdgeInsets.all(20),
               child: BasicText(text: '${widget.month}月${widget.day}日($weekdayJP)', size: 20),
             ),
-            
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: timeTable,
+                children: dayTable,
               ),
             )
           ],

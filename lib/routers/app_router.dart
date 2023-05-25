@@ -14,13 +14,12 @@ class AppRouter extends $AppRouter {
           path: 'home', 
           initial: true,
           children: [
-            AutoRoute(page: HomeMonthRoute.page, path: 'month'),
-            AutoRoute(page: HomeWeekRoute.page, path: 'week', initial: true),
+            AutoRoute(page: HomeMonthRoute.page, path: 'month', initial: true),
             AutoRoute(page: HomeDayRoute.page, path: 'day'),
             AutoRoute(page: HomeUnitRoute.page, path: 'unit')
           ]
         ),
-        AutoRoute(page: AttendanceInfoRoute.page, path: 'attend'),
+        AutoRoute(page: TimeTableRoute.page, path: 'attend'),
         AutoRoute(page: SettingsRoute.page, path: 'settings'),
         AutoRoute(page: TaskRegistRoute.page, path: 'task'),
         AutoRoute(

@@ -31,7 +31,7 @@ class BottomBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           BottomBarElem(nextPage: const TabBarRoute(), icon: homeIcon, text: 'ホーム', selectFlg: selectlist[0],),
-          BottomBarElem(nextPage: const AttendanceInfoRoute(), icon: attendanceInfoIcon, text: '出欠情報', selectFlg: selectlist[1],),
+          BottomBarElem(nextPage: const TimeTableRoute(), icon: attendanceInfoIcon, text: '時間割', selectFlg: selectlist[1],),
           BottomBarElem(nextPage: const TaskRegistRoute(), icon: taskRegistIcon, text: '課題登録', selectFlg: selectlist[2],)
         ],
       )
