@@ -56,3 +56,11 @@ class WeekDay extends StatelessWidget {
     );
   }
 }
+
+final btnStyle = ElevatedButton.styleFrom(
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(10)
+  ),
+  backgroundColor: bgColor1,
+  padding: const EdgeInsets.all(0)
+);

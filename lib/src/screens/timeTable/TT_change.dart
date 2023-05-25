@@ -47,14 +47,6 @@ class TTChangePage extends StatelessWidget {
 
 // -- 以下、部品 --
 
-final btnStyle = ElevatedButton.styleFrom(
-  shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(10)
-  ),
-  backgroundColor: bgColor1,
-  padding: const EdgeInsets.all(0)
-);
-
 class TTElem extends StatelessWidget {
   final String txt;
   final int num;
@@ -118,8 +110,8 @@ class TTRow extends StatelessWidget {
 
 final  ttRows = [
   const WeekDay(),
-  for (int i=1; i<7; i++)...{
-    TTRow(num: i),
+  for (int i=0; i<maxNum; i++)...{
+    TTRow(num: i+1),
   },
 ];
 
