@@ -3,21 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:student_support/routers/app_router.gr.dart';
 import 'package:student_support/src/bottom_bar.dart';
 import 'package:student_support/src/sample.dart';
-
-const double dayHeight = 27;  // 曜日の要素の高さ
-const double dayWidth = 50;   // 曜日の要素の横幅
-const double numHeight = 60;  // 時間の要素の高さ
-const double numWidth = 20;   // 時間の要素の横幅
-
-final elemDecoration = BoxDecoration(
-  color: bgColor1,
-  borderRadius: BorderRadius.circular(10)
-);
-
-final sectionDecoration = BoxDecoration(
-  color: bgColor2,
-  borderRadius: BorderRadius.circular(30),
-);
+import 'package:student_support/src/screens/timeTable/TT_sample.dart';
 
 @RoutePage()
 class TTChangeRouterPage extends AutoRouter {
@@ -60,44 +46,6 @@ class TTChangePage extends StatelessWidget {
 }
 
 // -- 以下、部品 --
-
-class DayElem extends StatelessWidget {
-  final String txt;
-  const DayElem({super.key, required this.txt});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: dayHeight,
-      width: dayWidth,
-      decoration: elemDecoration,
-      child: Center(
-        child: BasicText(text: txt, size: 15),
-      ),
-    );
-  }
-}
-
-
-class Day extends StatelessWidget {
-  const Day({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        SizedBox(height: dayHeight, width: numWidth),
-        DayElem(txt: '月'),
-        DayElem(txt: '火'),
-        DayElem(txt: '水'),
-        DayElem(txt: '木'),
-        DayElem(txt: '金'),
-        DayElem(txt: '土'),   // 土曜日を表示するか、設定できるようにするかも
-      ],
-    );
-  }
-}
 
 final btnStyle = ElevatedButton.styleFrom(
   shape: RoundedRectangleBorder(
@@ -169,7 +117,7 @@ class TTRow extends StatelessWidget {
 }
 
 final  ttRows = [
-  const Day(),
+  const WeekDay(),
   for (int i=1; i<7; i++)...{
     TTRow(num: i),
   },

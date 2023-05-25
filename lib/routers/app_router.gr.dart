@@ -17,9 +17,9 @@ import 'package:student_support/src/screens/home/home_month_page.dart' as _i4;
 import 'package:student_support/src/screens/home/home_unit_page.dart' as _i5;
 import 'package:student_support/src/screens/register/add_detail.dart' as _i6;
 import 'package:student_support/src/screens/register/taskRegist.dart' as _i7;
-import 'package:student_support/src/screens/register/TT_change.dart' as _i8;
+import 'package:student_support/src/screens/timeTable/TT_change.dart' as _i8;
 import 'package:student_support/src/screens/settings/settings.dart' as _i9;
-import 'package:student_support/src/screens/timeTable.dart' as _i11;
+import 'package:student_support/src/screens/timeTable/timeTable.dart' as _i11;
 import 'package:student_support/src/tab_bar.dart' as _i10;
 
 abstract class $AppRouter extends _i12.RootStackRouter {
