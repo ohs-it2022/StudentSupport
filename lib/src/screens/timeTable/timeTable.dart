@@ -26,12 +26,12 @@ class TimeTablePage extends StatelessWidget {
         children: [
           // timeTableTitle,
           Expanded(child: timeTable),
-          BottomBar()
+          BottomBar(selected: 2,)
         ],
       )
     );
     return ScreenWidget(
-      titleTxt: '時間割変更', 
+      titleTxt: '時間割', 
       bodyContents: bodyCont,
       drawerFlg: 1,
     );
@@ -45,7 +45,7 @@ class _TT extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(0, 0, 0, 30),
+      margin: const EdgeInsets.fromLTRB(0, 30, 0, 30),
       width: width,
       alignment: Alignment.center,
       decoration: sectionDecoration,

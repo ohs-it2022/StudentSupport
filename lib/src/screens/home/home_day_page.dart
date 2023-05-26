@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:student_support/routers/app_router.gr.dart';
 import 'package:student_support/src/sample.dart';
 import 'dart:convert';
 
@@ -16,9 +17,10 @@ class HomeDayPage extends StatefulWidget {
   State<HomeDayPage> createState() => _HomeDayPageState();
 }
 
-var timeTable = [
-  for (int i=0;i<maxNum;i++) ''
-];
+// var timeTable = [
+//   for (int i=0;i<maxNum;i++) ''
+// ];
+var timeTable;
 class _HomeDayPageState extends State<HomeDayPage> {
   final prefs = SharedPreferences.getInstance();
   final controller = TextEditingController();
@@ -28,7 +30,6 @@ class _HomeDayPageState extends State<HomeDayPage> {
   void initState(){
     super.initState();
     initGetTimeTableJson(widget.weekday);
-    // initSetJson(inittimeTable, 'timeTable');
     print(timeTable);
   }
 
@@ -42,6 +43,7 @@ class _HomeDayPageState extends State<HomeDayPage> {
       });
     }
     print(timeTable.runtimeType);
+    // await _prefs.remove('timeTable');
   }
   
   @override
@@ -79,28 +81,45 @@ class _HomeDayPageState extends State<HomeDayPage> {
       });
       return dayTable;
     }
-
-    final dayTable = makeDayTable();
-    return Center(
-      child: Container(
-        color: bgColor2,
-        width: screenWidth,
-        margin: EdgeInsets.fromLTRB(10, 20, 10, 20),
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.all(20),
-              child: BasicText(text: '${widget.month}月${widget.day}日($weekdayJP)', size: 20),
-            ),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: dayTable,
+    if (timeTable != null){
+      final dayTable = makeDayTable();
+      return Center(
+        child: Container(
+          color: bgColor2,
+          width: screenWidth,
+          margin: EdgeInsets.fromLTRB(10, 20, 10, 20),
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.all(20),
+                child: BasicText(text: '${widget.month}月${widget.day}日($weekdayJP)', size: 20),
               ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: dayTable,
+                ),
+              )
+            ],
+          )
+        )
+      );
+    }
+    else {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('時間割が登録されていません。'),
+            ElevatedButton(
+              onPressed: (){
+                AutoRouter.of(context).popAndPush(TTChangeRouterRoute());
+              }, 
+              child: Text('時間割登録')
             )
           ],
-        )
-      )
-    );
+        ),
+      );
+    } 
   }
 }
