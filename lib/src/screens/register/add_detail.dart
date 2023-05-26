@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:student_support/routers/app_router.gr.dart';
 import 'package:student_support/src/sample.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:student_support/src/screens/register/taskRegist.dart';
 
 Future<void> subjectRegist(list) async{
   final prefs = await SharedPreferences.getInstance();

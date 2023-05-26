@@ -46,13 +46,28 @@ class _HomeDayPageState extends State<HomeDayPage> {
       final List<Widget> dayTable = <Widget>[];
       dayTimeTable.asMap().forEach((i, test) {
         var work = Container(
-          color: bgColor1,
-          child: Column(
-            children: [
-              Text('${i+1}時間目'),
-              Text(test)
-            ],
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: bgColor1,
+          ),
+          width: screenWidth * 0.7,
+          padding: const EdgeInsets.all(5),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.transparent,
+              elevation: 0 
+            ),
+            child: Column(
+              children: [
+                BasicText(text: '${i+1}時間目', size: 15),
+                BasicText(text: test, size: 25,)
+              ],
+            ),
+            onPressed: (){
+              AutoRouter.of(context).popAndPush(const HomeUnitRoute());
+            },
           )
+          
         );
         dayTable.add(work);
       });
@@ -62,13 +77,17 @@ class _HomeDayPageState extends State<HomeDayPage> {
       final dayTable = makeDayTable();
       return Center(
         child: Container(
-          color: bgColor2,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(40),
+            color: bgColor2,
+          ),
+          padding: const EdgeInsets.all(10),
           width: screenWidth,
           margin: const EdgeInsets.fromLTRB(20, 30, 20, 30),
           child: Column(
             children: [
               Container(
-                padding: const EdgeInsets.all(15),
+                padding: const EdgeInsets.all(10),
                 child: BasicText(text: '${widget.month}月${widget.day}日($weekdayJP)', size: 20),
               ),
               Expanded(
