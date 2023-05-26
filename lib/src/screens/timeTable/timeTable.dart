@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:student_support/src/bottom_bar.dart';
 import 'package:student_support/src/sample.dart';
 import 'package:student_support/src/screens/timeTable/TT_sample.dart';
@@ -75,12 +78,8 @@ class _TTRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         _TTNum(txt: '$num'),
-        _TTElem(txt: '', num: num, dayOfWeek: '月',),
-        _TTElem(txt: '', num: num, dayOfWeek: '火',),
-        _TTElem(txt: '', num: num, dayOfWeek: '水',),
-        _TTElem(txt: '', num: num, dayOfWeek: '木',),
-        _TTElem(txt: '', num: num, dayOfWeek: '金',),
-        _TTElem(txt: '', num: num, dayOfWeek: '土',),
+        for (int dayOfWeek=0;dayOfWeek<6;dayOfWeek++)
+          _TTElem(txt: '', num: num, dayOfWeek: dayOfWeek),
       ],
     );
   }
@@ -93,21 +92,41 @@ class _TTNum extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: numHeight,
       width: numWidth,
-      child: Text(txt)
+      decoration: elemDecoration,
+      child: Center(child: Text(txt))
     );
   }
 }
 
 
-class _TTElem extends StatelessWidget {
+var weekTimeTable = [
+  for (int i=0;i<maxNum;i++)
+    [for (int j=0;j<maxNum;j++) '']
+];
+class _TTElem extends StatefulWidget {
   final String txt;
   final int num;
   final dayOfWeek;
   const _TTElem({super.key, required this.txt, required this.num, required this.dayOfWeek});
 
+  @override
+  State<_TTElem> createState() => __TTElemState();
+}
+
+class __TTElemState extends State<_TTElem> {
+  void getDayTimeTable(weekday) async{
+    final _prefs = await SharedPreferences.getInstance();
+    if (_prefs.containsKey('timeTable')){
+      setState(() {
+        final jsonString = _prefs.getString("timeTable") ?? "";
+        final decodeJson = jsonDecode(jsonString);
+        weekTimeTable = decodeJson.cast<String>() as List<List<String>>;
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -118,7 +137,7 @@ class _TTElem extends StatelessWidget {
           
         }, 
         style: btnStyle,
-        child: BasicText(text: txt, size: 15,)
+        child: BasicText(text: weekTimeTable[widget.dayOfWeek][widget.num], size: 15,)
       ),
     );
   }

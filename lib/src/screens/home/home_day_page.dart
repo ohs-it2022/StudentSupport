@@ -20,7 +20,7 @@ class HomeDayPage extends StatefulWidget {
 // var timeTable = [
 //   for (int i=0;i<maxNum;i++) ''
 // ];
-var timeTable;
+var dayTimeTable;
 class _HomeDayPageState extends State<HomeDayPage> {
   final prefs = SharedPreferences.getInstance();
   final controller = TextEditingController();
@@ -29,21 +29,18 @@ class _HomeDayPageState extends State<HomeDayPage> {
   @override
   void initState(){
     super.initState();
-    initGetTimeTableJson(widget.weekday);
-    print(timeTable);
+    getDayTimeTable(widget.weekday);
   }
 
-  void initGetTimeTableJson(weekday) async{
+  void getDayTimeTable(weekday) async{
     final _prefs = await SharedPreferences.getInstance();
     if (_prefs.containsKey('timeTable')){
       setState(() {
         final jsonString = _prefs.getString("timeTable") ?? "";
         final decodeJson = jsonDecode(jsonString);
-        timeTable = decodeJson[weekday].cast<String>() as List<String>;
+        dayTimeTable = decodeJson[weekday].cast<String>() as List<String>;
       });
     }
-    print(timeTable.runtimeType);
-    // await _prefs.remove('timeTable');
   }
   
   @override
@@ -67,7 +64,7 @@ class _HomeDayPageState extends State<HomeDayPage> {
     }
     List<Widget> makeDayTable(){
       final List<Widget> dayTable = <Widget>[];
-      timeTable.asMap().forEach((i, test) {
+      dayTimeTable.asMap().forEach((i, test) {
         var work = Container(
           color: bgColor1,
           child: Column(
@@ -81,7 +78,7 @@ class _HomeDayPageState extends State<HomeDayPage> {
       });
       return dayTable;
     }
-    if (timeTable != null){
+    if (dayTimeTable != null){
       final dayTable = makeDayTable();
       return Center(
         child: Container(
