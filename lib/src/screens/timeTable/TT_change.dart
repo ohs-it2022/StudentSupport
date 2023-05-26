@@ -69,22 +69,6 @@ class _TTChangePageState extends State<TTChangePage> {
 
   @override
   Widget build(BuildContext context) {
-    // List<Widget> makeTimeTable(){
-    //   final List<Widget> dayTable = <Widget>[];
-    //   weekTimeTable.asMap().forEach((i, test) {
-    //     var work = Container(
-    //       color: bgColor1,
-    //       child: Column(
-    //         children: [
-    //           Text('${i+1}時間目'),
-    //           // Text(test)
-    //         ],
-    //       )
-    //     );
-    //     dayTable.add(work);
-    //   });
-    //   return dayTable;
-    // }
     var screenSize = MediaQuery.of(context).size;  // 画面のサイズを取得
     final contentsWidth = screenSize.width * 0.95;
     final timeTableTitle = Container(
@@ -94,14 +78,30 @@ class _TTChangePageState extends State<TTChangePage> {
       height: 45,
       child: const Center(child: DropdownButtonMenu(menuElem: ['時間割１','時間割２','時間割追加']),)
     );
-    final timeTable = TT(width: contentsWidth);
 
     final bodyCont = Center(
       child: Column(
         children: [
           timeTableTitle,
-          Expanded(child: timeTable),
-          BottomBar()
+          Expanded(
+            child: Container(
+              margin: const EdgeInsets.fromLTRB(0, 0, 0, 30),
+              width: contentsWidth,
+              alignment: Alignment.center,
+              decoration: sectionDecoration,
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  const WeekDay(),
+                  for (int i=0; i<maxNum; i++)...{
+                    TTRow(num: i),
+                  },
+                ]
+              ),
+            )
+          ),
+          const BottomBar()
         ],
       )
     );
@@ -168,33 +168,6 @@ class TTRow extends StatelessWidget {
         for (int dayOfWeek=0;dayOfWeek<6;dayOfWeek++)
           TTElem(txt: weekTimeTable[dayOfWeek][num], num: num, dayOfWeek: dayOfWeek,)
       ],
-    );
-  }
-}
-
-final  ttRows = [
-  const WeekDay(),
-  for (int i=0; i<maxNum; i++)...{
-    TTRow(num: i),
-  },
-];
-
-class TT extends StatelessWidget {
-  final double width;
-  const TT({super.key, required this.width});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(0, 0, 0, 30),
-      width: width,
-      alignment: Alignment.center,
-      decoration: sectionDecoration,
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: ttRows
-      ),
     );
   }
 }
