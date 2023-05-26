@@ -58,7 +58,7 @@ class OverlayWidget extends StatelessWidget {
 
     // オーバーレイのボタン作成
     const topBtn = OverlayElem(iconType: homeIcon, btnTxt: 'ホーム', nextPage: '/home',);
-    const attendanceInfoBtn = OverlayElem(iconType: attendanceInfoIcon, btnTxt: '出欠情報', nextPage: '/attend',);
+    const attendanceInfoBtn = OverlayElem(iconType: timeTableIcon, btnTxt: '時間割', nextPage: '/attend',);
     const taskRegistBtn = OverlayElem(iconType: taskRegistIcon, btnTxt: '課題登録', nextPage: '/task',);
     const timeTableChangeBtn = OverlayElem(iconType: timeTableChangeIcon, btnTxt: '時間割変更', nextPage: '/timetableChangeRouter',);
     const settingBtn = OverlayElem(iconType: settingIcon, btnTxt: '一般設定', nextPage: '/settings',);

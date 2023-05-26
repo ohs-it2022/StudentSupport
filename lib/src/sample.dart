@@ -14,7 +14,7 @@ const textColor = Colors.white;
 
 // アイコンの定義
 const homeIcon = Icons.home;                // ホーム
-const attendanceInfoIcon = Icons.badge;     // 出欠確認
+const timeTableIcon = Icons.table_view;     // 出欠確認
 const taskRegistIcon  = Icons.book;         // 課題登録
 const timeTableChangeIcon = Icons.calendar_month;  // 時間割変更
 const settingIcon = Icons.settings;         // 一般設定

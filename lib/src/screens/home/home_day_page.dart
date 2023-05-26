@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:student_support/routers/app_router.gr.dart';
 import 'package:student_support/src/sample.dart';
 import 'dart:convert';
-
+import 'package:student_support/src/function.dart';
 
 @RoutePage()
 class HomeDayPage extends StatefulWidget {
@@ -17,14 +17,8 @@ class HomeDayPage extends StatefulWidget {
   State<HomeDayPage> createState() => _HomeDayPageState();
 }
 
-// var timeTable = [
-//   for (int i=0;i<maxNum;i++) ''
-// ];
 var dayTimeTable;
 class _HomeDayPageState extends State<HomeDayPage> {
-  final prefs = SharedPreferences.getInstance();
-  final controller = TextEditingController();
-  String value = '';
 
   @override
   void initState(){
@@ -46,22 +40,8 @@ class _HomeDayPageState extends State<HomeDayPage> {
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;  // 画面の横幅
-    var weekdayJP;
-    if (widget.weekday == 1){
-      weekdayJP = '月';
-    }else if(widget.weekday == 2){
-      weekdayJP = '火';
-    }else if(widget.weekday == 3){
-      weekdayJP = '水';
-    }else if(widget.weekday == 4){
-      weekdayJP = '木';
-    }else if(widget.weekday == 5){
-      weekdayJP = '金';
-    }else if(widget.weekday == 6){
-      weekdayJP = '土';
-    }else{
-      weekdayJP = '日';
-    }
+    String weekdayJP = getWeekDayJP(widget.weekday);
+    
     List<Widget> makeDayTable(){
       final List<Widget> dayTable = <Widget>[];
       dayTimeTable.asMap().forEach((i, test) {
@@ -84,11 +64,11 @@ class _HomeDayPageState extends State<HomeDayPage> {
         child: Container(
           color: bgColor2,
           width: screenWidth,
-          margin: EdgeInsets.fromLTRB(10, 20, 10, 20),
+          margin: const EdgeInsets.fromLTRB(20, 30, 20, 30),
           child: Column(
             children: [
               Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(15),
                 child: BasicText(text: '${widget.month}月${widget.day}日($weekdayJP)', size: 20),
               ),
               Expanded(
