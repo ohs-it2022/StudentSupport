@@ -17,10 +17,10 @@ import 'package:student_support/src/screens/home/home_month_page.dart' as _i4;
 import 'package:student_support/src/screens/home/home_unit_page.dart' as _i5;
 import 'package:student_support/src/screens/register/add_detail.dart' as _i6;
 import 'package:student_support/src/screens/register/taskRegist.dart' as _i7;
-import 'package:student_support/src/screens/timeTable/TT_change.dart' as _i8;
-import 'package:student_support/src/screens/settings/settings.dart' as _i9;
-import 'package:student_support/src/screens/timeTable/timeTable.dart' as _i11;
-import 'package:student_support/src/tab_bar.dart' as _i10;
+import 'package:student_support/src/screens/settings/settings.dart' as _i8;
+import 'package:student_support/src/screens/timeTable/timeTable.dart' as _i10;
+import 'package:student_support/src/screens/timeTable/TT_change.dart' as _i11;
+import 'package:student_support/src/tab_bar.dart' as _i9;
 
 abstract class $AppRouter extends _i12.RootStackRouter {
   $AppRouter({super.navigatorKey});
@@ -77,6 +77,7 @@ abstract class $AppRouter extends _i12.RootStackRouter {
           key: args.key,
           num: args.num,
           dayOfWeek: args.dayOfWeek,
+          weekTimeTable: args.weekTimeTable,
         ),
       );
     },
@@ -86,34 +87,34 @@ abstract class $AppRouter extends _i12.RootStackRouter {
         child: const _i7.TaskRegistPage(),
       );
     },
-    TTChangeRouterRoute.name: (routeData) {
-      return _i12.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i8.TTChangeRouterPage(),
-      );
-    },
-    TTChangeRoute.name: (routeData) {
-      return _i12.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i8.TTChangePage(),
-      );
-    },
     SettingsRoute.name: (routeData) {
       return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i9.SettingsPage(),
+        child: const _i8.SettingsPage(),
       );
     },
     TabBarRoute.name: (routeData) {
       return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i10.TabBarPage(),
+        child: const _i9.TabBarPage(),
       );
     },
     TimeTableRoute.name: (routeData) {
       return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i11.TimeTablePage(),
+        child: const _i10.TimeTablePage(),
+      );
+    },
+    TTChangeRouterRoute.name: (routeData) {
+      return _i12.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i11.TTChangeRouterPage(),
+      );
+    },
+    TTChangeRoute.name: (routeData) {
+      return _i12.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i11.TTChangePage(),
       );
     },
   };
@@ -263,7 +264,8 @@ class AddDetailRoute extends _i12.PageRouteInfo<AddDetailRouteArgs> {
   AddDetailRoute({
     _i13.Key? key,
     required int num,
-    required String dayOfWeek,
+    required int dayOfWeek,
+    required dynamic weekTimeTable,
     List<_i12.PageRouteInfo>? children,
   }) : super(
           AddDetailRoute.name,
@@ -271,6 +273,7 @@ class AddDetailRoute extends _i12.PageRouteInfo<AddDetailRouteArgs> {
             key: key,
             num: num,
             dayOfWeek: dayOfWeek,
+            weekTimeTable: weekTimeTable,
           ),
           initialChildren: children,
         );
@@ -286,17 +289,20 @@ class AddDetailRouteArgs {
     this.key,
     required this.num,
     required this.dayOfWeek,
+    required this.weekTimeTable,
   });
 
   final _i13.Key? key;
 
   final int num;
 
-  final String dayOfWeek;
+  final int dayOfWeek;
+
+  final dynamic weekTimeTable;
 
   @override
   String toString() {
-    return 'AddDetailRouteArgs{key: $key, num: $num, dayOfWeek: $dayOfWeek}';
+    return 'AddDetailRouteArgs{key: $key, num: $num, dayOfWeek: $dayOfWeek, weekTimeTable: $weekTimeTable}';
   }
 }
 
@@ -315,35 +321,7 @@ class TaskRegistRoute extends _i12.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i8.TTChangeRouterPage]
-class TTChangeRouterRoute extends _i12.PageRouteInfo<void> {
-  const TTChangeRouterRoute({List<_i12.PageRouteInfo>? children})
-      : super(
-          TTChangeRouterRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'TTChangeRouterRoute';
-
-  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i8.TTChangePage]
-class TTChangeRoute extends _i12.PageRouteInfo<void> {
-  const TTChangeRoute({List<_i12.PageRouteInfo>? children})
-      : super(
-          TTChangeRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'TTChangeRoute';
-
-  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i9.SettingsPage]
+/// [_i8.SettingsPage]
 class SettingsRoute extends _i12.PageRouteInfo<void> {
   const SettingsRoute({List<_i12.PageRouteInfo>? children})
       : super(
@@ -357,7 +335,7 @@ class SettingsRoute extends _i12.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i10.TabBarPage]
+/// [_i9.TabBarPage]
 class TabBarRoute extends _i12.PageRouteInfo<void> {
   const TabBarRoute({List<_i12.PageRouteInfo>? children})
       : super(
@@ -371,7 +349,7 @@ class TabBarRoute extends _i12.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i11.TimeTablePage]
+/// [_i10.TimeTablePage]
 class TimeTableRoute extends _i12.PageRouteInfo<void> {
   const TimeTableRoute({List<_i12.PageRouteInfo>? children})
       : super(
@@ -380,6 +358,34 @@ class TimeTableRoute extends _i12.PageRouteInfo<void> {
         );
 
   static const String name = 'TimeTableRoute';
+
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i11.TTChangeRouterPage]
+class TTChangeRouterRoute extends _i12.PageRouteInfo<void> {
+  const TTChangeRouterRoute({List<_i12.PageRouteInfo>? children})
+      : super(
+          TTChangeRouterRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TTChangeRouterRoute';
+
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i11.TTChangePage]
+class TTChangeRoute extends _i12.PageRouteInfo<void> {
+  const TTChangeRoute({List<_i12.PageRouteInfo>? children})
+      : super(
+          TTChangeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TTChangeRoute';
 
   static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
 }

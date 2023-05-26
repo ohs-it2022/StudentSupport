@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:student_support/routers/app_router.gr.dart';
 import 'package:student_support/src/bottom_bar.dart';
 import 'package:student_support/src/sample.dart';
@@ -10,13 +13,78 @@ class TTChangeRouterPage extends AutoRouter {
   const TTChangeRouterPage({super.key});
 }
 
+List<List<String>> weekTimeTable = initTimeTable;
+
+// データ
+var initTimeTable = [
+  for (int i=0;i<maxNum;i++)
+    [for (int j=0;j<maxNum;j++)'']
+];
+
+Future<void> initSetTimeTable() async{
+  SharedPreferences _prefs = await SharedPreferences.getInstance();
+  final jsonString = _prefs.getString("timeTable") ?? "";
+  if (jsonString == ""){
+    final work = jsonEncode(initTimeTable).toString();
+    await _prefs.setString('timeTable', work);
+  }
+}
+
 // 画面全体のウィジェット
 @RoutePage()
-class TTChangePage extends StatelessWidget {
+class TTChangePage extends StatefulWidget {
   const TTChangePage({super.key});
 
   @override
+  State<TTChangePage> createState() => _TTChangePageState();
+}
+
+class _TTChangePageState extends State<TTChangePage> {
+
+  @override
+  void initState(){
+    super.initState();
+    initSetTimeTable();
+    getWeekTimeTable();
+    print(weekTimeTable);
+  }
+
+  void getWeekTimeTable() async{
+    final _prefs = await SharedPreferences.getInstance();
+    if (_prefs.containsKey('timeTable')){
+      setState(() {
+        final jsonString = _prefs.getString("timeTable") ?? "";
+        final decodeJson = jsonDecode(jsonString);
+        decodeJson.asMap().forEach((i, elemList){
+          List<String> workList = [];
+          for (final String elem in elemList){
+            workList.add(elem);
+          }
+          weekTimeTable[i] = (workList);
+        });
+        print(weekTimeTable);
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // List<Widget> makeTimeTable(){
+    //   final List<Widget> dayTable = <Widget>[];
+    //   weekTimeTable.asMap().forEach((i, test) {
+    //     var work = Container(
+    //       color: bgColor1,
+    //       child: Column(
+    //         children: [
+    //           Text('${i+1}時間目'),
+    //           // Text(test)
+    //         ],
+    //       )
+    //     );
+    //     dayTable.add(work);
+    //   });
+    //   return dayTable;
+    // }
     var screenSize = MediaQuery.of(context).size;  // 画面のサイズを取得
     final contentsWidth = screenSize.width * 0.95;
     final timeTableTitle = Container(
@@ -60,7 +128,7 @@ class TTElem extends StatelessWidget {
       width: dayWidth,
       child: ElevatedButton(
         onPressed: () {
-          context.router.push(AddDetailRoute(num: num, dayOfWeek: dayOfWeek));
+          context.router.push(AddDetailRoute(num: num, dayOfWeek: dayOfWeek, weekTimeTable: weekTimeTable));
         }, 
         style: btnStyle,
         child: BasicText(text: txt, size: 15,)
@@ -96,13 +164,9 @@ class TTRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        TTNum(txt: '$num'),
-        TTElem(txt: '', num: num, dayOfWeek: '月',),
-        TTElem(txt: '', num: num, dayOfWeek: '火',),
-        TTElem(txt: '', num: num, dayOfWeek: '水',),
-        TTElem(txt: '', num: num, dayOfWeek: '木',),
-        TTElem(txt: '', num: num, dayOfWeek: '金',),
-        TTElem(txt: '', num: num, dayOfWeek: '土',),
+        TTNum(txt: '${num+1}'),
+        for (int dayOfWeek=0;dayOfWeek<6;dayOfWeek++)
+          TTElem(txt: weekTimeTable[dayOfWeek][num], num: num, dayOfWeek: dayOfWeek,)
       ],
     );
   }
@@ -111,7 +175,7 @@ class TTRow extends StatelessWidget {
 final  ttRows = [
   const WeekDay(),
   for (int i=0; i<maxNum; i++)...{
-    TTRow(num: i+1),
+    TTRow(num: i),
   },
 ];
 

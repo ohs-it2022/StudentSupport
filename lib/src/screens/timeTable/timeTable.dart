@@ -64,7 +64,7 @@ class _TT extends StatelessWidget {
 final  _ttRows = [
   const WeekDay(),
   for (int i=0; i<maxNum; i++)...{
-    _TTRow(num: i+1),
+    _TTRow(num: i),
   },
 ];
 
@@ -77,7 +77,7 @@ class _TTRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        _TTNum(txt: '$num'),
+        _TTNum(txt: '${num+1}'),
         for (int dayOfWeek=0;dayOfWeek<6;dayOfWeek++)
           _TTElem(txt: '', num: num, dayOfWeek: dayOfWeek),
       ],

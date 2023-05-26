@@ -180,16 +180,3 @@ void showOverlayTTChange(BuildContext context) {
 void hideOverlayTTChange() {
   overlayEntryTTCange.remove();
 }
-
-
-// データ
-var inittimeTable = [
-  for (int i=0;i<maxNum;i++)
-    [for (int j=0;j<maxNum;j++)'a']
-];
-
-Future<void> initSetJson(list, key) async{
-  SharedPreferences _prefs = await SharedPreferences.getInstance();
-  final jsonString = jsonEncode(list).toString();
-  await _prefs.setString(key, jsonString);
-}
