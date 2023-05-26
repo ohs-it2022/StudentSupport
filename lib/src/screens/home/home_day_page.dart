@@ -38,7 +38,7 @@ class _HomeDayPageState extends State<HomeDayPage> {
       setState(() {
         final jsonString = _prefs.getString("timeTable") ?? "";
         final decodeJson = jsonDecode(jsonString);
-        dayTimeTable = decodeJson[weekday].cast<String>() as List<String>;
+        dayTimeTable = decodeJson[weekday-1].cast<String>() as List<String>;
       });
     }
   }
