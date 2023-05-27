@@ -12,6 +12,11 @@ Future<void> subjectRegist(list) async{
   await prefs.setString('timeTable', work);
 }
 
+Future<void> subjectDetailRegist(titleName, list) async{
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setStringList(titleName, list);
+}
+
 @RoutePage()
 class AddDetailPage extends StatelessWidget {
   final int num;
@@ -52,6 +57,8 @@ class AddDetailPage extends StatelessWidget {
               onPressed: (){
                 weekTimeTableAdd[dayOfWeek][num] = titleSubName;
                 subjectRegist(weekTimeTable);
+                final subjectDetail = [subName, classRoom, teacher];
+                subjectDetailRegist(titleSubName, subjectDetail);
                 AutoRouter.of(context).replace(TTChangeRoute());
               },
               child: Text('登録')

@@ -125,11 +125,46 @@ class __TTElemState extends State<_TTElem> {
       width: dayWidth,
       child: ElevatedButton(
         onPressed: () {
-          
+          showOverlayTT(context);
         }, 
         style: btnStyle,
         child: BasicText(text: widget.txt, size: 15,)
       ),
     );
+  }
+}
+
+var subjectDetailList;
+
+
+// オーバーレイ
+OverlayEntry overlayEntryTT = OverlayEntry(
+  builder: (BuildContext context) {
+    return BottomOverlay(
+      height: 0.6, 
+      content: TTOverlay(), 
+      hideFunc: hideOverlayTT
+    );
+  }
+);
+
+void showOverlayTT(BuildContext context){
+  Overlay.of(context).insert(overlayEntryTT);
+}
+void hideOverlayTT() {
+  overlayEntryTT.remove();
+}
+
+class TTOverlay extends StatefulWidget {
+  const TTOverlay({super.key});
+
+  @override
+  State<TTOverlay> createState() => _TTOverlayState();
+}
+
+class _TTOverlayState extends State<TTOverlay> {
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: Text('AA'),);
   }
 }
