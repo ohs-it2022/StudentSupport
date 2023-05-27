@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:student_support/src/bottom_bar.dart';
 import 'package:student_support/src/sample.dart';
-// import 'package:student_support/src/tab_bar.dart';
 import 'package:student_support/routers/app_router.gr.dart';
 
 late String title;
