@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:student_support/src/app.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
+
+DateTime today = DateTime.now();
+
+int maxNum = 6;
 
 // 色の定義 (各画面でsample.dartをimportすることで使えるようになる)
 const bgColor1 = Color.fromRGBO(28, 28, 28, 1);
@@ -8,7 +14,7 @@ const textColor = Colors.white;
 
 // アイコンの定義
 const homeIcon = Icons.home;                // ホーム
-const attendanceInfoIcon = Icons.badge;     // 出欠確認
+const timeTableIcon = Icons.table_view;     // 出欠確認
 const taskRegistIcon  = Icons.book;         // 課題登録
 const timeTableChangeIcon = Icons.calendar_month;  // 時間割変更
 const settingIcon = Icons.settings;         // 一般設定

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:student_support/routers/app_router.gr.dart';
 import 'package:student_support/src/app.dart';
 import 'package:student_support/src/bottom_bar.dart';
+import 'package:student_support/src/sample.dart';
+
 
 @RoutePage()
 class TabBarPage extends StatelessWidget {
@@ -11,10 +13,9 @@ class TabBarPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter.tabBar(
-      routes: const [
+      routes: [
         HomeMonthRoute(),
-        HomeWeekRoute(),
-        HomeDayRoute(),
+        HomeDayRoute(month: today.month, day: today.day, weekday: today.weekday),
         HomeUnitRoute(),
       ],
       builder: (context, child, controller) {
@@ -26,8 +27,7 @@ class TabBarPage extends StatelessWidget {
             bottom: TabBar(            
               controller: controller,            
               tabs: const [            
-                Tab(text: '月'),            
-                Tab(text: '週'),            
+                Tab(text: '月'),      
                 Tab(text: '日'),
                 Tab(text: '単元')       
               ],
