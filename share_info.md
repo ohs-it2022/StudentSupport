@@ -204,3 +204,4 @@ import 'package:shared_preferences/shared_preferences.dart';
 | {教科の表示名}     | 教科情報<br> [教科正式名称,担当教師,教室名]           | List   |
 |              |                                           |        |
 
+pull test by kinoshita
