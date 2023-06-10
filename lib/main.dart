@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:student_support/routers/app_router.dart';
+import 'package:student_support/src/screens/timeTable/TT_change.dart';
+import 'package:student_support/src/screens/timeTable/form.dart';
 import 'package:student_support/src/screens/timeTable/timeTable.dart';
 
 void main() {
@@ -17,7 +19,11 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         primaryColor: Colors.lightBlue[800]
       ),
-      home: TimeTablePage(),
+      initialRoute: "/edit",
+      routes: {
+        '/': (context) => TimeTablePage(),
+        '/edit': (context) => TTChangePage(),
+      },
     );
   }
 }

@@ -7,6 +7,7 @@ import 'package:student_support/routers/app_router.gr.dart';
 import 'package:student_support/src/bottom_bar.dart';
 import 'package:student_support/src/sample.dart';
 import 'package:student_support/src/screens/timeTable/TT_sample.dart';
+import 'package:student_support/src/screens/timeTable/form.dart';
 
 @RoutePage()
 class TTChangeRouterPage extends AutoRouter {
@@ -127,7 +128,10 @@ class TTElem extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {
           // context.router.push(AddDetailRoute(num: num, dayOfWeek: dayOfWeek, weekTimeTable: weekTimeTable));
-          
+          Navigator.push(
+            context, 
+            MaterialPageRoute(builder: (context) => FormPage(num: num, dayOfWeek: dayOfWeek, weekTimeTable: weekTimeTable))
+          );
         }, 
         style: btnStyle,
         child: BasicText(text: txt, size: 15,)
