@@ -142,7 +142,10 @@ class _TTChangePageState extends State<TTChangePage> {
             color: Colors.blue,
             height: 50,
             width: screenSize.width,
-            child: Text("編集モード切替ボタンエリア"),
+            child: ElevatedButton(
+              onPressed: () => Navigator.popAndPushNamed(context, "/"), 
+              child: Text("閲覧モード")
+            ),
           ),
           Expanded(
             child: Container(
@@ -150,7 +153,7 @@ class _TTChangePageState extends State<TTChangePage> {
               width: contentsWidth,
               alignment: Alignment.center,
               decoration: sectionDecoration,
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
