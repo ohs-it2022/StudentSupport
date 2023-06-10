@@ -203,4 +203,3 @@ import 'package:shared_preferences/shared_preferences.dart';
 | endTime      | 各時間の終了時間<br>[1時間目の終了時間, 2時間目の終了時間, ...]   | List   |
 | {教科の表示名}     | 教科情報<br> [教科正式名称,担当教師,教室名]           | List   |
 |              |                                           |        |
-
