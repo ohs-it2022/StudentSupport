@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:student_support/src/bottom_bar.dart';
 import 'package:student_support/src/sample.dart';
+import 'package:student_support/src/screens/timeTable/TT_change.dart';
 import 'package:student_support/src/screens/timeTable/TT_sample.dart';
 
 List<List<String>> weekTimeTable = [
@@ -54,14 +55,22 @@ class _TimeTablePageState extends State<TimeTablePage> {
     final bodyCont = Center(
       child: Column(
         children: [
-          // timeTableTitle,
+          Container(
+            color: Colors.blue,
+            height: 50,
+            width: screenSize.width,
+            child: ElevatedButton(
+              onPressed: () => Navigator.popAndPushNamed(context, "/edit"), 
+              child: Text("編集モード")
+            ),
+          ),
           Expanded(
             child: Container(
               margin: const EdgeInsets.fromLTRB(0, 30, 0, 30),
               width: contentsWidth,
               alignment: Alignment.center,
               decoration: sectionDecoration,
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -72,7 +81,7 @@ class _TimeTablePageState extends State<TimeTablePage> {
                       children: [
                         _TTNum(txt: '${i+1}'),
                         for (int dayOfWeek=0;dayOfWeek<6;dayOfWeek++)
-                          _TTElem(txt: weekTimeTable[dayOfWeek][i], num: i, dayOfWeek: dayOfWeek),
+                          _TTElem(txt: testTimeTable[dayOfWeek][i], num: i, dayOfWeek: dayOfWeek),
                       ],
                     ),
                   },

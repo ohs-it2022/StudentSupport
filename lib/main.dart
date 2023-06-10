@@ -5,12 +5,12 @@ import 'package:student_support/src/screens/timeTable/form.dart';
 import 'package:student_support/src/screens/timeTable/timeTable.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-  final _appRouter = AppRouter();
+  const MyApp({super.key});
+  // final _appRouter = AppRouter();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         primaryColor: Colors.lightBlue[800]
       ),
-      initialRoute: "/edit",
+      initialRoute: "/",
       routes: {
         '/': (context) => TimeTablePage(),
         '/edit': (context) => TTChangePage(),
