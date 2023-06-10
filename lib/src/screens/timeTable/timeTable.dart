@@ -80,7 +80,7 @@ class _TimeTablePageState extends State<TimeTablePage> {
               ),
             ),
           ),
-          const BottomBar(selected: 2,)
+          // const BottomBar(selected: 2,)
         ],
       )
     );

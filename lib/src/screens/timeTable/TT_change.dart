@@ -41,48 +41,47 @@ class TTChangePage extends StatefulWidget {
 
 class _TTChangePageState extends State<TTChangePage> {
 
-  @override
-  void initState(){
-    super.initState();
-    initSetTimeTable();
-    getWeekTimeTable();
-    print(weekTimeTable);
-  }
+  // @override
+  // void initState(){
+  //   super.initState();
+  //   initSetTimeTable();
+  //   getWeekTimeTable();
+  //   print(weekTimeTable);
+  // }
 
-  void getWeekTimeTable() async{
-    final _prefs = await SharedPreferences.getInstance();
-    if (_prefs.containsKey('timeTable')){
-      setState(() {
-        final jsonString = _prefs.getString("timeTable") ?? "";
-        final decodeJson = jsonDecode(jsonString);
-        decodeJson.asMap().forEach((i, elemList){
-          List<String> workList = [];
-          for (final String elem in elemList){
-            workList.add(elem);
-          }
-          weekTimeTable[i] = (workList);
-        });
-        print(weekTimeTable);
-      });
-    }
-  }
+  // void getWeekTimeTable() async{
+  //   final _prefs = await SharedPreferences.getInstance();
+  //   if (_prefs.containsKey('timeTable')){
+  //     setState(() {
+  //       final jsonString = _prefs.getString("timeTable") ?? "";
+  //       final decodeJson = jsonDecode(jsonString);
+  //       decodeJson.asMap().forEach((i, elemList){
+  //         List<String> workList = [];
+  //         for (final String elem in elemList){
+  //           workList.add(elem);
+  //         }
+  //         weekTimeTable[i] = (workList);
+  //       });
+  //       print(weekTimeTable);
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;  // 画面のサイズを取得
     final contentsWidth = screenSize.width * 0.95;
-    final timeTableTitle = Container(
-      margin: const EdgeInsets.fromLTRB(0, 20, 0, 10),
-      decoration: sectionDecoration,
-      width: contentsWidth,
-      height: 45,
-      child: const Center(child: DropdownButtonMenu(menuElem: ['時間割１','時間割２','時間割追加']),)
-    );
+    // final timeTableTitle = Container(
+    //   margin: const EdgeInsets.fromLTRB(0, 20, 0, 10),
+    //   decoration: sectionDecoration,
+    //   width: contentsWidth,
+    //   height: 45,
+    //   child: const Center(child: DropdownButtonMenu(menuElem: ['時間割１','時間割２','時間割追加']),)
+    // );
 
     final bodyCont = Center(
       child: Column(
         children: [
-          timeTableTitle,
           Expanded(
             child: Container(
               margin: const EdgeInsets.fromLTRB(0, 0, 0, 30),
@@ -101,7 +100,6 @@ class _TTChangePageState extends State<TTChangePage> {
               ),
             )
           ),
-          const BottomBar()
         ],
       )
     );
@@ -128,7 +126,8 @@ class TTElem extends StatelessWidget {
       width: dayWidth,
       child: ElevatedButton(
         onPressed: () {
-          context.router.push(AddDetailRoute(num: num, dayOfWeek: dayOfWeek, weekTimeTable: weekTimeTable));
+          // context.router.push(AddDetailRoute(num: num, dayOfWeek: dayOfWeek, weekTimeTable: weekTimeTable));
+          
         }, 
         style: btnStyle,
         child: BasicText(text: txt, size: 15,)

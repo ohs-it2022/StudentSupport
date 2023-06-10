@@ -61,18 +61,18 @@ class ScreenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    dynamic _drawer;
-    if(drawerFlg == 1){
-      _drawer = const OverlayWidget();
-    }else{
-      _drawer = null;
-    }
+    // dynamic _drawer;
+    // if(drawerFlg == 1){
+    //   _drawer = const OverlayWidget();
+    // }else{
+    //   _drawer = null;
+    // }
     return Scaffold(
       appBar: AppBar(
         title: Text(titleTxt),
       ),
   
-      drawer: _drawer,
+      // drawer: _drawer,
 
       body: bodyContents,
     );
