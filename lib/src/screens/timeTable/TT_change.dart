@@ -14,22 +14,26 @@ class TTChangeRouterPage extends AutoRouter {
   const TTChangeRouterPage({super.key});
 }
 
-List<List<String>> weekTimeTable = initTimeTable;
+// List<List<String>> weekTimeTable = initTimeTable;
 
 // データ
-var initTimeTable = [
-  for (int i=0;i<maxNum;i++)
-    [for (int j=0;j<maxNum;j++)'']
+var testTimeTable = [
+  ["DB", "DB", "FX", "AS", "AS", ""],
+  ["", "", "MK", "CL", "CL", "NT"],
+  ["", "", "CS", "CS", "NT", ""],
+  ["IA", "IA", "", "", "", ""],
+  ["", "", "", "", "", ""],
+  ["IO", "IO", "", "", "", ""],  
 ];
 
-Future<void> initSetTimeTable() async{
-  SharedPreferences _prefs = await SharedPreferences.getInstance();
-  final jsonString = _prefs.getString("timeTable") ?? "";
-  if (jsonString == ""){
-    final work = jsonEncode(initTimeTable).toString();
-    await _prefs.setString('timeTable', work);
-  }
-}
+// Future<void> initSetTimeTable() async{
+//   SharedPreferences _prefs = await SharedPreferences.getInstance();
+//   final jsonString = _prefs.getString("timeTable") ?? "";
+//   if (jsonString == ""){
+//     final work = jsonEncode(initTimeTable).toString();
+//     await _prefs.setString('timeTable', work);
+//   }
+// }
 
 // 画面全体のウィジェット
 @RoutePage()
@@ -83,9 +87,15 @@ class _TTChangePageState extends State<TTChangePage> {
     final bodyCont = Center(
       child: Column(
         children: [
+          Container(
+            color: Colors.blue,
+            height: 50,
+            width: screenSize.width,
+            child: Text("編集モード切替ボタンエリア"),
+          ),
           Expanded(
             child: Container(
-              margin: const EdgeInsets.fromLTRB(0, 0, 0, 30),
+              margin: const EdgeInsets.fromLTRB(0, 30, 0, 30),
               width: contentsWidth,
               alignment: Alignment.center,
               decoration: sectionDecoration,
@@ -130,7 +140,7 @@ class TTElem extends StatelessWidget {
           // context.router.push(AddDetailRoute(num: num, dayOfWeek: dayOfWeek, weekTimeTable: weekTimeTable));
           Navigator.push(
             context, 
-            MaterialPageRoute(builder: (context) => FormPage(num: num, dayOfWeek: dayOfWeek, weekTimeTable: weekTimeTable))
+            MaterialPageRoute(builder: (context) => FormPage(num: num, dayOfWeek: dayOfWeek, weekTimeTable: testTimeTable))
           );
         }, 
         style: btnStyle,
@@ -169,21 +179,8 @@ class TTRow extends StatelessWidget {
       children: [
         TTNum(txt: '${num+1}'),
         for (int dayOfWeek=0;dayOfWeek<6;dayOfWeek++)
-          TTElem(txt: weekTimeTable[dayOfWeek][num], num: num, dayOfWeek: dayOfWeek,)
+          TTElem(txt: testTimeTable[dayOfWeek][num], num: num, dayOfWeek: dayOfWeek,)
       ],
     );
   }
 }
-
-class TimeSettings extends StatelessWidget {
-  const TimeSettings({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: bgColor1,
-    );
-  }
-}
-
-

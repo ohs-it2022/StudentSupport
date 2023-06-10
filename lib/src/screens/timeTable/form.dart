@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:student_support/src/sample.dart';
+import 'package:student_support/src/screens/timeTable/TT_change.dart';
 
 class FormPage extends StatelessWidget {
   final int num;
@@ -29,7 +30,7 @@ class FormPage extends StatelessWidget {
                 child: Text("削除")
               ),
             ),
-            formElem(txt: "表示名", initTxt: "CS11", function: (value) => (titleSubName = value)),
+            formElem(txt: "表示名", initTxt: testTimeTable[dayOfWeek][num], function: (value) => (titleSubName = value)),
             formElem(txt: "正式名称", initTxt: "コンピュータサイエンス", function: (value) => (subName = value)),
             formElem(txt: "教室名", initTxt: "161", function: (value) => (classRoom = value),),
             formElem(txt: "教科担当", initTxt: "渡瀬健", function: (value) => (teacher = value),),
