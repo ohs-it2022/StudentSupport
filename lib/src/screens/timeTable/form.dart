@@ -31,9 +31,9 @@ class FormPage extends StatelessWidget {
               ),
             ),
             formElem(txt: "表示名", initTxt: testTimeTable[dayOfWeek][num], function: (value) => (titleSubName = value)),
-            formElem(txt: "正式名称", initTxt: "コンピュータサイエンス", function: (value) => (subName = value)),
-            formElem(txt: "教室名", initTxt: "161", function: (value) => (classRoom = value),),
-            formElem(txt: "教科担当", initTxt: "渡瀬健", function: (value) => (teacher = value),),
+            formElem(txt: "正式名称", initTxt: testDetail[dayOfWeek][num][0], function: (value) => (subName = value)),
+            formElem(txt: "教室名", initTxt: testDetail[dayOfWeek][num][1], function: (value) => (classRoom = value),),
+            formElem(txt: "教科担当", initTxt: testDetail[dayOfWeek][num][2], function: (value) => (teacher = value),),
             ElevatedButton(
               onPressed: (){
 
