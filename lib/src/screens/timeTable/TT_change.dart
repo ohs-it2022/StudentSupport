@@ -140,34 +140,14 @@ class _TTChangePageState extends State<TTChangePage> {
         children: [
           Container(
             color: Colors.blue,
-            height: 50,
+            height: screenSize.height * 0.05,
             width: screenSize.width,
             child: ElevatedButton(
               onPressed: () => Navigator.popAndPushNamed(context, "/"), 
               child: Text("閲覧モード")
             ),
           ),
-          Expanded(
-            child: Container(
-              margin: const EdgeInsets.fromLTRB(0, 30, 0, 30),
-              width: contentsWidth,
-              alignment: Alignment.center,
-              decoration: sectionDecoration,
-              padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-              child: SizedBox(
-                width: screenSize.width * 0.9,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    const WeekDay(),
-                    for (int i=0; i<maxNum; i++)...{
-                      TTRow(num: i),
-                    },
-                  ]
-                ),
-              )
-            )
-          ),
+          TimeTableWidget(mode: "edit",)
         ],
       )
     );
