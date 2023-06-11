@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:student_support/src/app.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:convert';
 
 DateTime today = DateTime.now();
 
@@ -13,11 +10,15 @@ const bgColor2 = Color.fromRGBO(63, 63, 63, 1);
 const textColor = Colors.white;
 
 // アイコンの定義
-const homeIcon = Icons.home;                // ホーム
-const timeTableIcon = Icons.table_view;     // 出欠確認
-const taskRegistIcon  = Icons.book;         // 課題登録
-const timeTableChangeIcon = Icons.calendar_month;  // 時間割変更
-const settingIcon = Icons.settings;         // 一般設定
+const homeIcon = Icons.home;                      // ホーム
+const timeTableIcon = Icons.table_view;           // 出欠確認
+const taskRegistIcon  = Icons.book;               // 課題登録
+const timeTableChangeIcon = Icons.calendar_month; // 時間割変更
+const settingIcon = Icons.settings;               // 一般設定
+
+// TODO: isDarkの値をテーマ設定とリンクさせる
+// Darkテーマであるかどうか
+bool isDark = true;
 
 // 基本のテキスト設定
 class BasicText extends StatelessWidget {
@@ -71,12 +72,26 @@ class ScreenWidget extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(titleTxt),
-        toolbarHeight: screenSize.height * 0.1
+        toolbarHeight: screenSize.height * 0.1,
+        leading: ThemeButton(),
       ),
   
       // drawer: _drawer,
 
       body: bodyContents,
+    );
+  }
+
+  // テーマ切り替えボタン
+  IconButton ThemeButton() {
+    return IconButton(
+        onPressed: () {
+          // TODO: setStateが使用できなかった為一時的にエラー回避でコメントアウト
+          // setState(() {
+          //   isDark = !isDark;
+          // });
+        },
+        icon: Icon(isDark ? Icons.dark_mode_outlined : Icons.light_mode)
     );
   }
 }
