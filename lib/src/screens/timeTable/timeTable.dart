@@ -56,21 +56,23 @@ class _TimeTablePageState extends State<TimeTablePage> {
       child: Column(
         children: [
           Container(
-            color: Colors.blue,
-            height: 50,
+            // color: Colors.blue,
+            height: screenSize.height * 0.05,
             width: screenSize.width,
             child: ElevatedButton(
               onPressed: () => Navigator.popAndPushNamed(context, "/edit"), 
               child: Text("編集モード")
             ),
           ),
-          Expanded(
-            child: Container(
-              margin: const EdgeInsets.fromLTRB(0, 30, 0, 30),
-              width: contentsWidth,
-              alignment: Alignment.center,
-              decoration: sectionDecoration,
-              padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
+          Container(
+            margin: EdgeInsets.fromLTRB(0, screenSize.height * 0.025, 0, 0),
+            width: contentsWidth,
+            height: screenSize.height * 0.75,
+            alignment: Alignment.center,
+            decoration: sectionDecoration,
+            padding: EdgeInsets.fromLTRB(0, screenSize.height * 0.025, 0, screenSize.height * 0.025),
+            child: SizedBox(
+              width: screenSize.width * 0.9,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -87,7 +89,7 @@ class _TimeTablePageState extends State<TimeTablePage> {
                   },
                 ],
               ),
-            ),
+            )
           ),
           // const BottomBar(selected: 2,)
         ],
@@ -107,9 +109,10 @@ class _TTNum extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;  // 画面のサイズを取得
     return Container(
-      height: numHeight,
-      width: numWidth,
+      height: screenSize.height * numHeight,
+      width: screenSize.width * numWidth,
       decoration: elemDecoration,
       child: Center(child: Text(txt))
     );
@@ -129,9 +132,10 @@ class _TTElem extends StatefulWidget {
 class __TTElemState extends State<_TTElem> {
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;  // 画面のサイズを取得
     return SizedBox(
-      height: numHeight,
-      width: dayWidth,
+      height: screenSize.height * numHeight,
+      width: screenSize.width * dayWidth,
       child: ElevatedButton(
         onPressed: () {
           showOverlayTT(context);

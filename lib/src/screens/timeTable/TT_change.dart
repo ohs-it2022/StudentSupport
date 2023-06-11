@@ -153,16 +153,19 @@ class _TTChangePageState extends State<TTChangePage> {
               width: contentsWidth,
               alignment: Alignment.center,
               decoration: sectionDecoration,
-              padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  const WeekDay(),
-                  for (int i=0; i<maxNum; i++)...{
-                    TTRow(num: i),
-                  },
-                ]
-              ),
+              padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+              child: SizedBox(
+                width: screenSize.width * 0.9,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    const WeekDay(),
+                    for (int i=0; i<maxNum; i++)...{
+                      TTRow(num: i),
+                    },
+                  ]
+                ),
+              )
             )
           ),
         ],

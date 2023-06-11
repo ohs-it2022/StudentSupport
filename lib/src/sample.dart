@@ -67,9 +67,11 @@ class ScreenWidget extends StatelessWidget {
     // }else{
     //   _drawer = null;
     // }
+    var screenSize = MediaQuery.of(context).size;  // 画面のサイズを取得
     return Scaffold(
       appBar: AppBar(
         title: Text(titleTxt),
+        toolbarHeight: screenSize.height * 0.1
       ),
   
       // drawer: _drawer,
