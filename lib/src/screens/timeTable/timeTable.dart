@@ -54,18 +54,35 @@ class _TimeTablePageState extends State<TimeTablePage> {
     final bodyCont = Center(
       child: Column(
         children: [
-          Container(
-            // color: Colors.blue,
-            height: screenSize.height * 0.05,
-            width: screenSize.width,
-            child: ElevatedButton(
-              onPressed: () => Navigator.popAndPushNamed(context, "/edit"), 
-              child: Text("編集モード")
-            ),
-          ),
-          TimeTableWidget()
-          
-          // const BottomBar(selected: 2,)
+          // Container(
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.end,
+          //     children: [
+          //       IconButton(
+          //           iconSize: 35,
+          //           icon: const Icon(Icons.edit),
+          //           onPressed: () => Navigator.popAndPushNamed(context, "/edit"),
+          //         ),
+          //     ],
+          //   ),
+          // ),
+          TimeTableWidget(),
+          SizedBox(
+                child: Row(
+                  // place floatingActionButton at right side of Buttom
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  
+                  children: [
+                    FloatingActionButton(
+                      onPressed: () => Navigator.pushNamed(context, "/edit"),
+                      child: const Icon(Icons.edit),
+                      backgroundColor: Colors.lightBlue[50],
+                  )
+                  ],
+                ),
+              ),
+          // const BottomBar(selected: 2,
+          // )
         ],
       )
     );
@@ -76,3 +93,4 @@ class _TimeTablePageState extends State<TimeTablePage> {
     );
   }
 }
+

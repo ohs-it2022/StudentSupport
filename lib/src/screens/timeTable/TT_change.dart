@@ -138,15 +138,43 @@ class _TTChangePageState extends State<TTChangePage> {
     final bodyCont = Center(
       child: Column(
         children: [
+          // '保存'のテキストボタンを右上に配置：押すと Navigator.popAndPushNamed(context, "/") に飛ぶ
           Container(
-            color: Colors.blue,
+            color: Color.fromARGB(255, 157, 157, 157),
             height: screenSize.height * 0.05,
             width: screenSize.width,
-            child: ElevatedButton(
-              onPressed: () => Navigator.popAndPushNamed(context, "/"), 
-              child: Text("閲覧モード")
-            ),
+            child: 
+              SizedBox(
+                width: contentsWidth,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      onPressed: () => Navigator.popAndPushNamed(context, "/"),
+                      child: const Text('保存', style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 46, 128, 217))),
+                    ),
+                  ],
+                ),
+              )
           ),
+
+          // SizedBox(
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.end,
+          //     children: [
+          //       IconButton(
+          //         iconSize: 35,
+          //         icon: Icon(Icons.remove_red_eye_outlined),
+          //         onPressed: () => Navigator.popAndPushNamed(context, "/"),
+          //       ),
+          //     ],
+          //   ),
+          // ),
           TimeTableWidget(mode: "edit",)
         ],
       )
@@ -158,6 +186,41 @@ class _TTChangePageState extends State<TTChangePage> {
     );
   }
 }
+
+
+
+// class _TimeTablePageState extends State<TimeTablePage> {
+
+//   @override
+//   Widget build(BuildContext context) {
+//     var screenSize = MediaQuery.of(context).size;  // 画面のサイズを取得
+
+//     final bodyCont = Center(
+//       child: Column(
+//         children: [
+//           Container(
+//             // color: Colors.blue,
+//             height: screenSize.height * 0.05,
+//             width: screenSize.width,
+//             child: ElevatedButton(
+//               onPressed: () => Navigator.popAndPushNamed(context, "/edit"), 
+//               child: Text("編集モード")
+//             ),
+//           ),
+//           TimeTableWidget()
+          
+//           // const BottomBar(selected: 2,)
+//         ],
+//       )
+//     );
+//     return ScreenWidget(
+//       titleTxt: '時間割', 
+//       bodyContents: bodyCont,
+//       drawerFlg: 1,
+//     );
+//   }
+// }
+
 
 // -- 以下、部品 --
 
