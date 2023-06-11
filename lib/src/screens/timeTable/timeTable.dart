@@ -50,7 +50,6 @@ class _TimeTablePageState extends State<TimeTablePage> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;  // 画面のサイズを取得
-    final contentsWidth = screenSize.width * 0.95;
 
     final bodyCont = Center(
       child: Column(
@@ -64,33 +63,8 @@ class _TimeTablePageState extends State<TimeTablePage> {
               child: Text("編集モード")
             ),
           ),
-          Container(
-            margin: EdgeInsets.fromLTRB(0, screenSize.height * 0.025, 0, 0),
-            width: contentsWidth,
-            height: screenSize.height * 0.75,
-            alignment: Alignment.center,
-            decoration: sectionDecoration,
-            padding: EdgeInsets.fromLTRB(0, screenSize.height * 0.025, 0, screenSize.height * 0.025),
-            child: SizedBox(
-              width: screenSize.width * 0.9,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  const WeekDay(),
-                  for (int i=0; i<maxNum; i++)...{
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        _TTNum(txt: '${i+1}'),
-                        for (int dayOfWeek=0;dayOfWeek<6;dayOfWeek++)
-                          _TTElem(txt: testTimeTable[dayOfWeek][i], num: i, dayOfWeek: dayOfWeek),
-                      ],
-                    ),
-                  },
-                ],
-              ),
-            )
-          ),
+          TimeTableWidget()
+          
           // const BottomBar(selected: 2,)
         ],
       )
@@ -100,84 +74,5 @@ class _TimeTablePageState extends State<TimeTablePage> {
       bodyContents: bodyCont,
       drawerFlg: 1,
     );
-  }
-}
-
-class _TTNum extends StatelessWidget {
-  final String txt;
-  const _TTNum({super.key, required this.txt});
-
-  @override
-  Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;  // 画面のサイズを取得
-    return Container(
-      height: screenSize.height * numHeight,
-      width: screenSize.width * numWidth,
-      decoration: elemDecoration,
-      child: Center(child: Text(txt))
-    );
-  }
-}
-
-class _TTElem extends StatefulWidget {
-  final String txt;
-  final int num;
-  final dayOfWeek;
-  const _TTElem({super.key, required this.txt, required this.num, required this.dayOfWeek});
-
-  @override
-  State<_TTElem> createState() => __TTElemState();
-}
-
-class __TTElemState extends State<_TTElem> {
-  @override
-  Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;  // 画面のサイズを取得
-    return SizedBox(
-      height: screenSize.height * numHeight,
-      width: screenSize.width * dayWidth,
-      child: ElevatedButton(
-        onPressed: () {
-          showOverlayTT(context);
-        }, 
-        style: btnStyle,
-        child: BasicText(text: widget.txt, size: 15,)
-      ),
-    );
-  }
-}
-
-var subjectDetailList;
-
-
-// オーバーレイ
-OverlayEntry overlayEntryTT = OverlayEntry(
-  builder: (BuildContext context) {
-    return BottomOverlay(
-      height: 0.6, 
-      content: TTOverlay(), 
-      hideFunc: hideOverlayTT
-    );
-  }
-);
-
-void showOverlayTT(BuildContext context){
-  Overlay.of(context).insert(overlayEntryTT);
-}
-void hideOverlayTT() {
-  overlayEntryTT.remove();
-}
-
-class TTOverlay extends StatefulWidget {
-  const TTOverlay({super.key});
-
-  @override
-  State<TTOverlay> createState() => _TTOverlayState();
-}
-
-class _TTOverlayState extends State<TTOverlay> {
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('AA'),);
   }
 }
