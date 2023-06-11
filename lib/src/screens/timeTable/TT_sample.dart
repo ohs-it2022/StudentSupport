@@ -70,7 +70,7 @@ class DayElem extends StatelessWidget {
       width: screenSize.width * dayWidth,
       decoration: elemDecoration,
       child: Center(
-        child: BasicText(text: txt, size: 15),
+        child: Text(txt, style: TextStyle(fontSize: screenSize.width/27),),
       ),
     );
   }
@@ -117,7 +117,7 @@ class _TTNum extends StatelessWidget {
       height: screenSize.height * numHeight,
       width: screenSize.width * numWidth,
       decoration: elemDecoration,
-      child: Center(child: Text(txt))
+      child: Center(child: Text(txt, style: TextStyle(fontSize: screenSize.width/27),))
     );
   }
 }
@@ -153,7 +153,7 @@ class __TTElemState extends State<_TTElem> {
           
         }, 
         style: btnStyle,
-        child: BasicText(text: widget.txt, size: 15,)
+        child: Text(widget.txt,style: TextStyle(fontSize: screenSize.width/30),)
       ),
     );
   }
