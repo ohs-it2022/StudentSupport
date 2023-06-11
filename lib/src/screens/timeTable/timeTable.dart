@@ -23,29 +23,29 @@ class TimeTablePage extends StatefulWidget {
 
 class _TimeTablePageState extends State<TimeTablePage> {
   
-  void getWeekTimeTable() async{
-    final _prefs = await SharedPreferences.getInstance();
-    if (_prefs.containsKey('timeTable')){
-      setState(() {
-        final jsonString = _prefs.getString("timeTable") ?? "";
-        final decodeJson = jsonDecode(jsonString);
-        decodeJson.asMap().forEach((i, elemList){
-          List<String> workList = [];
-          for (final String elem in elemList){
-            workList.add(elem);
-          }
-          weekTimeTable[i] = (workList);
-        });
-      });
-    }
-  }
+  // void getWeekTimeTable() async{
+  //   final _prefs = await SharedPreferences.getInstance();
+  //   if (_prefs.containsKey('timeTable')){
+  //     setState(() {
+  //       final jsonString = _prefs.getString("timeTable") ?? "";
+  //       final decodeJson = jsonDecode(jsonString);
+  //       decodeJson.asMap().forEach((i, elemList){
+  //         List<String> workList = [];
+  //         for (final String elem in elemList){
+  //           workList.add(elem);
+  //         }
+  //         weekTimeTable[i] = (workList);
+  //       });
+  //     });
+  //   }
+  // }
 
 
-  @override
-  void initState(){
-    super.initState();
-    getWeekTimeTable();
-  }
+  // @override
+  // void initState(){
+  //   super.initState();
+  //   getWeekTimeTable();
+  // }
 
   @override
   Widget build(BuildContext context) {
