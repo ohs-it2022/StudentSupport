@@ -138,43 +138,51 @@ class _TTChangePageState extends State<TTChangePage> {
     final bodyCont = Center(
       child: Column(
         children: [
-          // '保存'のテキストボタンを右上に配置：押すと Navigator.popAndPushNamed(context, "/") に飛ぶ
-          Container(
-            color: Color.fromARGB(255, 157, 157, 157),
-            height: screenSize.height * 0.05,
-            width: screenSize.width,
-            child: 
-              SizedBox(
-                width: contentsWidth,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      onPressed: () => Navigator.popAndPushNamed(context, "/"),
-                      child: const Text('保存', style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 46, 128, 217))),
-                    ),
-                  ],
-                ),
-              )
-          ),
-
-          // SizedBox(
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.end,
-          //     children: [
-          //       IconButton(
-          //         iconSize: 35,
-          //         icon: Icon(Icons.remove_red_eye_outlined),
-          //         onPressed: () => Navigator.popAndPushNamed(context, "/"),
+          
+          // Container(
+          //   color: Color.fromARGB(255, 157, 157, 157),
+          //   height: screenSize.height * 0.05,
+          //   width: screenSize.width,
+          //   child: 
+          //     SizedBox(
+          //       width: contentsWidth,
+          //       child: Row(
+          //         mainAxisAlignment: MainAxisAlignment.end,
+          //         children: [
+          //           TextButton(
+          //             style: TextButton.styleFrom(
+          //               shape: RoundedRectangleBorder(
+          //                 borderRadius: BorderRadius.circular(10),
+          //               ),
+          //             ),
+          //             onPressed: () => Navigator.popAndPushNamed(context, "/"),
+          //             child: const Text('保存', style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 46, 128, 217))),
+          //           ),
+          //         ],
           //       ),
-          //     ],
-          //   ),
+          //     )
           // ),
+          
+          Align(
+            alignment: Alignment.centerRight,
+            child:
+              Container(
+                width: screenSize.width * 0.12,
+                height: screenSize.height * 0.06,
+                margin: EdgeInsets.fromLTRB(0, screenSize.height * 0.01,screenSize.width *  0.02, 0),
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 62, 168, 255),
+                  borderRadius: BorderRadius.circular(45)
+                ),
+                child: 
+                  IconButton(
+                    iconSize: 35,
+                    icon: Icon(Icons.edit),
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    onPressed: () => Navigator.popAndPushNamed(context, "/"),
+                  ),
+                ),
+          ),
           TimeTableWidget(mode: "edit",)
         ],
       )

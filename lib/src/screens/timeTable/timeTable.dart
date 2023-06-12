@@ -54,33 +54,42 @@ class _TimeTablePageState extends State<TimeTablePage> {
     final bodyCont = Center(
       child: Column(
         children: [
-          // Container(
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.end,
-          //     children: [
-          //       IconButton(
-          //           iconSize: 35,
-          //           icon: const Icon(Icons.edit),
-          //           onPressed: () => Navigator.popAndPushNamed(context, "/edit"),
-          //         ),
-          //     ],
-          //   ),
-          // ),
-          TimeTableWidget(),
-          SizedBox(
-                child: Row(
-                  // place floatingActionButton at right side of Buttom
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  
-                  children: [
-                    FloatingActionButton(
-                      onPressed: () => Navigator.pushNamed(context, "/edit"),
-                      child: const Icon(Icons.edit),
-                      backgroundColor: Colors.lightBlue[50],
-                  )
-                  ],
+
+          Align(
+            alignment: Alignment.centerRight,
+            child:
+              Container(
+                width: screenSize.width * 0.12,
+                height: screenSize.height * 0.06,
+                margin: EdgeInsets.fromLTRB(0, screenSize.height * 0.01,screenSize.width *  0.02, 0),
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(124, 124, 150, 162),
+                  borderRadius: BorderRadius.circular(45)
                 ),
-              ),
+                child: 
+                IconButton(
+                    iconSize: 35,
+                    icon: const Icon(Icons.edit),
+                    onPressed: () => Navigator.popAndPushNamed(context, "/edit"),
+                  ),
+                ),
+          ),
+
+
+          TimeTableWidget(),
+          // SizedBox(
+          //       child: Row(
+          //         mainAxisAlignment: MainAxisAlignment.end,
+
+          //         children: [
+          //           FloatingActionButton(
+          //             onPressed: () => Navigator.pushNamed(context, "/edit"),
+          //             child: const Icon(Icons.edit),
+          //             backgroundColor: Colors.lightBlue[50],
+          //         )
+          //         ],
+          //       ),
+          // ),
           // const BottomBar(selected: 2,
           // )
         ],
