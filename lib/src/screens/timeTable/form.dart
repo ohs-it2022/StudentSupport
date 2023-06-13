@@ -36,7 +36,7 @@ class FormPage extends StatelessWidget {
             formElem(txt: "教科担当", initTxt: testDetail[dayOfWeek][num][2], function: (value) => (teacher = value),),
             ElevatedButton(
               onPressed: (){
-
+                
               },
               child: Text('登録')
             )

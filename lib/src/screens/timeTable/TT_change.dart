@@ -1,10 +1,6 @@
-import 'dart:convert';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:student_support/routers/app_router.gr.dart';
-import 'package:student_support/src/bottom_bar.dart';
 import 'package:student_support/src/sample.dart';
 import 'package:student_support/src/screens/timeTable/TT_sample.dart';
 import 'package:student_support/src/screens/timeTable/form.dart';
@@ -14,7 +10,7 @@ class TTChangeRouterPage extends AutoRouter {
   const TTChangeRouterPage({super.key});
 }
 
-// List<List<String>> weekTimeTable = initTimeTable;
+// // List<List<String>> weekTimeTable = initTimeTable;
 
 // データ
 var testTimeTable = [
@@ -77,14 +73,14 @@ var testDetail = [
   ]
 ];
 
-// Future<void> initSetTimeTable() async{
-//   SharedPreferences _prefs = await SharedPreferences.getInstance();
-//   final jsonString = _prefs.getString("timeTable") ?? "";
-//   if (jsonString == ""){
-//     final work = jsonEncode(initTimeTable).toString();
-//     await _prefs.setString('timeTable', work);
-//   }
-// }
+// // Future<void> initSetTimeTable() async{
+// //   SharedPreferences _prefs = await SharedPreferences.getInstance();
+// //   final jsonString = _prefs.getString("timeTable") ?? "";
+// //   if (jsonString == ""){
+// //     final work = jsonEncode(initTimeTable).toString();
+// //     await _prefs.setString('timeTable', work);
+// //   }
+// // }
 
 // 画面全体のウィジェット
 @RoutePage()
@@ -138,14 +134,28 @@ class _TTChangePageState extends State<TTChangePage> {
     final bodyCont = Center(
       child: Column(
         children: [
-          Container(
-            color: Colors.blue,
-            height: screenSize.height * 0.05,
-            width: screenSize.width,
-            child: ElevatedButton(
-              onPressed: () => Navigator.popAndPushNamed(context, "/"), 
-              child: Text("閲覧モード")
-            ),
+          
+          TimeTableWidget(mode: "edit",),
+          // 編集ボタン
+          Align(
+            alignment: Alignment.centerRight,
+            child:
+              Container(
+                width: screenSize.width * 0.12,
+                height: screenSize.height * 0.06,
+                margin: EdgeInsets.fromLTRB(0, screenSize.height * 0.01,screenSize.width *  0.02, 0),
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 62, 168, 255),
+                  borderRadius: BorderRadius.circular(45)
+                ),
+                child: 
+                  IconButton(
+                    iconSize: 35,
+                    icon: Icon(Icons.edit),
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    onPressed: () => Navigator.popAndPushNamed(context, "/"),
+                  ),
+                ),
           ),
           TimeTableWidget(mode: "edit",)
         ],
@@ -158,6 +168,41 @@ class _TTChangePageState extends State<TTChangePage> {
     );
   }
 }
+
+
+
+// class _TimeTablePageState extends State<TimeTablePage> {
+
+//   @override
+//   Widget build(BuildContext context) {
+//     var screenSize = MediaQuery.of(context).size;  // 画面のサイズを取得
+
+//     final bodyCont = Center(
+//       child: Column(
+//         children: [
+//           Container(
+//             // color: Colors.blue,
+//             height: screenSize.height * 0.05,
+//             width: screenSize.width,
+//             child: ElevatedButton(
+//               onPressed: () => Navigator.popAndPushNamed(context, "/edit"), 
+//               child: Text("編集モード")
+//             ),
+//           ),
+//           TimeTableWidget()
+          
+//           // const BottomBar(selected: 2,)
+//         ],
+//       )
+//     );
+//     return ScreenWidget(
+//       titleTxt: '時間割', 
+//       bodyContents: bodyCont,
+//       drawerFlg: 1,
+//     );
+//   }
+// }
+
 
 // -- 以下、部品 --
 
@@ -178,7 +223,7 @@ class TTElem extends StatelessWidget {
           Navigator.push(
             context, 
             MaterialPageRoute(builder: (context) => FormPage(num: num, dayOfWeek: dayOfWeek, weekTimeTable: testTimeTable))
-          );
+            );
         }, 
         style: btnStyle,
         child: BasicText(text: txt, size: 15,)

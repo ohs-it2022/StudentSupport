@@ -73,7 +73,7 @@ class ScreenWidget extends StatelessWidget {
       appBar: AppBar(
         title: Text(titleTxt),
         toolbarHeight: screenSize.height * 0.1,
-        leading: ThemeButton(),
+        leading: ThemeButton()
       ),
   
       // drawer: _drawer,

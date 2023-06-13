@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:student_support/src/bottom_bar.dart';
 import 'package:student_support/src/sample.dart';
 import 'package:student_support/src/screens/timeTable/TT_change.dart';
+import 'package:student_support/src/screens/timeTable/TT_change.dart';
 import 'package:student_support/src/screens/timeTable/TT_sample.dart';
 
 List<List<String>> weekTimeTable = [
@@ -23,29 +24,29 @@ class TimeTablePage extends StatefulWidget {
 
 class _TimeTablePageState extends State<TimeTablePage> {
   
-  // void getWeekTimeTable() async{
-  //   final _prefs = await SharedPreferences.getInstance();
-  //   if (_prefs.containsKey('timeTable')){
-  //     setState(() {
-  //       final jsonString = _prefs.getString("timeTable") ?? "";
-  //       final decodeJson = jsonDecode(jsonString);
-  //       decodeJson.asMap().forEach((i, elemList){
-  //         List<String> workList = [];
-  //         for (final String elem in elemList){
-  //           workList.add(elem);
-  //         }
-  //         weekTimeTable[i] = (workList);
-  //       });
-  //     });
-  //   }
-  // }
+  // // void getWeekTimeTable() async{
+  // //   final _prefs = await SharedPreferences.getInstance();
+  // //   if (_prefs.containsKey('timeTable')){
+  // //     setState(() {
+  // //       final jsonString = _prefs.getString("timeTable") ?? "";
+  // //       final decodeJson = jsonDecode(jsonString);
+  // //       decodeJson.asMap().forEach((i, elemList){
+  // //         List<String> workList = [];
+  // //         for (final String elem in elemList){
+  // //           workList.add(elem);
+  // //         }
+  // //         weekTimeTable[i] = (workList);
+  // //       });
+  // //     });
+  // //   }
+  // // }
 
 
-  // @override
-  // void initState(){
-  //   super.initState();
-  //   getWeekTimeTable();
-  // }
+  // // @override
+  // // void initState(){
+  // //   super.initState();
+  // //   getWeekTimeTable();
+  // // }
 
   @override
   Widget build(BuildContext context) {
@@ -54,18 +55,28 @@ class _TimeTablePageState extends State<TimeTablePage> {
     final bodyCont = Center(
       child: Column(
         children: [
-          Container(
-            // color: Colors.blue,
-            height: screenSize.height * 0.05,
-            width: screenSize.width,
-            child: ElevatedButton(
-              onPressed: () => Navigator.popAndPushNamed(context, "/edit"), 
-              child: Text("編集モード")
-            ),
+
+          TimeTableWidget(),
+          // 編集ボタン
+          Align(
+            alignment: Alignment.centerRight,
+            child:
+              Container(
+                width: screenSize.width * 0.12,
+                height: screenSize.height * 0.06,
+                margin: EdgeInsets.fromLTRB(0, screenSize.height * 0.01,screenSize.width *  0.02, 0),
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(124, 124, 150, 162),
+                  borderRadius: BorderRadius.circular(45)
+                ),
+                child: 
+                IconButton(
+                    iconSize: 35,
+                    icon: const Icon(Icons.edit),
+                    onPressed: () => Navigator.popAndPushNamed(context, "/edit"),
+                  ),
+                ),
           ),
-          TimeTableWidget()
-          
-          // const BottomBar(selected: 2,)
         ],
       )
     );
