@@ -139,30 +139,8 @@ class _TTChangePageState extends State<TTChangePage> {
       child: Column(
         children: [
           
-          // Container(
-          //   color: Color.fromARGB(255, 157, 157, 157),
-          //   height: screenSize.height * 0.05,
-          //   width: screenSize.width,
-          //   child: 
-          //     SizedBox(
-          //       width: contentsWidth,
-          //       child: Row(
-          //         mainAxisAlignment: MainAxisAlignment.end,
-          //         children: [
-          //           TextButton(
-          //             style: TextButton.styleFrom(
-          //               shape: RoundedRectangleBorder(
-          //                 borderRadius: BorderRadius.circular(10),
-          //               ),
-          //             ),
-          //             onPressed: () => Navigator.popAndPushNamed(context, "/"),
-          //             child: const Text('保存', style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 46, 128, 217))),
-          //           ),
-          //         ],
-          //       ),
-          //     )
-          // ),
-          
+          TimeTableWidget(mode: "edit",),
+          // 編集ボタン
           Align(
             alignment: Alignment.centerRight,
             child:
@@ -183,7 +161,6 @@ class _TTChangePageState extends State<TTChangePage> {
                   ),
                 ),
           ),
-          TimeTableWidget(mode: "edit",)
         ],
       )
     );

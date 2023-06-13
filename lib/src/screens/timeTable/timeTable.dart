@@ -55,6 +55,8 @@ class _TimeTablePageState extends State<TimeTablePage> {
       child: Column(
         children: [
 
+          TimeTableWidget(),
+          // 編集ボタン
           Align(
             alignment: Alignment.centerRight,
             child:
@@ -63,7 +65,7 @@ class _TimeTablePageState extends State<TimeTablePage> {
                 height: screenSize.height * 0.06,
                 margin: EdgeInsets.fromLTRB(0, screenSize.height * 0.01,screenSize.width *  0.02, 0),
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(124, 124, 150, 162),
+                  color: const Color.fromARGB(124, 124, 150, 162),
                   borderRadius: BorderRadius.circular(45)
                 ),
                 child: 
@@ -74,24 +76,6 @@ class _TimeTablePageState extends State<TimeTablePage> {
                   ),
                 ),
           ),
-
-
-          TimeTableWidget(),
-          // SizedBox(
-          //       child: Row(
-          //         mainAxisAlignment: MainAxisAlignment.end,
-
-          //         children: [
-          //           FloatingActionButton(
-          //             onPressed: () => Navigator.pushNamed(context, "/edit"),
-          //             child: const Icon(Icons.edit),
-          //             backgroundColor: Colors.lightBlue[50],
-          //         )
-          //         ],
-          //       ),
-          // ),
-          // const BottomBar(selected: 2,
-          // )
         ],
       )
     );
