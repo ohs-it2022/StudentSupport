@@ -152,7 +152,7 @@ class _TTChangePageState extends State<TTChangePage> {
               ),
               child: 
               TextButton(
-                child: const Text('閲覧', style: TextStyle(color: Colors.white, fontSize: 20)),
+                child: const Text('編集', style: TextStyle(color: Colors.white, fontSize: 20)),
                 onPressed: () => Navigator.popAndPushNamed(context, "/"),
               ),
               ),
@@ -161,26 +161,6 @@ class _TTChangePageState extends State<TTChangePage> {
 
           TimeTableWidget(mode: "edit",),
           
-          // Align(
-          //   alignment: Alignment.centerRight,
-          //   child:
-          //     Container(
-          //       width: screenSize.width * 0.12,
-          //       height: screenSize.height * 0.06,
-          //       margin: EdgeInsets.fromLTRB(0, screenSize.height * 0.01,screenSize.width *  0.02, 0),
-          //       decoration: BoxDecoration(
-          //         color: Color.fromARGB(255, 62, 168, 255),
-          //         borderRadius: BorderRadius.circular(45)
-          //       ),
-          //       child: 
-          //         IconButton(
-          //           iconSize: screenSize.height * 0.05,
-          //           icon: Icon(Icons.edit),
-          //           color: Color.fromARGB(255, 255, 255, 255),
-          //           onPressed: () => Navigator.popAndPushNamed(context, "/"),
-          //         ),
-          //       ),
-          // ),
         ],
       )
     );
