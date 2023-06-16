@@ -41,6 +41,8 @@ dependencies:
   table_calendar: ^3.0.9  # カレンダー
 
   shared_preferences: ^2.1.1  # データを扱えるパッケージ
+  json_annotation: ^4.8.1
+  path_provider: ^2.0.15
 
   app_settings: ^4.2.0  # 端末の設定画面を開く
 
@@ -55,6 +57,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   build_runner: ^2.4.1
+  json_serializable: ^6.7.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -71,6 +74,8 @@ flutter:
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/time_tables.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

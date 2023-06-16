@@ -56,27 +56,32 @@ class _TimeTablePageState extends State<TimeTablePage> {
       child: Column(
         children: [
 
+          Align(
+            // align right
+            alignment: Alignment.centerRight,
+            child: Container(
+              width: screenSize.width * 0.15,
+              height: screenSize.height * 0.06,
+              margin: EdgeInsets.fromLTRB(screenSize.width *  0.02, screenSize.height * 0.01,screenSize.width *  0.02, 0),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(124, 124, 150, 162),
+                borderRadius: BorderRadius.circular(15)
+              ),
+              child: 
+              TextButton(
+                // 
+                child: Text("編集", style: TextStyle(fontSize: 20)),
+                onPressed: () => Navigator.popAndPushNamed(context, "/edit"),
+              ),
+              ),
+          ),
+
           TimeTableWidget(),
           // 編集ボタン
-          Align(
-            alignment: Alignment.centerRight,
-            child:
-              Container(
-                width: screenSize.width * 0.12,
-                height: screenSize.height * 0.06,
-                margin: EdgeInsets.fromLTRB(0, screenSize.height * 0.01,screenSize.width *  0.02, 0),
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(124, 124, 150, 162),
-                  borderRadius: BorderRadius.circular(45)
-                ),
-                child: 
-                IconButton(
-                    iconSize: 35,
-                    icon: const Icon(Icons.edit),
-                    onPressed: () => Navigator.popAndPushNamed(context, "/edit"),
-                  ),
-                ),
-          ),
+          
+
+
+        
         ],
       )
     );
