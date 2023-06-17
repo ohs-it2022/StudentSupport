@@ -16,6 +16,9 @@ const taskRegistIcon  = Icons.book;               // 課題登録
 const timeTableChangeIcon = Icons.calendar_month; // 時間割変更
 const settingIcon = Icons.settings;               // 一般設定
 
+// Darkテーマであるかどうか
+bool isDark = true;
+
 // 基本のテキスト設定
 class BasicText extends StatelessWidget {
   final String text;
@@ -64,6 +67,8 @@ class ScreenWidget extends StatelessWidget {
     // }
     var screenSize = MediaQuery.of(context).size;  // 画面のサイズを取得
     return MaterialApp(
+      // TODO: isDarkのStateによって全体におけるテーマを変更
+      theme: isDark? ThemeData.dark(): ThemeData.light(),
       home: Scaffold(
         appBar: AppBar(
           title: Text(titleTxt),
@@ -89,8 +94,6 @@ class ThemeHold extends StatefulWidget {
 }
 
 class _ThemeHoldState extends State<ThemeHold> {
-  // Darkテーマであるかどうか
-  bool isDark = true;
   // テーマ切り替えボタン
   @override
   Widget build(BuildContext context) {
@@ -193,7 +196,7 @@ OverlayEntry overlayEntryTTCange = OverlayEntry(
   builder: (BuildContext context) {
     return BottomOverlay(
       height: 0.6, 
-      content: Center(child: Material(child: Text('text'),),),
+      content: const Center(child: Material(child: Text('text'),),),
       hideFunc: hideOverlayTTChange,
     );
   },
