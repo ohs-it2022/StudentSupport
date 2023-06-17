@@ -16,10 +16,6 @@ const taskRegistIcon  = Icons.book;               // 課題登録
 const timeTableChangeIcon = Icons.calendar_month; // 時間割変更
 const settingIcon = Icons.settings;               // 一般設定
 
-// TODO: isDarkの値をテーマ設定とリンクさせる
-// Darkテーマであるかどうか
-bool isDark = true;
-
 // 基本のテキスト設定
 class BasicText extends StatelessWidget {
   final String text;
@@ -51,14 +47,12 @@ class BasicIcon extends StatelessWidget {
   }
 }
 
-
 // 各画面のウィジェット
 class ScreenWidget extends StatelessWidget {
   final String titleTxt;
   final dynamic bodyContents;
   final int drawerFlg;
   const ScreenWidget({super.key, required this.titleTxt, required this.bodyContents, this.drawerFlg = 0});
-
 
   @override
   Widget build(BuildContext context) {
@@ -69,33 +63,47 @@ class ScreenWidget extends StatelessWidget {
     //   _drawer = null;
     // }
     var screenSize = MediaQuery.of(context).size;  // 画面のサイズを取得
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(titleTxt),
-        toolbarHeight: screenSize.height * 0.1,
-        leading: ThemeButton()
-      ),
-  
-      // drawer: _drawer,
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text(titleTxt),
+          toolbarHeight: screenSize.height * 0.1,
+          actions: const [
+            ThemeHold()
+          ],
+        ),
 
-      body: bodyContents,
+        // drawer: _drawer,
+
+        body: bodyContents,
+      ),
     );
   }
+}
 
+class ThemeHold extends StatefulWidget {
+  const ThemeHold({Key? key}): super(key: key);
+
+  @override
+  State<ThemeHold> createState() => _ThemeHoldState();
+}
+
+class _ThemeHoldState extends State<ThemeHold> {
+  // Darkテーマであるかどうか
+  bool isDark = true;
   // テーマ切り替えボタン
-  IconButton ThemeButton() {
+  @override
+  Widget build(BuildContext context) {
     return IconButton(
         onPressed: () {
-          // TODO: setStateが使用できなかった為一時的にエラー回避でコメントアウト
-          // setState(() {
-          //   isDark = !isDark;
-          // });
+          setState(() {
+            isDark = !isDark;
+          });
         },
         icon: Icon(isDark ? Icons.dark_mode_outlined : Icons.light_mode)
     );
   }
 }
-
 
 // ドロップダウンメニュー
 class DropdownButtonMenu extends StatefulWidget {
