@@ -14,7 +14,7 @@ class TimeTableWidget extends StatelessWidget {
     return Container(
       margin: EdgeInsets.fromLTRB(0, screenSize.height * 0.025, 0, 0),
       width: contentsWidth,
-      height: screenSize.height * 0.75,
+      height: screenSize.height * 0.7,
       alignment: Alignment.center,
       decoration: sectionDecoration,
       padding: EdgeInsets.fromLTRB(0, screenSize.height * 0.025, 0, screenSize.height * 0.025),
@@ -42,10 +42,10 @@ class TimeTableWidget extends StatelessWidget {
 }
 
 
-const double dayHeight = 0.038125;  // 曜日の要素の高さ
-const double dayWidth = 0.12656;   // 曜日の要素の横幅
-const double numHeight = 0.0953125;  // 時間の要素の高さ
-const double numWidth = 0.050625;   // 時間の要素の横幅
+const double dayHeight = 0.03;  // 曜日の要素の高さ
+const double dayWidth = 0.13;   // 曜日の要素の横幅
+const double numHeight = 0.09;  // 時間の要素の高さ
+const double numWidth = 0.05;   // 時間の要素の横幅
 
 final elemDecoration = BoxDecoration(
   color: bgColor1,
@@ -105,7 +105,6 @@ final btnStyle = ElevatedButton.styleFrom(
   padding: const EdgeInsets.all(0)
 );
 
-
 class _TTNum extends StatelessWidget {
   final String txt;
   const _TTNum({super.key, required this.txt});
@@ -163,7 +162,7 @@ OverlayEntry overlayEntryTT = OverlayEntry(
   builder: (BuildContext context) {
     return BottomOverlay(
       height: 0.6, 
-      content: TTOverlay(), 
+      content: const TTOverlay(), 
       hideFunc: hideOverlayTT
     );
   }
