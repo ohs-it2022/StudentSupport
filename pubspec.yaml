@@ -45,6 +45,7 @@ dependencies:
   path_provider: ^2.0.15
 
   app_settings: ^4.2.0  # 端末の設定画面を開く
+  get: ^4.6.5 # State管理用パッケージ
 
 dev_dependencies:
   flutter_test:
