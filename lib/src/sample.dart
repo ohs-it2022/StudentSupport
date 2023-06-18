@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:student_support/src/themeSettings/theme_consts.dart';
 
 DateTime today = DateTime.now();
 
@@ -66,23 +68,17 @@ class ScreenWidget extends StatelessWidget {
     //   _drawer = null;
     // }
     var screenSize = MediaQuery.of(context).size;  // 画面のサイズを取得
-    return MaterialApp(
-      // TODO: isDarkのStateによって全体におけるテーマを変更
-      theme: isDark? ThemeData.dark(): ThemeData.light(),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(titleTxt),
-          toolbarHeight: screenSize.height * 0.1,
-          actions: const [
-            ThemeHold()
-          ],
-        ),
-
-        // drawer: _drawer,
-
-        body: bodyContents,
-      ),
-    );
+    return Scaffold(
+          appBar: AppBar(
+            title: Text(titleTxt),
+            toolbarHeight: screenSize.height * 0.1,
+            actions: const [
+              ThemeHold()
+            ],
+          ),
+          // drawer: _drawer,
+          body: bodyContents,
+        );
   }
 }
 
@@ -100,10 +96,10 @@ class _ThemeHoldState extends State<ThemeHold> {
     return IconButton(
         onPressed: () {
           setState(() {
-            isDark = !isDark;
+            Get.changeTheme(Get.isDarkMode ? lightThemeData : darkThemeData);
           });
         },
-        icon: Icon(isDark ? Icons.dark_mode_outlined : Icons.light_mode)
+        icon: Icon(Get.isDarkMode ? Icons.dark_mode_outlined : Icons.dark_mode)
     );
   }
 }
@@ -188,6 +184,30 @@ class _BottomOverlayState extends State<BottomOverlay> {
         ],
       )
     );
+    // Center(
+    //     child: Column(
+    //       children: [
+    //         Builder(
+    //           builder: (BuildContext context) => GestureDetector(
+    //             onTap: () {
+    //               widget.hideFunc();
+    //             },
+    //             child: Container(
+    //               color: Colors.black.withOpacity(0.5),
+    //               width: size.width,
+    //               height: size.height * (1 - widget.height),
+    //             ),
+    //           ),
+    //         ),
+    //         Container(
+    //             width: size.width,
+    //             height: size.height * widget.height - 50,
+    //             color: widget.bgcolor,
+    //             child: widget.content
+    //         )
+    //       ],
+    //     )
+    // );
   }
 }
 
