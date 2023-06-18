@@ -1,12 +1,6 @@
-import 'dart:convert';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:student_support/src/bottom_bar.dart';
 import 'package:student_support/src/sample.dart';
-import 'package:student_support/src/screens/timeTable/TT_change.dart';
-import 'package:student_support/src/screens/timeTable/TT_change.dart';
 import 'package:student_support/src/screens/timeTable/TT_sample.dart';
 
 List<List<String>> weekTimeTable = [
@@ -60,23 +54,21 @@ class _TimeTablePageState extends State<TimeTablePage> {
             // align right
             alignment: Alignment.centerRight,
             child: Container(
-              width: screenSize.width * 0.15,
-              height: screenSize.height * 0.06,
-              margin: EdgeInsets.fromLTRB(screenSize.width *  0.02, screenSize.height * 0.01,screenSize.width *  0.02, 0),
+              width: screenSize.width * 0.5,
+              height: screenSize.height * 0.05,
+              margin: EdgeInsets.fromLTRB(screenSize.width*0.02, screenSize.height*0.01, screenSize.width*0.02, 0),
               decoration: BoxDecoration(
-                color: const Color.fromARGB(124, 124, 150, 162),
-                borderRadius: BorderRadius.circular(15)
+                  borderRadius: BorderRadius.circular(15)
               ),
-              child: 
-              TextButton(
-                // 
-                child: Text("編集", style: TextStyle(fontSize: 20)),
-                onPressed: () => Navigator.popAndPushNamed(context, "/edit"),
-              ),
+              child:
+                ElevatedButton(
+                  child: const Text('編集', style: TextStyle(fontSize: 20)),
+                  onPressed: () => Navigator.popAndPushNamed(context, "/edit"),
+                ),
               ),
           ),
 
-          TimeTableWidget(),
+          const TimeTableWidget(),
           // 編集ボタン
           
 

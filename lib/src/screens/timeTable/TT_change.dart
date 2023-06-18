@@ -138,29 +138,24 @@ class _TTChangePageState extends State<TTChangePage> {
     final bodyCont = Center(
       child: Column(
         children: [
-          
           Align(
             // align right
             alignment: Alignment.centerRight,
             child: Container(
-              width: screenSize.width * 0.15,
-              height: screenSize.height * 0.06,
-              margin: EdgeInsets.fromLTRB(screenSize.width *  0.02, screenSize.height * 0.01,screenSize.width *  0.02, 0),
+              width: screenSize.width * 0.5,
+              height: screenSize.height * 0.05,
+              margin: EdgeInsets.fromLTRB(screenSize.width*0.02, screenSize.height*0.01, screenSize.width*0.02, 0),
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 62, 168, 255),
                 borderRadius: BorderRadius.circular(15)
               ),
-              child: 
-              TextButton(
-                child: const Text('編集', style: TextStyle(color: Colors.white, fontSize: 20)),
-                onPressed: () => Navigator.popAndPushNamed(context, "/"),
-              ),
+              child:
+                ElevatedButton(
+                  child: const Text('完了', style: TextStyle(fontSize: 20)),
+                  onPressed: () => Navigator.popAndPushNamed(context, "/"),
+                ),
               ),
           ),
-
-
-          TimeTableWidget(mode: "edit",),
-          
+          const TimeTableWidget(mode: "edit"),
         ],
       )
     );
