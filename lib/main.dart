@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:student_support/routers/app_router.dart';
+import 'package:get/get.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:student_support/src/screens/timeTable/TT_change.dart';
-import 'package:student_support/src/screens/timeTable/form.dart';
 import 'package:student_support/src/screens/timeTable/timeTable.dart';
+import 'package:student_support/src/themeSettings/theme_consts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,16 +14,29 @@ class MyApp extends StatelessWidget {
   // final _appRouter = AppRouter();
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        primaryColor: Colors.lightBlue[800]
-      ),
+    return MyAppPage(context: context);
+  }
+}
+
+class MyAppPage extends StatefulWidget {
+  const MyAppPage({super.key, required context});
+
+  @override
+  State<StatefulWidget> createState() => _MyAppPageState();
+}
+
+class _MyAppPageState extends State<MyAppPage> {
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'StudentSupport',
+      theme: lightThemeData,
+      darkTheme: darkThemeData,
       initialRoute: "/",
       routes: {
-        '/': (context) => TimeTablePage(),
-        '/edit': (context) => TTChangePage(),
+        '/': (context) => const TimeTablePage(),
+        '/edit': (context) => const TTChangePage(),
       },
     );
   }
