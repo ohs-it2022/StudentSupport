@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:student_support/src/sample.dart';
 import 'package:student_support/src/screens/timeTable/TT_change.dart';
 import 'package:student_support/src/screens/timeTable/form.dart';
+import 'package:student_support/src/time_table_model.dart';
 
 class TimeTableWidget extends StatelessWidget {
   final mode;
@@ -30,7 +31,7 @@ class TimeTableWidget extends StatelessWidget {
                 children: [
                   _TTNum(txt: '${i+1}'),
                   for (int dayOfWeek=0;dayOfWeek<6;dayOfWeek++)
-                    _TTElem(txt: testTimeTable[dayOfWeek][i], num: i, dayOfWeek: dayOfWeek, mode: mode),
+                    _TTElem(txt: testTimeTable[dayOfWeek][i], time: i, dayOfWeek: dayOfWeek, mode: mode),
                 ],
               ),
             },
@@ -42,18 +43,16 @@ class TimeTableWidget extends StatelessWidget {
 }
 
 
-const double dayHeight = 0.03;  // 曜日の要素の高さ
-const double dayWidth = 0.13;   // 曜日の要素の横幅
-const double numHeight = 0.09;  // 時間の要素の高さ
-const double numWidth = 0.05;   // 時間の要素の横幅
+const double dayHeight  = 0.03;  // 曜日の要素の高さ
+const double dayWidth   = 0.13;  // 曜日の要素の横幅
+const double numHeight  = 0.09;  // 時間の要素の高さ
+const double numWidth   = 0.05;  // 時間の要素の横幅
 
 final elemDecoration = BoxDecoration(
-  color: bgColor1,
   borderRadius: BorderRadius.circular(10)
 );
 
 final sectionDecoration = BoxDecoration(
-  color: bgColor2,
   borderRadius: BorderRadius.circular(30),
 );
 
@@ -70,7 +69,8 @@ class DayElem extends StatelessWidget {
       width: screenSize.width * dayWidth,
       decoration: elemDecoration,
       child: Center(
-        child: Text(txt, style: TextStyle(fontSize: screenSize.width/27),),
+        // screenSize.width/27
+        child: Text(txt),
       ),
     );
   }
@@ -101,7 +101,6 @@ final btnStyle = ElevatedButton.styleFrom(
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(10)
   ),
-  backgroundColor: bgColor1,
   padding: const EdgeInsets.all(0)
 );
 
@@ -123,10 +122,10 @@ class _TTNum extends StatelessWidget {
 
 class _TTElem extends StatefulWidget {
   final String txt;
-  final int num;
+  final int time;
   final dayOfWeek;
   final mode;
-  const _TTElem({super.key, required this.txt, required this.num, required this.dayOfWeek, required this.mode});
+  const _TTElem({super.key, required this.txt, required this.time, required this.dayOfWeek, required this.mode});
 
   @override
   State<_TTElem> createState() => __TTElemState();
@@ -140,16 +139,32 @@ class __TTElemState extends State<_TTElem> {
       height: screenSize.height * numHeight,
       width: screenSize.width * dayWidth,
       child: ElevatedButton(
-        onPressed: () {
+        onPressed: () async {
           if (widget.mode=="browse"){
-            showOverlayTT(context);
+            // TODO: オーバーレイがこの状態だと表示されない
+            FutureBuilder(
+              future: getSubject(0, widget.dayOfWeek, widget.time),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  showOverlayTT(context, snapshot.data!);
+                } else if (snapshot.hasError) {
+                  showError(context, const Text("予期しないエラーが発生しました。"));
+                } else {
+                  showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (_) => const Center(child: CircularProgressIndicator())
+                  );
+                }
+                return const Text("");
+              },
+            );
           }else if(widget.mode=="edit"){
             Navigator.push(
               context, 
-              MaterialPageRoute(builder: (context) => FormPage(num: widget.num, dayOfWeek: widget.dayOfWeek, weekTimeTable: testTimeTable))
+              MaterialPageRoute(builder: (context) => FormPage(num: widget.time, dayOfWeek: widget.dayOfWeek, weekTimeTable: testTimeTable))
             );
           }
-          
         }, 
         style: btnStyle,
         child: Text(widget.txt,style: TextStyle(fontSize: screenSize.width/30),)
@@ -157,26 +172,50 @@ class __TTElemState extends State<_TTElem> {
     );
   }
 }
-// オーバーレイ
-OverlayEntry overlayEntryTT = OverlayEntry(
-  builder: (BuildContext context) {
-    return BottomOverlay(
-      height: 0.6, 
-      content: const TTOverlay(), 
-      hideFunc: hideOverlayTT
-    );
-  }
-);
 
-void showOverlayTT(BuildContext context){
-  Overlay.of(context).insert(overlayEntryTT);
+Future showError(context, Widget? content) {
+  return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text("エラー"),
+          content: content,
+          actions: [
+            TextButton(onPressed:() {}, child: const Text("OK"))
+          ],
+        );
+      }
+  );
 }
-void hideOverlayTT() {
-  overlayEntryTT.remove();
+
+Future<SubjectModel> getSubject(int id, int day, int time) async {
+  final storage = TTsStorage();
+  return await storage.read(id, day, time);
+}
+
+OverlayEntry getEntry(SubjectModel content){
+  return OverlayEntry(
+      builder: (BuildContext context) {
+        return BottomOverlay(
+            height: 0.4,
+            content: TTOverlay(childContent: content),
+            hideFunc: hideOverlayTT
+        );
+      }
+  );
+}
+
+void showOverlayTT(BuildContext context, SubjectModel content) {
+  print("ShowOverlay!!!!!!!!!!!!");
+  Overlay.of(context).insert(getEntry(content));
+}
+void hideOverlayTT(overlayInstance) {
+  overlayInstance.remove();
 }
 
 class TTOverlay extends StatefulWidget {
-  const TTOverlay({super.key});
+  final SubjectModel childContent;
+  const TTOverlay({super.key, required this.childContent});
 
   @override
   State<TTOverlay> createState() => _TTOverlayState();
@@ -185,6 +224,6 @@ class TTOverlay extends StatefulWidget {
 class _TTOverlayState extends State<TTOverlay> {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('AA'),);
+    return const Center(child: Text('AA'),);
   }
 }
