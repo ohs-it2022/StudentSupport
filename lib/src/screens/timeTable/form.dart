@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:student_support/src/sample.dart';
 import 'package:student_support/src/screens/timeTable/TT_change.dart';
 
+import 'package:student_support/src/time_table_model.dart';
+final _storage = TTsStorage();
+
 class FormPage extends StatelessWidget {
   final int num;
-  final int dayOfWeek;
-  final List<List<String>> weekTimeTable;
-  const FormPage({super.key, required this.num, required this.dayOfWeek, required this.weekTimeTable});
+  final int day;
+  final List<List<SubjectModel>> timeTableList;
+  const FormPage({super.key, required this.num, required this.day, required this.timeTableList});
 
   @override
   Widget build(BuildContext context) {
-    var titleSubName;
-    var subName = '';
+    var titleSubName = '';
+    var fullname = '';
     var classRoom = '';
     var teacher = '';
-    List<List<String>> weekTimeTableAdd = weekTimeTable as List<List<String>>;
 
     return ScreenWidget(
       titleTxt: '時間割追加', 
@@ -23,20 +26,28 @@ class FormPage extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: ElevatedButton(
-                onPressed: (){}, 
+                onPressed: (){
+                  _storage.delete(0, day, num);
+                  Navigator.popAndPushNamed(context, "/");
+                }, 
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red
                 ),
                 child: Text("削除")
               ),
             ),
-            formElem(txt: "表示名", initTxt: testTimeTable[dayOfWeek][num], function: (value) => (titleSubName = value)),
-            formElem(txt: "正式名称", initTxt: testDetail[dayOfWeek][num][0], function: (value) => (subName = value)),
-            formElem(txt: "教室名", initTxt: testDetail[dayOfWeek][num][1], function: (value) => (classRoom = value),),
-            formElem(txt: "教科担当", initTxt: testDetail[dayOfWeek][num][2], function: (value) => (teacher = value),),
+            formElem(txt: "表示名", initTxt: timeTableList[day][num].subject, function: (value) => (titleSubName = value)),
+            formElem(txt: "正式名称", initTxt: timeTableList[day][num].fullname, function: (value) => (fullname = value)),
+            formElem(txt: "教室名", initTxt: timeTableList[day][num].room, function: (value) => (classRoom = value),),
+            formElem(txt: "教科担当", initTxt: timeTableList[day][num].teacher, function: (value) => (teacher = value),),
             ElevatedButton(
               onPressed: (){
+                _storage.update(0, day, num, titleSubName, fullname, classRoom, teacher);
+                // _storage.read(0, day, num).then((value){
+                //   print(value.subject);
+                // });
                 
+                Navigator.popAndPushNamed(context, "/");
               },
               child: Text('登録')
             )

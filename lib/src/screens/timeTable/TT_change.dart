@@ -16,66 +16,6 @@ class TTChangeRouterPage extends AutoRouter {
 
 // List<List<String>> weekTimeTable = initTimeTable;
 
-// データ
-var testTimeTable = [
-  ["DB", "DB", "AS", "FX", "AS", ""],
-  ["", "", "MK", "CL", "CL", "NT"],
-  ["", "", "CS", "CS", "NT", ""],
-  ["IA", "IA", "", "", "", ""],
-  ["", "", "", "", "", ""],
-  ["IO", "IO", "", "", "", ""],  
-];
-
-var testDetail = [
-  [
-    ["データベース", "161", "山田"],
-    ["データベース", "161", "山田"],
-    ["AI開発", "043", "高木"],
-    ["", "043", "高木"],
-    ["AI開発", "043", "高木"],
-    ["", "", ""]
-  ],
-  [
-    ["", "", ""],
-    ["", "", ""],
-    ["マーケティング", "101", "植島"],
-    ["C/C++", "043", "高木"],
-    ["C/C++", "043", "高木"],
-    ["ネットワーク", "191", ""]
-  ],
-  [
-    ["", "", ""],
-    ["", "", ""],
-    ["コンピュータサイエンス", "オンライン", "渡瀬"],
-    ["コンピュータサイエンス", "オンライン", "渡瀬"],
-    ["ネットワーク", "オンライン", ""],
-    ["", "", ""]
-  ],
-  [
-    ["IA", "161", "仲尾"],
-    ["IA", "161", "仲尾"],
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""]
-  ],
-  [
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""]
-  ],
-  [
-    ["IoT", "191", "永峰"],
-    ["IoT", "191", "永峰"],
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
-  ]
-];
 
 // Future<void> initSetTimeTable() async{
 //   SharedPreferences _prefs = await SharedPreferences.getInstance();
@@ -220,7 +160,7 @@ class TTElem extends StatelessWidget {
           // context.router.push(AddDetailRoute(num: num, dayOfWeek: dayOfWeek, weekTimeTable: weekTimeTable));
           Navigator.push(
             context, 
-            MaterialPageRoute(builder: (context) => FormPage(num: num, dayOfWeek: dayOfWeek, weekTimeTable: testTimeTable))
+            MaterialPageRoute(builder: (context) => FormPage(num: num, day: dayOfWeek, timeTableList: timeTableList))
           );
         }, 
         style: btnStyle,
@@ -259,7 +199,7 @@ class TTRow extends StatelessWidget {
       children: [
         TTNum(txt: '${num+1}'),
         for (int dayOfWeek=0;dayOfWeek<6;dayOfWeek++)
-          TTElem(txt: testTimeTable[dayOfWeek][num], num: num, dayOfWeek: dayOfWeek,)
+          TTElem(txt: timeTableList[dayOfWeek][num].subject, num: num, dayOfWeek: dayOfWeek,)
       ],
     );
   }

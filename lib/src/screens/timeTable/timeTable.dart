@@ -3,10 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:student_support/src/sample.dart';
 import 'package:student_support/src/screens/timeTable/TT_sample.dart';
 
-List<List<String>> weekTimeTable = [
-  for (int i=0;i<maxNum;i++)
-    [for (int j=0;j<maxNum;j++)'']
-];
 
 @RoutePage()
 class TimeTablePage extends StatefulWidget {
@@ -17,24 +13,6 @@ class TimeTablePage extends StatefulWidget {
 }
 
 class _TimeTablePageState extends State<TimeTablePage> {
-  
-  // // void getWeekTimeTable() async{
-  // //   final _prefs = await SharedPreferences.getInstance();
-  // //   if (_prefs.containsKey('timeTable')){
-  // //     setState(() {
-  // //       final jsonString = _prefs.getString("timeTable") ?? "";
-  // //       final decodeJson = jsonDecode(jsonString);
-  // //       decodeJson.asMap().forEach((i, elemList){
-  // //         List<String> workList = [];
-  // //         for (final String elem in elemList){
-  // //           workList.add(elem);
-  // //         }
-  // //         weekTimeTable[i] = (workList);
-  // //       });
-  // //     });
-  // //   }
-  // // }
-
 
   // // @override
   // // void initState(){
@@ -68,7 +46,7 @@ class _TimeTablePageState extends State<TimeTablePage> {
               ),
           ),
 
-          const TimeTableWidget(),
+          TimeTableWidget(),
           // 編集ボタン
           
 

@@ -4,10 +4,51 @@ import 'package:student_support/src/screens/timeTable/TT_change.dart';
 import 'package:student_support/src/screens/timeTable/form.dart';
 import 'package:student_support/src/time_table_model.dart';
 
-class TimeTableWidget extends StatelessWidget {
+final _storage = TTsStorage();
+
+String test(day, int num) {
+  var a;
+  _storage.read(0, day, num).then((value) {
+    a=value.subject;
+  });
+  if (a.toString()=="null"){
+    a = "";
+  };
+  return a;
+}
+
+List<List<SubjectModel>> timeTableList = [
+  [SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: "")],
+  [SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: "")],
+  [SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: "")],
+  [SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: "")],
+  [SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: "")],
+  [SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: ""),SubjectModel(subject: "", fullname: "", room: "", teacher: "")]
+];
+
+
+class TimeTableWidget extends StatefulWidget {
   final mode;
   const TimeTableWidget({super.key, this.mode="browse"});
 
+  @override
+  State<TimeTableWidget> createState() => _TimeTableWidgetState();
+}
+
+class _TimeTableWidgetState extends State<TimeTableWidget> {
+  @override
+  void initState() {
+    super.initState();
+    print("init");
+    for(int i=0; i<6; i++){
+      for(int j=0; j<6; j++){
+        _storage.read(0, i, j).then((value){
+          timeTableList[i][j] = value;
+        });
+      }
+    }
+    print("Finish");
+  }
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;  // 画面のサイズを取得
@@ -30,8 +71,10 @@ class TimeTableWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   _TTNum(txt: '${i+1}'),
-                  for (int dayOfWeek=0;dayOfWeek<6;dayOfWeek++)
-                    _TTElem(txt: testTimeTable[dayOfWeek][i], time: i, dayOfWeek: dayOfWeek, mode: mode),
+
+                  for (int dayOfWeek=0;dayOfWeek<6;dayOfWeek++)...{
+                    _TTElem(txt: timeTableList[dayOfWeek][i].subject, time: i, dayOfWeek: dayOfWeek, mode: widget.mode),
+                  }
                 ],
               ),
             },
@@ -162,7 +205,7 @@ class __TTElemState extends State<_TTElem> {
           }else if(widget.mode=="edit"){
             Navigator.push(
               context, 
-              MaterialPageRoute(builder: (context) => FormPage(num: widget.time, dayOfWeek: widget.dayOfWeek, weekTimeTable: testTimeTable))
+              MaterialPageRoute(builder: (context) => FormPage(num: widget.time, day: widget.dayOfWeek, timeTableList: timeTableList))
             );
           }
         }, 
