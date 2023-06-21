@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:student_support/src/sample.dart';
-import 'package:student_support/src/screens/timeTable/TT_change.dart';
 import 'package:student_support/src/screens/timeTable/form.dart';
 import 'package:student_support/src/time_table_model.dart';
 
@@ -35,18 +34,30 @@ class TimeTableWidget extends StatefulWidget {
   State<TimeTableWidget> createState() => _TimeTableWidgetState();
 }
 
+void updateList(){
+  for(int i=0; i<6; i++){
+    for(int j=0; j<6; j++){
+      _storage.read(0, i, j).then((value){
+        timeTableList[i][j] = value;
+      });
+    }
+  }
+}
+
 class _TimeTableWidgetState extends State<TimeTableWidget> {
   @override
   void initState() {
-    super.initState();
     print("init");
-    for(int i=0; i<6; i++){
-      for(int j=0; j<6; j++){
-        _storage.read(0, i, j).then((value){
-          timeTableList[i][j] = value;
-        });
+    setState(() {
+      for(int i=0; i<6; i++){
+        for(int j=0; j<6; j++){
+          _storage.read(0, i, j).then((value){
+            timeTableList[i][j] = value;
+          });
+        }
       }
-    }
+    });
+    super.initState();
     print("Finish");
   }
   @override

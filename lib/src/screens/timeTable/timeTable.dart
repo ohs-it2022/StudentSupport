@@ -14,11 +14,11 @@ class TimeTablePage extends StatefulWidget {
 
 class _TimeTablePageState extends State<TimeTablePage> {
 
-  // // @override
-  // // void initState(){
-  // //   super.initState();
-  // //   getWeekTimeTable();
-  // // }
+  // @override
+  // void initState(){
+  //   super.initState();
+  //   updateList();
+  // }
 
   @override
   Widget build(BuildContext context) {
