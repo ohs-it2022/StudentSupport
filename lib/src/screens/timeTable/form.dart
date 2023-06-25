@@ -28,7 +28,7 @@ class FormPage extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: (){
                   _storage.delete(0, day, num);
-                  Navigator.popAndPushNamed(context, "/");
+                  Navigator.pop(context);
                 }, 
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red
@@ -47,7 +47,7 @@ class FormPage extends StatelessWidget {
                 //   print(value.subject);
                 // });
                 
-                Navigator.popAndPushNamed(context, "/");
+                Navigator.pop(context);
               },
               child: Text('登録')
             )
